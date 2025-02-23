@@ -44,11 +44,13 @@ export default function Header() {
             </div>
 
             <h1
-              className={`text-sm font-bold text-white text-center uppercase sm:text-2xl md:text-3xl`}
+              className={`text-sm font-bold text-white text-center uppercase sm:text-2xl md:text-3xl md:text-secondary`}
             >
               Nigeria Journal of Business Administration
             </h1>
-
+            <p className='text-sm block md:hidden font-medium text-white'>
+              ISSN: 0794-0672
+            </p>
             <div
               className='absolute block cursor-pointer md:hidden right-2 top-3'
               onClick={navbarToggleHandler}

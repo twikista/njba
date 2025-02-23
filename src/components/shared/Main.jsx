@@ -1,5 +1,6 @@
-import Breadcrumb from './Bread';
+// import Breadcrumb from './Bread';
 import Aside from '../Aside';
+import Breadcrumb from './Breadcrumb';
 
 function Main({ children, showAside = true }) {
   return (

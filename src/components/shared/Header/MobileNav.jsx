@@ -76,7 +76,7 @@ export const MobileNav = ({
                     {menuItem.subMenuItems ? (
                       <li
                         key={menuItem.pathName}
-                        className='flex items-center justify-between py-3 text-base font-medium text-gray-700 capitalize border-b cursor-pointer hover:text-primary-light first:border-t'
+                        className='flex items-center justify-between py-3 text-base font-medium text-gray-700 capitalize border-b cursor-pointer hover:text-primary-light first:border-t pl-1'
                         onClick={() => {
                           setActive(menuItem);
                         }}
@@ -88,7 +88,7 @@ export const MobileNav = ({
                       menuItem.url && (
                         <li
                           key={menuItem.pathName}
-                          className='flex items-center justify-between py-3 text-base font-medium text-gray-700 capitalize border-b cursor-pointer hover:text-primary-light first:border-t'
+                          className='flex items-center justify-between py-3 text-base font-medium text-gray-700 capitalize border-b cursor-pointer hover:text-primary-light first:border-t pl-1'
                           onClick={toggleMenu}
                         >
                           <Link href={menuItem.url} className='w-full'>

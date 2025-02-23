@@ -23,14 +23,14 @@ export const menuItems = [
   {
     pathName: 'For Authors',
     subMenuItems: [
-      { pathName: 'Authors Guide', url: '/authors-guide' },
-      { pathName: 'submission Guide', url: '/submission-guide' },
+      { pathName: "Authors' Guidelines", url: '/authors-guidelines' },
+      { pathName: 'Submission Guide', url: '/submission-guide' },
     ],
   },
-  { pathName: 'For Reviewers', url: '/for-reviewers' },
+  { pathName: 'For Reviewers', url: '/reviewers-guide' },
   { pathName: 'contact', url: '/contact' },
   { pathName: 'login', url: `/auth/login` },
-]
+];
 
 export const footerItems = [
   {
@@ -57,7 +57,7 @@ export const footerItems = [
     subMenuItems: [
       { pathName: 'Authors Guide', url: '/authors-guide' },
       { pathName: 'submission Guide', url: '/submission-guide' },
-      { pathName: 'For Reviewers', url: '/for-reviewers' },
+      { pathName: 'For Reviewers', url: '/reviewers-guide' },
     ],
   },
-]
+];

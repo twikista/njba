@@ -37,7 +37,7 @@ function Footer() {
                   Contact
                 </h3>
                 <div>
-                  <p>Tel:+2348039545191</p>
+                  <p>Tel:+234 803 954 5191</p>
                   <p>Email:njba@uniben.edu</p>
                 </div>
               </div>
