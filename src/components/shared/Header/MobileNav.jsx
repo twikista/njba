@@ -9,13 +9,13 @@ import { cn } from '@/lib/utils';
 
 export const SubMenuItem = ({ title, href, className, toggleMenu }) => {
   return (
-    <li className='flex items-center py-3 border-b '>
+    <li className='flex items-center py-2 border-b border-[#5c7f0e]/40 '>
       <Link
         href={href}
         className={cn('flex w-full bg-transparent pl-1', className)}
         onClick={toggleMenu}
       >
-        <p className='text-base font-medium text-gray-700'>{title}</p>
+        <p className='text-base  text-primary'>{title}</p>
       </Link>
     </li>
   );
@@ -70,25 +70,25 @@ export const MobileNav = ({
               </button>
             </div>
             <div className='flex flex-col flex-1 lg:hidden overflow-clip'>
-              <ul className='flex-1 px-4 overflow-hidden'>
+              <ul className='flex-1 px-4 overflow-hidden '>
                 {menuItems.map((menuItem, index) => (
                   <div key={index}>
                     {menuItem.subMenuItems ? (
                       <li
                         key={menuItem.pathName}
-                        className='flex items-center justify-between py-3 text-base font-medium text-gray-700 capitalize border-b cursor-pointer hover:text-primary-light first:border-t pl-1'
+                        className='flex items-center justify-between py-2 text-base text-primary capitalize border-b border-[#5c7f0e]/40 cursor-pointer hover:text-primary-light  pl-1 '
                         onClick={() => {
                           setActive(menuItem);
                         }}
                       >
                         <span>{menuItem.pathName}</span>
-                        <FaChevronRight className='text-xs text-gray-600' />
+                        <FaChevronRight className='text-xs text-primary' />
                       </li>
                     ) : (
                       menuItem.url && (
                         <li
                           key={menuItem.pathName}
-                          className='flex items-center justify-between py-3 text-base font-medium text-gray-700 capitalize border-b cursor-pointer hover:text-primary-light first:border-t pl-1'
+                          className='flex items-center justify-between py-2 text-base text-primary capitalize border-b border-[#5c7f0e]/40  cursor-pointer hover:text-primary-light pl-1'
                           onClick={toggleMenu}
                         >
                           <Link href={menuItem.url} className='w-full'>
@@ -118,7 +118,7 @@ export const MobileNav = ({
                         onClick={() => setActive(null)}
                         className='flex items-center gap-[2px] text-base font-bold text-gray-700'
                       >
-                        <FaChevronLeft className='text-xs text-gray-700' />
+                        <FaChevronLeft className='text-xs text-black' />
                         <span>Back</span>
                       </button>
                     ) : (
@@ -131,12 +131,12 @@ export const MobileNav = ({
                       name='navbarClose'
                       aria-label='navbarClose'
                     >
-                      <MdOutlineClose className='text-2xl text-gray-700' />
+                      <MdOutlineClose className='text-2xl text-black' />
                     </button>
                   </div>
-                  <div className='flex-1 px-4'>
+                  <div className='flex-1 px-4 mt-2'>
                     {active && (
-                      <div className='flex items-center justify-center gap-1 py-2 rounded-sm bg-secondary'>
+                      <div className='flex items-center justify-center gap-1 py-2 rounded-lg bg-primary'>
                         <h3 className='text-lg font-semibold text-center capitalize text-white'>
                           {active.pathName}
                         </h3>

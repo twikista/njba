@@ -10,18 +10,18 @@ function SubMenu({ subMenuItems, showSubMenu, setShowSubMenu }) {
     showSubMenu && setShowSubMenu(false);
   };
   return (
-    <ul className='absolute flex flex-col text-[15px] text-white bg-secondary top-[25px] shadow-[0px_10px_15px_-3px_rgba(0,0,0,0.1),0px_4px_6px_-2px_rgba(0,0,0,0.05)]'>
+    <ul className='absolute flex flex-col text-[15px] text-white bg-secondary top-[35px] shadow-[0px_10px_15px_-3px_rgba(0,0,0,0.1),0px_4px_6px_-2px_rgba(0,0,0,0.05)] rounded-lg'>
       {subMenuItems.map((menuItem) => (
         <li
           key={menuItem.pathName}
-          className={` py-2 px-3 min-w-[45px] transition-all duration-200 hover:bg-gray-200/30 [&:not(:last-child)]:border-b-[1px] border-secondary group/item cursor-pointer ${
+          className={` py-2 px-3 min-w-[45px] transition-all duration-400 hover:bg-gray-200/30 [&:not(:last-child)]:border-b-[1px] border-secondary group/item cursor-pointer ${
             showSubMenu ? 'block' : 'hidden'
           }`}
           onClick={closeSubMenu}
         >
           <Link
             href={menuItem.url}
-            className='capitalize w-full group-hover/item:translate-x-1.5 transition-all ease-linear duration-200 inline-block'
+            className='capitalize w-full hover:translate-x-1.5 transition-all ease-linear duration-400 inline-block'
           >
             {menuItem.pathName}
           </Link>
@@ -56,7 +56,7 @@ function MenuItem({ menuItem }) {
             type='button'
             className={cn(
               'flex items-center justify-center gap-1 capitalize w-fit px-3 rounded-md py-1 transition-all duration-300 group-hover/item:text-yellow-400',
-              activeSubMenu(menuItem) && 'bg-[#f8fbf8]/30 shadow-sm'
+              activeSubMenu(menuItem) && 'bg-[#f8fbf8]/20 shadow-sm'
             )}
             aria-haspopup='menu'
             aria-expanded={showSubMenu ? 'true' : 'false'}

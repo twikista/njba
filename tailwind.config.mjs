@@ -16,6 +16,7 @@ const tailwindConfig = {
         btn: 'var(--btn)',
         black: 'var(--black)',
         white: 'var(--white)',
+        'btn-hover': 'var(--hover)',
       },
       fontFamily: {
         // bebas: ['var(--font-bebas-neue)', 'sans-serif'],

@@ -13,7 +13,7 @@ function Footer() {
   return (
     <>
       {routeSegment !== 'dashboard' && (
-        <footer className='px-5 text-sm text-white bg-secondary sm:text-base md:px-10'>
+        <footer className='px-5 text-sm text-white bg-primary sm:text-base md:px-10'>
           <div className='w-full py-8 mx-auto space-y-5 max-w-7xl'>
             <div className='grid justify-between grid-cols-2 gap-5 mx-auto md:grid-cols-4 font-barlow'>
               {footerItems.map((menuItem) =>
@@ -42,7 +42,7 @@ function Footer() {
                 </div>
               </div>
             </div>
-            <span className='h-[1px] bg-white/50 block' />
+            <span className='h-[1px] bg-[#fafafa]/50 block' />
             <div className='flex flex-col items-center'>
               <div className='text-xs text-center ms:text-sm sm:text-base'>
                 <div className='flex items-center text-'>
@@ -50,7 +50,7 @@ function Footer() {
                   <span>&nbsp;</span>
                   <span>{currentYear}</span>
                   <span>&nbsp;&#124;&nbsp;</span>
-                  <span className=''>Powered by Inventure Technologies</span>
+                  <span className=''>Powered by Inventure</span>
                   {/* <span className='text-left'>
                     Licensed under a{' '}
                     <a

@@ -27,7 +27,7 @@ const Breadcrumb = ({ homeElement, homeUrl, isProtectedRoute }) => {
       <ul className='flex flex-wrap items-center capitalize'>
         {paths.length > 0 && !isProtectedRoute && (
           <li>
-            <Link href={homeUrl} className='text-secondary hover:text-blue-600'>
+            <Link href={homeUrl} className='text-primary hover:text-blue-600'>
               {homeElement}
             </Link>
             <FaChevronRight className='text-[9px] px-0.5' />
@@ -59,10 +59,7 @@ const Breadcrumb = ({ homeElement, homeUrl, isProtectedRoute }) => {
           return (
             <React.Fragment key={index}>
               <li>
-                <Link
-                  href={href}
-                  className='text-secondary hover:text-blue-600'
-                >
+                <Link href={href} className='text-primary hover:text-blue-600'>
                   {link}
                 </Link>
                 <FaChevronRight className='w-4' />

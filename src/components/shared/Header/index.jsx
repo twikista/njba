@@ -21,7 +21,7 @@ export default function Header() {
     <>
       {activePath !== 'dashboard' && (
         <header>
-          <div className='relative flex flex-col items-center justify-center gap-1 py-1 pt-2 overflow-hidden bg-secondary md:bg-transparent xl:h-[84px] md:flex-row lg:gap-2 md:py-2 lg:py-3 text-[#e8e3df] md:text-secondary'>
+          <div className='relative flex flex-col items-center justify-center gap-1 py-1 pt-2 overflow-hidden bg-primary md:bg-transparent xl:h-[84px] md:flex-row lg:gap-2 md:py-2 lg:py-3 text-[#e8e3df] md:text-primary'>
             <div className='relative'>
               {/* <div className='hidden md:block bg-red-500 absolute w-[8px] h-[80px] top-[-20px] bottom-[-20px] left-[10px]' />
               <div className=' hidden md:block bg-green-500 w-[8px] h-[80px] absolute top-[-20px] bottom-0  right-[10px]' /> */}
@@ -44,7 +44,7 @@ export default function Header() {
             </div>
 
             <h1
-              className={`text-sm font-bold text-white text-center uppercase sm:text-2xl md:text-3xl md:text-secondary`}
+              className={`text-sm font-bold text-white text-center uppercase sm:text-2xl md:text-3xl md:text-primary`}
             >
               Nigeria Journal of Business Administration
             </h1>
