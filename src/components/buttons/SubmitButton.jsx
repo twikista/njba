@@ -1,13 +1,7 @@
 import Spinner from '@/components/shared/Spinner';
 import { cn } from '@/lib/utils';
 
-function SubmitButton({
-  mainText,
-  altText,
-  isSubmitting,
-  className,
-  // disabled = false,
-}) {
+function SubmitButton({ mainText, altText, isSubmitting, className }) {
   return (
     <button
       type='submit'

@@ -3,13 +3,13 @@
 import React, { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import TextInput from '@/components/shared/TextInput';
-import PasswordInput from '@/components/shared/PasswordInput';
+import PasswordInput from '@/components/inputs/PasswordInput';
 import Link from 'next/link';
 import SubmitButton from '@/components/buttons/SubmitButton';
 import { signinFormSchema } from '@/lib/schemas/auth';
 import { zodResolver } from '@hookform/resolvers/zod';
 import DisplayServerValidationError from '@/components/shared/ServerValidationError';
-// import { login } from '../../lib/actions/auth'
+import { login } from '@/lib/actions/auth';
 
 export default function SignInForm() {
   const methods = useForm({
@@ -21,26 +21,26 @@ export default function SignInForm() {
 
   const handler = async (data) => {
     console.log(data);
-    // const response = await login(data)
+    const response = await login(data);
 
-    // if (response && response?.errorType === 'validationError') {
-    //   const fieldErrorMapping = {
-    //     email: 'email',
-    //     password: 'password',
-    //   }
-    //   const fieldWithError = Object.keys(fieldErrorMapping).find(
-    //     (field) => response?.errors[field]
-    //   )
-    //   if (fieldWithError) {
-    //     // Use the ValidFieldNames type to ensure the correct field names
-    //     const errors = Object.keys(response.errors)
-    //     errors.forEach((error) =>
-    //       setError(error, { type: 'server', message: response.errors[error] })
-    //     )
-    //   }
-    // } else if (response?.errorType === 'authError') {
-    //   setAuthError(response.error)
-    // }
+    if (response && response?.errorType === 'validationError') {
+      const fieldErrorMapping = {
+        email: 'email',
+        password: 'password',
+      };
+      const fieldWithError = Object.keys(fieldErrorMapping).find(
+        (field) => response?.errors[field]
+      );
+      if (fieldWithError) {
+        // Use the ValidFieldNames type to ensure the correct field names
+        const errors = Object.keys(response.errors);
+        errors.forEach((error) =>
+          setError(error, { type: 'server', message: response.errors[error] })
+        );
+      }
+    } else if (response?.errorType === 'authError') {
+      setAuthError(response.error);
+    }
   };
   return (
     <FormProvider {...methods}>
