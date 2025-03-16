@@ -1,8 +1,7 @@
-import DashboardLayout from '@/components/Dashboard/layout/DashboardLayout'
-import ArticleForm from '../../../../../../../components/Dashboard/forms/add-article'
-import React, { Suspense } from 'react'
-import { getIssue } from '@/lib/actions/issues'
-import DashboardLayout from '@/components/dashboard/layout/DashboardLayout'
+import ArticleForm from '@/components/dashboard/article';
+import React, { Suspense } from 'react';
+import { getIssue } from '@/lib/actions/issues';
+import DashboardLayout from '@/components/dashboard/layout/DashboardLayout';
 
 const initialState = {
   title: '',
@@ -13,29 +12,30 @@ const initialState = {
   endPage: null,
   abstract: '',
   keywords: [],
-  jelClassifications: [],
+  jelClassification: [],
   pdfFile: '',
-}
+};
 
-export default async function AddArticlePage({ params }) {
-  const articleIssue = await getIssue(params.issue)
-  const volume = articleIssue?.volume
-  const issue = articleIssue?.issueNumber
-  const publishDate = articleIssue?.publishDate
-  console.log(articleIssue)
+export default async function NewArticle({ params }) {
+  const param = await params;
+  const articleIssue = await getIssue(param.issue);
+  const volume = articleIssue?.volume;
+  const issue = articleIssue?.issueNumber;
+  const publishDate = articleIssue?.publishDate;
+  console.log(articleIssue);
 
   return (
     <DashboardLayout>
       <Suspense fallback={<div>loading...</div>}>
         <ArticleForm
-          initialValue={{ ...initialState, volume, issue }}
+          initialFormState={{ ...initialState, volume, issue }}
           params={{
-            ...params,
+            ...param,
             published: articleIssue?.published,
             publishDate: publishDate,
           }}
         />
       </Suspense>
     </DashboardLayout>
-  )
+  );
 }

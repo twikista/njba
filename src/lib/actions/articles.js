@@ -2,7 +2,8 @@
 
 import { revalidatePath } from 'next/cache';
 import { handleServerSideValidationError } from '../helper';
-import { Article, Issue } from '../mongoose/models/user';
+import { Article } from '../mongoose/models/article';
+import { Issue } from '../mongoose/models/issue';
 import { articleSchemaForServer } from '../schemas/issues';
 import { connectDB } from '../mongoose/config';
 import mongoose from 'mongoose';
@@ -20,13 +21,13 @@ export const getArticle = async (slug) => {
 
 export async function createArticle(formData, url, params) {
   // Validate form data from frontend
-  const parsedData = articleSchemaForServer.safeParse(formData);
-  if (!parsedData.success) {
+  const { data, error } = articleSchemaForServer.safeParse(formData);
+  if (error) {
     const validationError = handleServerSideValidationError(parsedData);
     return { ok: false, error: validationError, errorType: 'validationError' };
   }
 
-  const { pdfFile, ...articleData } = parsedData.data;
+  const { pdfFile, ...articleData } = data;
 
   // Add computed fields to article object
   articleData.pdfUrl = url;
@@ -85,7 +86,7 @@ export async function createArticle(formData, url, params) {
     revalidatePath(`/dashboard/issues/${savedArticle.ref}`);
 
     // Send success response back to the client
-    return { ok: true, articleId: savedArticle._id };
+    return { ok: true, articleId: JSON.stringify(savedArticle._id) };
   } catch (error) {
     console.error('Transaction error:', error);
     return { ok: false, error: 'Something went wrong', errorType: 'other' };
@@ -177,45 +178,59 @@ export async function deleteArticle(id) {
 //   console.log('update article')
 // }
 
-export async function updateArticle(initialValue, formData, url) {
+export async function updateArticle(formData, url, id) {
   //validate form dtata from frontend
-  const parsedData = articleSchemaForServer.safeParse(formData);
-  if (!parsedData.success) {
+  const { data, error } = articleSchemaForServer.safeParse(formData);
+  if (error) {
     const validationError = handleServerSideValidationError(parsedData);
     return { ok: false, error: validationError, errorType: 'validationError' };
   }
   //update article fields to reflect changes by user
-  const { data } = parsedData;
+
   const articleData = {
-    ...initialValue,
     ...data,
     slug: `${data.startPage}-${data.endPage}`,
     ref: `volume-${data.volume}-issue-${data.issue}`,
-    keywords: data.keywords
-      .filter((i) => i.keyword !== '')
-      .map((i) => i.keyword),
-    pdfUrl: url !== null ? url : initialValue.pdfUrl,
+    pdfUrl: url.new !== null ? url.new : url.existing,
   };
 
+  connectDB();
+
+  const session = await mongoose.startSession();
+
   try {
-    connectDB();
+    session.startTransaction(); // Start the transaction
+    //check if article exists in database
+    const article = await Article.findById(id);
+    if (!article) {
+      return { ok: false, error: 'Article not found', errorType: 'other' };
+    }
     //update article in database
     const updatedArticle = await Article.findByIdAndUpdate(
-      { _id: initialValue._id },
+      { _id: id },
       articleData,
       {
         new: true,
-      }
+      },
+      { session }
     );
 
     if (updatedArticle._id === undefined) {
+      await session.abortTransaction();
       return { ok: false, error: 'Something went wrong', errorType: 'other' };
     }
+
+    // Commit the transaction if all operations succeed
+    await session.commitTransaction();
+
     //revalidate all routes to reflect updated data
     revalidatePath(`/archive/${updatedArticle.ref}`);
     revalidatePath(`/dashboard/issues/${updatedArticle.ref}`);
     return { ok: true };
   } catch (error) {
+    await session.abortTransaction();
     return { ok: false, error: 'Something went wrong', errorType: 'other' };
+  } finally {
+    session.endSession(); // End the session
   }
 }

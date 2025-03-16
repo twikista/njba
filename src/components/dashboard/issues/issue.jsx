@@ -14,9 +14,7 @@ export default function IssueContent({ issue, articlesInIssue, adminRoles }) {
       <section>
         <div>
           <h2 className='text-2xl font-bold text-center capitalize md:text-left'>
-            {`Volume ${issue.volume} Issue ${issue.issueNumber} (${new Date(
-              issue.publishDate
-            ).getFullYear()})`}
+            {issue.issueTitle}
           </h2>
           <div className='flex justify-center my-1 md:justify-start'>
             <span
@@ -49,10 +47,10 @@ export default function IssueContent({ issue, articlesInIssue, adminRoles }) {
         </div>
       </section>
       <section className='pb-6'>
-        <div className='p-2 bg-[#e5d4ff] rounded-lg md:pt-0 overflow-x-auto'>
+        <div className='p-2 bg-secondary rounded-lg md:pt-0 overflow-x-auto'>
           <table className='min-w-full overflow-x-scroll'>
             <thead className='rounded-lg'>
-              <tr className=''>
+              <tr className='text-white'>
                 <th className='px-4 py-6 pb-1 font-medium w-20px]'>S/N</th>
                 <th className='px-4 pt-4 pb-1 table-fixed'>Article</th>
                 <th className='px-4 pt-4 pb-1 table-fixed'>
@@ -76,7 +74,7 @@ export default function IssueContent({ issue, articlesInIssue, adminRoles }) {
                   }.`}</td>
                   <td className='px-4 py-5 text-left border border-solid'>
                     <Link
-                      className='text-left text-[#800080] hover:text-blue-600 font-medium'
+                      className='text-left hover:text-blue-600 font-medium'
                       href={`/dashboard/issues/${issue.ref}/${article.slug}`}
                     >
                       {article.title}
