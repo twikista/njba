@@ -15,7 +15,10 @@ import {
   newArticleFormSchema,
 } from '@/lib/schemas/issues';
 import { handleValidationErrorFromServer } from '@/lib/helper';
-import { uploadPdfToStorage } from '@/lib/firebase/services';
+import {
+  removePdfFromStorage,
+  uploadPdfToStorage,
+} from '@/lib/firebase/services';
 import { createArticle, updateArticle } from '@/lib/actions/articles';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';

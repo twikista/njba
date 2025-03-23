@@ -10,13 +10,29 @@ import mongoose from 'mongoose';
 import { redirect } from 'next/navigation';
 import { removePdfFromStorage } from '../firebase/services';
 
+// export const getArticle = async (slug) => {
+//   connectDB();
+//   const article = await Article.findOne({
+//     ref: `${slug.issue}`,
+//     slug: `${slug.article}`,
+//   });
+//   return article;
+// };
+
 export const getArticle = async (slug) => {
-  connectDB();
-  const article = await Article.findOne({
-    ref: `${slug.issue}`,
-    slug: `${slug.article}`,
-  });
-  return article;
+  try {
+    await connectDB();
+
+    const article = await Article.findOne({
+      ref: `${slug.issue}`,
+      slug: `${slug.article}`,
+    });
+
+    return article;
+  } catch (error) {
+    console.error('Error fetching article:', error);
+    throw error;
+  }
 };
 
 export async function createArticle(formData, url, params) {
