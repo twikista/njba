@@ -6,7 +6,6 @@ import { NextResponse } from 'next/server';
 export async function POST(request) {
   try {
     const { articleId, issueRef, articleSlug } = await request.json();
-    console.log('articleId', articleId);
 
     // Validate required parameters
     if (!articleId && !(issueRef && articleSlug)) {
@@ -31,7 +30,7 @@ export async function POST(request) {
     // Increment the view count
     const updatedArticle = await Article.findOneAndUpdate(
       query,
-      { $inc: { downloads: 1 } },
+      { $inc: { abstractViews: 1 } },
       { new: true }
     );
 
