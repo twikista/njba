@@ -17,9 +17,20 @@ const tailwindConfig = {
         black: 'var(--black)',
         white: 'var(--white)',
         'btn-hover': 'var(--hover)',
+        'main-blue': 'var(--main-blue)',
+        'hover-blue': 'var(--hover-blue)',
+        'light-black': 'var(--light-black)',
       },
       fontFamily: {
         // bebas: ['var(--font-bebas-neue)', 'sans-serif'],
+      },
+      keyframes: {
+        shimmer: {
+          '100%': { transform: 'translateX(100%)' },
+        },
+      },
+      animation: {
+        shimmer: 'shimmer 1.5s infinite',
       },
     },
   },
