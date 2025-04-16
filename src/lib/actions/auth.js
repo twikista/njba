@@ -8,7 +8,7 @@ import { signinFormSchema } from '../schemas/auth';
 
 export async function signup(formData) {
   try {
-    connectDB();
+    await connectDB();
     console.log('i got here');
     const user = await User.findOne({ email: formData.email });
     if (user) {

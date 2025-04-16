@@ -18,7 +18,7 @@ export default function EditorialProcess() {
           className='px-0'
           headingText='Article Submission'
           headingType='normal'
-          text='The Management Sciences Review (NJBA) accepts submissions on an ongoing basis. Authors are encouraged to submit their manuscripts at any time throughout the year. Submissions should be sent as an email attachment to msr@uniben.edu, with a copy to the Business Manager at darlington.ogbeide@uniben.edu.'
+          text='The Management Sciences Review (NJBA) accepts submissions on an ongoing basis. Authors are encouraged to submit their manuscripts at any time throughout the year. Submissions should be sent as an email attachment to njba@uniben.edu, with a copy to the Business Manager at darlington.ogbeide@uniben.edu.'
         />
         <div className='flex flex-col gap-1'>
           <H3>Note:</H3>

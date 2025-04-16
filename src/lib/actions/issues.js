@@ -7,10 +7,11 @@ import { Issue } from '../mongoose/models/issue';
 import { auth } from '../../../auth';
 import { IssueFormSchema } from '../schemas/issues';
 import mongoose from 'mongoose';
+import { cache } from 'react';
 
 export const getIssues = async (status) => {
   try {
-    connectDB();
+    await connectDB();
     const issues = await Issue.find({ status }).sort({
       volume: -1,
       issueNumber: -1,
@@ -22,10 +23,10 @@ export const getIssues = async (status) => {
   }
 };
 
-export const getIssue = async (issueRef) => {
+export const getIssue = async (issueRef, options = null) => {
   try {
-    connectDB();
-    const issue = await Issue.findOne({ ref: issueRef }).lean();
+    await connectDB();
+    const issue = await Issue.findOne({ ref: issueRef }, options).lean();
 
     // const json = JSON.stringify(issue)
     // const issueObject = JSON.parse(json)
@@ -64,7 +65,7 @@ export const createIssue = async (formData) => {
   };
 
   try {
-    connectDB();
+    await connectDB();
     const newIssue = new Issue(issueData);
     const savedIssue = await newIssue.save();
     if (savedIssue?._id !== null) {
@@ -128,7 +129,7 @@ export async function updateIssue(id, formData) {
 //send draft editorial board for authorization
 export const submitIssueForPublishing = async (ref) => {
   try {
-    connectDB();
+    await connectDB();
     const issueSubmittedForPublishing = await Issue.findOneAndUpdate(
       { ref: ref, status: 'draft' },
       {
@@ -153,7 +154,7 @@ export const submitIssueForPublishing = async (ref) => {
 export const rejectRequestToPublishIssue = async (ref) => {
   // const date = new Date()
   try {
-    connectDB();
+    await connectDB();
     const publishedIssue = await Issue.findOneAndUpdate(
       { ref: ref, status: 'review' },
       {
@@ -178,15 +179,14 @@ export const rejectRequestToPublishIssue = async (ref) => {
 //publish issue
 export const publishIssue = async (issueRef, user) => {
   try {
-    connectDB();
+    await connectDB();
     const publishedIssue = await Issue.findOneAndUpdate(
-      { ref: issueRef, status: 'review' },
+      { ref: issueRef, status: 'draft' },
       {
         $set: {
           published: true,
           // publishDate: issue?.publishDate,
           status: 'published',
-          mode: 'final',
           approvedBy: `${user.firstName} ${user.lastName}`,
         },
       },
@@ -213,7 +213,7 @@ export const publishIssue = async (issueRef, user) => {
 
 export const getPublishedIssues = async () => {
   try {
-    connectDB();
+    await connectDB();
     const publishedIssues = await Issue.find({ published: true }).sort({
       volume: -1,
       issueNumber: -1,
@@ -281,7 +281,7 @@ export async function deleteIssueWithArticles(id) {
 export async function deleteIssueWithNoArticles(id) {
   console.log(id);
   try {
-    connectDB();
+    await connectDB();
     const deletedIssue = await Issue.findByIdAndDelete(id);
     if (!!deletedIssue) {
       revalidatePath('/archive');
@@ -294,3 +294,17 @@ export async function deleteIssueWithNoArticles(id) {
     console.log(error);
   }
 }
+
+// Server action to fetch archive data
+export const getArchive = cache(async () => {
+  try {
+    await connectDB();
+    const archive = await Issue.find({ published: true })
+      .sort({ volume: -1, issueNumber: -1 })
+      .limit(4);
+    return archive;
+  } catch (error) {
+    console.error('Error fetching archive:', error);
+    return [];
+  }
+});

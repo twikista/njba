@@ -14,10 +14,10 @@ const robotoFlex = Roboto_Flex({
 // });
 
 export const metadata = {
-  metadataBase: new URL('https://msreview.com.ng'),
+  metadataBase: new URL('https://njba.com.ng'),
   title: {
-    default: 'MSR - Management Sciences Review',
-    template: '%s | Management Sciences Review',
+    default: 'NJBA - Nigeria Journal of Business Administration',
+    template: '%s - Nigeria Journal of Business Administration',
   },
   description:
     'The Nigeria Journal of Business Administration (NJBA) is the official journal of the Department of Buness Administration, Faculty of Management Sciences, University of Benin, Benin city, Nigeria.',

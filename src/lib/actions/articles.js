@@ -9,6 +9,7 @@ import { connectDB } from '../mongoose/config';
 import mongoose from 'mongoose';
 import { redirect } from 'next/navigation';
 import { removePdfFromStorage } from '../firebase/services';
+import { cache } from 'react';
 
 // export const getArticle = async (slug) => {
 //   connectDB();
@@ -19,20 +20,49 @@ import { removePdfFromStorage } from '../firebase/services';
 //   return article;
 // };
 
-export const getArticle = async (slug) => {
+export const getArticle = cache(async (slug, options = null) => {
   try {
     await connectDB();
 
-    const article = await Article.findOne({
-      ref: `${slug.issue}`,
-      slug: `${slug.article}`,
-    });
+    const article = await Article.findOne(
+      {
+        ref: `${slug.issue}`,
+        slug: `${slug.article}`,
+      },
+      options
+    );
+
+    if (!article) {
+      return null;
+    }
 
     return article;
   } catch (error) {
-    console.error('Error fetching article:', error);
-    throw error;
+    console.error('Error fetching article:', error.message);
+    return {
+      ok: false,
+      error: 'Failed to fetch article. Please try again.',
+      errorType: 'other',
+    };
   }
+});
+
+export const getArticlesInIssue = async (issue, sorted = true) => {
+  await connectDB();
+  if (sorted) {
+    const articlesInIssue = await Article.find({
+      ref: `${issue}`,
+      published: true,
+    }).sort({
+      startPage: 1,
+    });
+    return articlesInIssue;
+  }
+  const articlesInIssue = await Article.find({
+    ref: `${issue}`,
+    published: true,
+  });
+  return articlesInIssue;
 };
 
 export async function createArticle(formData, url, params) {
@@ -210,7 +240,7 @@ export async function updateArticle(formData, url, id) {
     pdfUrl: url.new !== null ? url.new : url.existing,
   };
 
-  connectDB();
+  await connectDB();
 
   const session = await mongoose.startSession();
 

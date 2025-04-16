@@ -1,18 +1,14 @@
 import { dateHelperFunction } from '@/lib/helper';
 
-function ArticleInfo({ article }) {
+function ArticleInfo({ article, issue }) {
   return (
-    <div className='flex flex-col gap-[2px] text-sm md:items-center sm:flex-row md:text-base text-primary'>
+    <div className='flex gap-4 items-center text-sm text-[#808080]'>
       <span className=''>{`Published: ${dateHelperFunction(
         article?.publishDate,
-        'long'
+        'short'
       )}`}</span>
-      <span className='hidden sm:block'>&#124;</span>
-      <span className=''>
-        {`Vol ${article.volume} No. ${article.issue} (${new Date(
-          article.publishDate
-        ).getFullYear()}) pp. ${article.slug}`}
-      </span>
+
+      <span className=''>{`Issue: ${issue?.issueTitle}`}</span>
     </div>
   );
 }

@@ -1,19 +1,36 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
-export const formatDate = (date) => {
-  const year = new Date(date).getFullYear();
-  const month = new Date(date).getMonth();
-  const day = new Date(date).getDate();
-  return `${day}-${month + 1}-${year}`;
-};
+export function formatDate(date) {
+  // Ensure the input is a Date object
+  const dateObj = date instanceof Date ? date : new Date(date);
+
+  // Check if the date is valid
+  if (isNaN(dateObj.getTime())) {
+    throw new Error('Invalid date input');
+  }
+
+  // Get year, month, and day
+  const year = dateObj.getFullYear();
+
+  // getMonth() returns 0-11, so add 1 to get 1-12
+  // padStart ensures two digits with leading zero if needed
+  const month = String(dateObj.getMonth() + 1).padStart(2, '0');
+
+  // getDate() returns the day of the month (1-31)
+  // padStart ensures two digits with leading zero if needed
+  const day = String(dateObj.getDate()).padStart(2, '0');
+
+  // Return in YYYY-MM-DD format
+  return `${year}-${month}-${day}`;
+}
 
 export const joinKeywords = (arr) => {
   return arr.join(', ');
 };
 
 export const articleFileName = (articleObject) =>
-  `msr-vol-${articleObject.volume}(${articleObject.issue})-pg${articleObject.startPage}-${articleObject.endPage}.pdf`;
+  `njba-vol-${articleObject.volume}(${articleObject.issue})-pg${articleObject.startPage}-${articleObject.endPage}.pdf`;
 
 export const hashPassword = async (password) => {
   const saltRounds = 10;
@@ -77,20 +94,75 @@ export const replaceSpaceInTitleWithHyphen = (string) => {
 };
 
 export const dateHelperFunction = (date, variant = 'short') => {
-  if (variant === 'short') {
-    return new Date(date).toLocaleDateString();
-  }
   return new Date(date).toLocaleDateString('en-GB', {
     year: 'numeric',
-    month: 'long',
+    month: `${variant}`,
     day: 'numeric',
   });
 };
 
-export const authorsNameWithAbrreviations = (name) => {
+export const authorsNameWithAbrreviations = (name, reverse = true) => {
   const splitName = name.split(' ');
+  const firstName = splitName[0];
   const arrayWithNameInitials = splitName.map((name, index) =>
-    index === 0 ? `${name} ` : `${name[0]?.toUpperCase()}.`
+    index === 0
+      ? null
+      : index !== splitName.length - 1
+      ? `${name[0]?.toUpperCase()}. `
+      : `${name[0]?.toUpperCase()}.`
   );
-  return arrayWithNameInitials.join('');
+  return reverse
+    ? `${arrayWithNameInitials.join(' ')} ${firstName}`
+    : `${firstName} ${arrayWithNameInitials.join(' ')}`;
+};
+
+// index === 0
+//       ? `${name} `
+//       : index !== splitName.length - 1
+//       ? `${name[0]?.toUpperCase()}. `
+//       : `${name[0]?.toUpperCase()}.`
+
+const formatAuthorsForAPAReferencing = (authors) => {
+  if (!Array.isArray(authors) || authors.length === 0) return '';
+
+  // Format each author's name
+  const formattedAuthors = authors
+    .map(({ name }) => {
+      if (!name) return ''; // Skip if no name is provided
+
+      const parts = name.trim().split(' ');
+      const lastName = parts[0]; // Extract last name
+      const otherNames = parts.slice(1); // Extract other names
+      const initials = otherNames
+        .map((n) => n.charAt(0).toUpperCase() + '.')
+        .join(' '); // Convert first/middle names to initials
+      console.log('initials', initials);
+
+      return `${lastName}, ${initials}`;
+    })
+    .filter(Boolean); // Remove empty values (if any)
+
+  // Join authors with correct APA formatting
+  if (formattedAuthors.length === 1) return formattedAuthors[0];
+  if (formattedAuthors.length === 2) return formattedAuthors.join(' & ');
+  return (
+    formattedAuthors.slice(0, -1).join(', ') +
+    ', & ' +
+    formattedAuthors.slice(-1)
+  );
+};
+
+// Function to generate APA 7 reference with italic journal name
+export const generateAPAReference = (article, issue) => {
+  if (!article || !issue) return 'Incomplete reference data.';
+
+  const { volume, issue: articleIssue, slug: pages, authors, title } = article;
+
+  const { issueYear: year } = issue;
+
+  if (!authors || !year || !title) return 'Incomplete reference data.';
+
+  const formattedAuthors = formatAuthorsForAPAReferencing(authors);
+
+  return `${formattedAuthors} (${year}). ${title}. <i>Nigeria Journal of Business Administration</i>, <i>${volume}</i>(${articleIssue}), ${pages}.`.trim();
 };

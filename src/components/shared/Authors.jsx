@@ -8,9 +8,11 @@ export default function Authors({ authors, withAffliation, className }) {
         {authors.map(({ name, department, institution, _id }) => (
           <div key={_id} className=''>
             {/* <div className='flex items-center space-x-1'> */}
-            <p className='font-semibold leading-none'>{name}</p>
+            <span className='text-sm sm:text-base leading-none font-semibold'>
+              {name}
+            </span>
             {/* </div> */}
-            <span className='flex flex-wrap text-neutral-500'>{`Department of ${department}, ${institution}`}</span>
+            <span className='flex flex-wrap text-[#808080] text-sm'>{`Department of ${department}, ${institution}`}</span>
             {/* <p className='text-neutral-500'>{institution}</p> */}
           </div>
         ))}
@@ -21,10 +23,7 @@ export default function Authors({ authors, withAffliation, className }) {
       {authors.map((author, index) => (
         <span
           key={author._id}
-          className={cn(
-            'text-sm font-medium sm:text-base text-neutral-600',
-            className
-          )}
+          className={cn('text-sm text-light-black', className)}
         >{`${authorsNameWithAbrreviations(author.name)}${
           index !== authors.length - 1 ? ', ' : ''
         }`}</span>

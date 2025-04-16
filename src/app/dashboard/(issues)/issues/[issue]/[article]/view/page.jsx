@@ -1,6 +1,3 @@
-import dynamic from 'next/dynamic';
-import { connectDB } from '@/lib/mongoose/config';
-import { Article } from '@/lib/mongoose/models/article';
 import ViewArticlePdf from '@/components/shared/ViewArticlePdf';
 import { getArticle } from '@/lib/actions/articles';
 

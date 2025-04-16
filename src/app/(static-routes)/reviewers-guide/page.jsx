@@ -7,7 +7,7 @@ export default function ForReviewers() {
     <Main>
       <H1>Reviewers Guide</H1>
       <p>
-        This guide outlines the steps, expectations, and best practices for MSR
+        This guide outlines the steps, expectations, and best practices for NJBA
         reviewers. It is designed to ensure a thorough, constructive, and
         effecive review process.
       </p>
@@ -45,12 +45,12 @@ export default function ForReviewers() {
               <ul className='flex flex-col gap-1 pl-5 list-disc'>
                 <li>
                   Read through the contents of previously published articles of
-                  the MSR to get a sense of it’s published content and house
+                  the NJBA to get a sense of it’s published content and house
                   style to decide whether the manuscript being reviewed is
                   suitable for the journal or not.
                 </li>
                 <li>
-                  Refer to the MSR&#39;s submission guidelines to ensure the
+                  Refer to the NJBA&#39;s submission guidelines to ensure the
                   manuscript meets the submission criteria of the journal (e.g.
                   length, scope, and style of presentation).
                 </li>
@@ -63,7 +63,7 @@ export default function ForReviewers() {
                 <li>
                   <TextBlockWithHeading
                     headingText='Scope of the Journal'
-                    text='Determine if the manuscript&#39;s content fit within the scope of the MSR?'
+                    text='Determine if the manuscript&#39;s content fit within the scope of the NJBA?'
                     className='p-0'
                   />
                 </li>
@@ -138,7 +138,7 @@ export default function ForReviewers() {
                         <p>
                           <span className=''>References: </span>
                           Check references for relevance, sufficiency, and
-                          adherence to MSR&#39;s citation style (APA 7th
+                          adherence to NJBA&#39;s citation style (APA 7th
                           edition).
                         </p>
                       </li>

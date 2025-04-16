@@ -3,7 +3,6 @@ import Header from '@/components/shared/Header';
 import { H2 } from '@/components/shared/headings';
 import Main from '@/components/shared/Main';
 import { TextBlockWithHeading } from '@/components/shared/TextBlockWithHeading';
-import Image from 'next/image';
 
 export default function Home() {
   return (
@@ -26,34 +25,55 @@ export default function Home() {
             selected to provide the reader with an analytical, theoretical or
             application-oriented approach to managerial problems.
           </p>
-          <p>
-            This NJBA is published twice a year and welcome papers on
-            Internarional business and management, Marketing, Business
-            administration, Operations Rescarch, Management information systems,
-            and Human resource management.
-          </p>
           <div>
-            <div className='flex flex-col rounded-[4px] bg-[#dee499] p-2  gap-5'>
-              <div className='py-2 border-b border-gray-400/60'>
-                <H2>Quick facts about the MSR</H2>
+            <p>
+              The NJBA is published twice a year and welcome papers from the
+              following areas:
+            </p>
+            <ul className='pl-5 list-disc md:pl-8'>
+              <li>Internarional business and management</li>
+              <li>Business administration</li>
+              <li>Operations Rescarch</li>
+              <li>Marketing</li>
+              <li>Management information systems</li>
+              <li>Human resource management, and</li>
+              <li>Other areas in the management sciences</li>
+            </ul>
+          </div>
+
+          <div>
+            <div className='flex flex-col rounded-xl p-2 md:p-4 gap-2.5 border-2'>
+              <div className=''>
+                <H2 className='md:text-xl underline-offset-8 font-semibold'>
+                  Why Publish With Us
+                </H2>
               </div>
 
               <div className='grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-3 md:gap-y-5 '>
                 <TextBlockWithHeading
-                  heading='Submission'
-                  text='The MRS accepts submissions from authors on an on-going basis. Only submissions that adhere to the MSR Authors guide will be considered for review.'
+                  headingText='Backed by Academic Excellence'
+                  className='p-0 md:max-w-96 gap-0'
+                  headingClassName='font-semibold'
+                  text='NJBA is published by the Department of Business Administration, University of Benin—a leading Nigerian institution known for its research and academic excellence.'
+                />
+
+                <TextBlockWithHeading
+                  className='p-0 md:max-w-96 gap-0'
+                  headingClassName='font-semibold'
+                  headingText='Rigorous Peer Review'
+                  text='NJBA maintains the highest academic standards through a transparent and constructive peer review process conducted by experienced academics and subject-matter experts.'
                 />
                 <TextBlockWithHeading
-                  heading='Publication'
-                  text='The MSR is published bi-anually in June and December respectively. Only accepted articles as determined by the editorial board will be published'
+                  className='p-0 md:max-w-96 gap-0'
+                  headingClassName='font-semibold'
+                  headingText='Wide Visibility'
+                  text='All articles in the NJBA are published online under an open access model, making them instantly available to a global audience.  '
                 />
                 <TextBlockWithHeading
-                  heading='Access'
-                  text='The MSR is an open access Journal. Articles are licenced under the Creative Common Attribution 4.0. making them available for free after publication.  '
-                />
-                <TextBlockWithHeading
-                  heading='Review'
-                  text='The MSR adopts the double-blind peer review system. This eliminates any form of bias and ensures only high qulity submissions are accepted for publishing.'
+                  className='p-0 md:max-w-96 gap-0'
+                  headingClassName='font-semibold'
+                  headingText='Timely and Fair Publication Process'
+                  text='Our streamlined editorial workflow ensures timely decisions without compromising quality—ensuring your research is published without unnecessary delays.'
                 />
               </div>
             </div>

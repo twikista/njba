@@ -45,7 +45,7 @@ export default async function ArticlePage({ params }) {
             <div className='flex flex-col items-center gap-2 mt-3 md:flex-row md:justify-center'>
               <Link
                 href={`/dashboard/issues/${param.issue}/${param.article}/view`}
-                className=' btn gap-2 font-medium text-center text-white transition-colors border hover:bg-[#ac3dba] hover:border-[#ac3dba] bg-secondary'
+                className=' btn gap-2 font-medium text-center text-white transition-colors border btn-primary'
               >
                 <span>View PDF</span>
                 <ImFilePdf className='size-5 text-' />

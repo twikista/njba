@@ -1,11 +1,17 @@
 import Main from '@/components/shared/Main';
 import { H1, H2, H3 } from '@/components/shared/headings';
 
+export const metadata = {
+  title: 'Contact',
+  description:
+    'React out to us on through the address on this page. Department of Business Administration, Faculty of Management of Sciences, University of Benin, Benin City',
+};
+
 export default function Contact() {
   return (
     <Main>
       <H1>Contact</H1>
-      <div className='flex flex-col gap-5 md:flex-row md:gap-20'>
+      <div className='flex flex-col gap-5 md:flex-row md:gap-20 md:my-10'>
         <div>
           <H2>NJBA Editorial Office</H2>
           <span className='block'>Department of Business Administration</span>

@@ -20,7 +20,7 @@ export default function Header() {
   return (
     <>
       {activePath !== 'dashboard' && (
-        <header>
+        <header className='w-full'>
           <div className='relative flex flex-col items-center justify-center gap-1 py-1 pt-2 overflow-hidden bg-primary md:bg-transparent xl:h-[84px] md:flex-row lg:gap-2 md:py-2 lg:py-3 text-[#e8e3df] md:text-primary'>
             <div className='relative'>
               {/* <div className='hidden md:block bg-red-500 absolute w-[8px] h-[80px] top-[-20px] bottom-[-20px] left-[10px]' />

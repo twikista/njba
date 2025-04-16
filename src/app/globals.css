@@ -12,6 +12,9 @@
   --black: #404040;
   --hover: #5c7f0e;
   --foreground: #171717;
+  --main-blue: #006798;
+  --hover-blue: #008acb;
+  --light-black: #808080;
 }
 
 body {
