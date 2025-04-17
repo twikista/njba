@@ -63,7 +63,7 @@ export default function ForReviewers() {
                 <li>
                   <TextBlockWithHeading
                     headingText='Scope of the Journal'
-                    text='Determine if the manuscript&#39;s content fit within the scope of the NJBA?'
+                    text='Determine if the manuscript&#39;s content fit within the scope of the NJBA'
                     className='p-0'
                   />
                 </li>
@@ -121,7 +121,7 @@ export default function ForReviewers() {
                       <li>
                         <p>
                           <span className=''>Discussion: </span>
-                          Evaluate wheter findings are interpreted clearly and
+                          Evaluate whether findings are interpreted clearly and
                           contextualized within existing literature.
                         </p>
                       </li>
@@ -131,8 +131,6 @@ export default function ForReviewers() {
                           Ensure conclusions are supported by data and indicate
                           advancements in scientific knowledge.
                         </p>
-                        Check for relevance, sufficiency, and adherence to
-                        citation style (e.g., APA).
                       </li>
                       <li>
                         <p>
