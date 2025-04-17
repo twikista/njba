@@ -44,7 +44,7 @@ export default function Home() {
           <div>
             <div className='flex flex-col rounded-xl p-2 md:p-4 gap-2.5 border-2'>
               <div className=''>
-                <H2 className='md:text-xl underline-offset-8 font-semibold'>
+                <H2 className='md:text-xl underline-offset-8 font-semibold text-primary'>
                   Why Publish With Us
                 </H2>
               </div>
@@ -53,25 +53,25 @@ export default function Home() {
                 <TextBlockWithHeading
                   headingText='Backed by Academic Excellence'
                   className='p-0 md:max-w-96 gap-0'
-                  headingClassName='font-semibold'
+                  headingClassName='font-semibold text-primary'
                   text='NJBA is published by the Department of Business Administration, University of Benin—a leading Nigerian institution known for its research and academic excellence.'
                 />
 
                 <TextBlockWithHeading
                   className='p-0 md:max-w-96 gap-0'
-                  headingClassName='font-semibold'
+                  headingClassName='font-semibold text-primary'
                   headingText='Rigorous Peer Review'
                   text='NJBA maintains the highest academic standards through a transparent and constructive peer review process conducted by experienced academics and subject-matter experts.'
                 />
                 <TextBlockWithHeading
                   className='p-0 md:max-w-96 gap-0'
-                  headingClassName='font-semibold'
+                  headingClassName='font-semibold text-primary'
                   headingText='Wide Visibility'
                   text='All articles in the NJBA are published online under an open access model, making them instantly available to a global audience.  '
                 />
                 <TextBlockWithHeading
                   className='p-0 md:max-w-96 gap-0'
-                  headingClassName='font-semibold'
+                  headingClassName='font-semibold text-primary'
                   headingText='Timely and Fair Publication Process'
                   text='Our streamlined editorial workflow ensures timely decisions without compromising quality—ensuring your research is published without unnecessary delays.'
                 />
