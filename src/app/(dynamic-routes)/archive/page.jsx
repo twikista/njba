@@ -14,7 +14,7 @@ export const metadata = {
 };
 
 async function Archive() {
-  const issues = await getPublishedIssues();
+  /*const issues = await getPublishedIssues();
   console.log(issues);
   if (!issues || issues.length === 0) {
     return (
@@ -54,6 +54,20 @@ async function Archive() {
               </div>
             </div>
           ))}
+        </div>
+      </Main>
+      <Footer />
+    </div>
+  );*/
+  return (
+    <div className='flex flex-col min-h-screen'>
+      <Header />
+      <Main className='gap-4 h-full'>
+        {/* <H1 className='mt-5'>Archive</H1> */}
+        <div className='flex items-center justify-center h-full font-medium'>
+          <p className='text-neutral-500 md:text-3xl'>
+            Archive will be uploaded soon
+          </p>
         </div>
       </Main>
       <Footer />

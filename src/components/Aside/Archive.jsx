@@ -48,9 +48,8 @@ function Archive() {
   return (
     <div className='space-y-2 h-fit'>
       <H3 className='capitalize text-primary'>Archive</H3>
-      <div className='space-y-[5px] flex flex-col items-center md:items-start'>
+      {/* <div className='space-y-[5px] flex flex-col items-center md:items-start'>
         <Suspense fallback={<ArchiveSkeleton />}>
-          {/* @ts-expect-error Async Server Component */}
           <ArchiveContent />
         </Suspense>
         <Link
@@ -59,7 +58,8 @@ function Archive() {
         >
           See more
         </Link>
-      </div>
+      </div> */}
+      <span className='text-gray-400'>No items</span>
     </div>
   );
 }
