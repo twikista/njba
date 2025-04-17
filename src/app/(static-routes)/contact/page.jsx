@@ -13,7 +13,7 @@ export default function Contact() {
       <H1>Contact</H1>
       <div className='flex flex-col gap-5 md:flex-row md:gap-20 md:my-10'>
         <div>
-          <H2>NJBA Editorial Office</H2>
+          <H2 className='text-primary'>NJBA Editorial Office</H2>
           <span className='block'>Department of Business Administration</span>
           <span className='block'>Faculty of Management Sciences</span>
           <span className='block'>University of Benin, Benin city</span>
@@ -21,7 +21,7 @@ export default function Contact() {
           <span className='block'>Email: njba@uniben.edu</span>
         </div>
         <div>
-          <H2>Support Contact</H2>
+          <H2 className='text-primary font-medium'>Support Contact</H2>
           <span className='block'>Dr. S.A. Adekunle</span>
           <span className='block'>Business Editor, NJBA</span>
           <span className='block'>Email: simon.adekunle@uniben.edu</span>
