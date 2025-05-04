@@ -8,7 +8,11 @@ function ArticleInfo({ article, issue }) {
         'short'
       )}`}</span>
 
-      <span className=''>{`Issue: ${issue?.issueTitle}`}</span>
+      <span className=''>
+        {`Issue: Vol. ${article?.volume} No. ${article?.issue} (${new Date(
+          article?.publishDate
+        ).getFullYear()})`}
+      </span>
     </div>
   );
 }
