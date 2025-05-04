@@ -29,7 +29,7 @@ const articleSchema = new mongoose.Schema(
     articleViews: { type: Number, default: 0 },
     abstractViews: { type: Number, default: 0 },
     downloads: { type: Number, default: 0 },
-    // addedBy:{ type: String, required: true},
+    addedBy: { type: String, required: true },
     // approvedBy:{ type: String, required: true},
   },
   { timestamps: true }

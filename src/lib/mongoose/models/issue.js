@@ -51,6 +51,7 @@ const issueSchema = new mongoose.Schema(
     },
 
     addedBy: { type: String, required: true, trim: true },
+    publishedBy: { type: String, required: true, trim: true, default: 'N/A' },
   },
   { timestamps: true }
 );
