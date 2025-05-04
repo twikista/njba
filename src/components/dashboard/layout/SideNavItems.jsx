@@ -50,7 +50,7 @@ function SideNavItems({ session }) {
           FillIcon={navItem.fillIcon}
         />
       ))}
-      {session?.role === 'system-admin' && (
+      {session?.role === 'admin' && (
         <>
           <SideNavItem
             type='link'
