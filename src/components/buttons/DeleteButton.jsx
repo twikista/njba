@@ -13,6 +13,8 @@ export default function DeleteButton({
   variant = 'primary',
   label = 'Delete',
   altLabel,
+  successMessage = 'Issue deleted successfully!',
+  errorMessage = 'Something went wrong. Try again.',
   className,
 }) {
   const [isLoading, setIsLoading] = useState(false);
@@ -21,10 +23,10 @@ export default function DeleteButton({
     const response = await action(id);
     if (response?.ok) {
       setIsLoading(false);
-      toast.success('Issue deleted successfully!');
+      toast.success(successMessage);
     } else {
       setIsLoading(false);
-      toast.success('Something went wrong. Try again.');
+      toast.success(errorMessage);
     }
   };
 

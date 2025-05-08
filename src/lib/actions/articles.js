@@ -10,6 +10,7 @@ import mongoose from 'mongoose';
 import { redirect } from 'next/navigation';
 import { removePdfFromStorage } from '../firebase/services';
 import { cache } from 'react';
+import { auth } from '../../../auth';
 
 // export const getArticle = async (slug) => {
 //   connectDB();
@@ -19,6 +20,8 @@ import { cache } from 'react';
 //   });
 //   return article;
 // };
+
+// console.log('first user', user);
 
 export const getArticle = cache(async (slug, options = null) => {
   try {
@@ -65,7 +68,47 @@ export const getArticlesInIssue = async (issue, sorted = true) => {
   return articlesInIssue;
 };
 
+export const getAllPublishedArticles = async () => {
+  const publishedArticles = await Article.find({ published: true });
+  return publishedArticles;
+};
+
+export const getArticlesInCurrentIssue = async () => {
+  try {
+    await connectDB();
+
+    const [latestIssue] = await Issue.find({
+      published: true,
+      status: 'published',
+    })
+      .sort({ volume: -1, issueNumber: -1 })
+      .limit(1);
+    console.log('latest:', latestIssue);
+
+    if (!latestIssue) {
+      return {
+        currentIssue: null,
+        articlesInCurrentIssue: [],
+      };
+    }
+
+    const articlesInCurrentIssue = await Article.find({ ref: latestIssue.ref });
+
+    return {
+      currentIssue: latestIssue,
+      articlesInCurrentIssue,
+    };
+  } catch (error) {
+    console.error('Error fetching current issue articles:', error);
+    return {
+      currentIssue: null,
+      articlesInCurrentIssue: [],
+    };
+  }
+};
+
 export async function createArticle(formData, url, params) {
+  const user = await auth();
   // Validate form data from frontend
   const { data, error } = articleSchemaForServer.safeParse(formData);
   if (error) {
@@ -81,6 +124,7 @@ export async function createArticle(formData, url, params) {
   articleData.ref = `volume-${articleData.volume}-issue-${articleData.issue}`;
   articleData.published = params.published ? true : false;
   articleData.publishDate = new Date(params.publishDate);
+  articleData.addedBy = user.user?.firstName + ' ' + user.user?.lastName;
 
   // Ensure database connection
   await connectDB();

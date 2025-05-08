@@ -8,8 +8,9 @@ import { Article } from '@/lib/mongoose/models/article';
 import { dateHelperFunction, formatDate } from '@/lib/helper';
 import Main from '@/components/shared/Main';
 import { H1 } from '@/components/shared/headings';
+import { cache } from 'react';
 
-const getArticlesInIssue = async (issue) => {
+const getArticlesInIssue = cache(async (issue) => {
   try {
     await connectDB();
     const articlesInIssue = await Article.find({
@@ -21,7 +22,7 @@ const getArticlesInIssue = async (issue) => {
   } catch (error) {
     console.log(error);
   }
-};
+});
 
 // export async function generateStaticParams() {
 //   const publishedIssues = await getPublishedIssues();

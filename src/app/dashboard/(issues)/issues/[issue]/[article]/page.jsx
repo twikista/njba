@@ -50,7 +50,7 @@ export default async function ArticlePage({ params }) {
                 <span>View PDF</span>
                 <ImFilePdf className='size-5 text-' />
               </Link>
-              {user.role === 'admin' && !article.published ? (
+              {!article.published || user.role === 'admin' ? (
                 <EditButton
                   href={`/dashboard/issues/${param.issue}/${param.article}/edit`}
                   label='edit Article'

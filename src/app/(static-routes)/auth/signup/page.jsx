@@ -1,6 +1,7 @@
 'use client';
 import React, { useState } from 'react';
-import { login, signup, logOut } from '@/lib/actions/auth';
+// import { login, signup, logOut } from '@/lib/actions/auth';
+import { signup, logOut, login } from '@/lib/actions/auth';
 
 export default function Page() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -9,11 +10,12 @@ export default function Page() {
     lastName: 'Anama',
     email: 'aaronanama@gmail.com',
     isAdmin: true,
-    password: '123456',
+    password: 'Pingpong@2025',
     role: 'admin',
     isActivated: 'true',
   };
-
+  const encodedURI = encodeURIComponent('uniben_njba@2025');
+  console.log(encodedURI);
   const onSubmit = async () => {
     setIsSubmitting(true);
     const response = await signup(formData);

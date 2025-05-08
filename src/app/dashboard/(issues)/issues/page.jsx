@@ -15,10 +15,11 @@ export default async function IssuesPage({ searchParams }) {
   //   role: 'admin',
   // }
   const status = String((await searchParams).status);
-  console.log(status);
-  const issues = status
-    ? await getIssues(status)
-    : await getIssues('published');
+  console.log('status', status === 'undefined');
+  // const issues = status
+  //   ? await getIssues(status)
+  //   : await getIssues('published');
+  const issues = await getIssues(status === 'undefined' ? 'published' : status);
 
   return (
     <>

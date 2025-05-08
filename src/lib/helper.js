@@ -108,8 +108,8 @@ export const authorsNameWithAbrreviations = (name, reverse = true) => {
     index === 0
       ? null
       : index !== splitName.length - 1
-      ? `${name[0]?.toUpperCase()}. `
-      : `${name[0]?.toUpperCase()}.`
+        ? `${name[0]?.toUpperCase()}. `
+        : `${name[0]?.toUpperCase()}.`
   );
   return reverse
     ? `${arrayWithNameInitials.join(' ')} ${firstName}`
@@ -164,5 +164,9 @@ export const generateAPAReference = (article, issue) => {
 
   const formattedAuthors = formatAuthorsForAPAReferencing(authors);
 
-  return `${formattedAuthors} (${year}). ${title}. <i>Nigeria Journal of Business Administration</i>, <i>${volume}</i>(${articleIssue}), ${pages}.`.trim();
+  return {
+    markup:
+      `${formattedAuthors} (${year}). ${title}. <i>Nigeria Journal of Business Administration</i>, <i>${volume}</i>(${articleIssue}), ${pages}.`.trim(),
+    text: `${formattedAuthors} (${year}). ${title}. Nigeria Journal of Business Administration, ${volume}(${articleIssue}), ${pages}.`.trim(),
+  };
 };

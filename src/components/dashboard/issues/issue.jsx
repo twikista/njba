@@ -7,8 +7,10 @@ import { cn } from '@/lib/utils';
 import EditButton from '@/components/buttons/EditButton';
 import DeleteButton from '@/components/buttons/DeleteButton';
 import { deleteArticle } from '@/lib/actions/articles';
+import PublishIssue from './PublishIssue';
+import { publishIssue } from '@/lib/actions/issues';
 
-export default function IssueContent({ issue, articlesInIssue, adminRoles }) {
+export default function IssueContent({ issue, articlesInIssue, user }) {
   return (
     <DashboardLayout>
       <section>
@@ -38,7 +40,7 @@ export default function IssueContent({ issue, articlesInIssue, adminRoles }) {
           </p>
         </div>
         <div className='flex justify-end mt-5'>
-          {(adminRoles.admin || adminRoles.systemAdmin) && (
+          {(!issue.published || user.role === 'admin') && (
             <AddButton
               label='Add Article'
               href={`/dashboard/issues/${issue.ref}/new-article`}
@@ -58,7 +60,7 @@ export default function IssueContent({ issue, articlesInIssue, adminRoles }) {
                 </th>
                 <th className='px-2 pt-4 pb-1 min-w-[100px]'>Page</th>
                 <th className='px-4 pt-4 pb-1 font-medium w-14'>Status</th>
-                {(adminRoles.admin || adminRoles.systemAdmin) && (
+                {(issue.status === 'draft' || user.role === 'admin') && (
                   <>
                     <th className='sr-only'></th>
                     <th className='sr-only'></th>
@@ -101,7 +103,7 @@ export default function IssueContent({ issue, articlesInIssue, adminRoles }) {
                       </span>
                     )}
                   </td>
-                  {(adminRoles.admin || adminRoles.systemAdmin) && (
+                  {(!issue.published || user.role === 'admin') && (
                     <>
                       <td className='px-4 py-4 text-center'>
                         <EditButton
@@ -124,7 +126,7 @@ export default function IssueContent({ issue, articlesInIssue, adminRoles }) {
           </table>
         </div>
       </section>
-      <div className='flex justify-center gap-6 pt-2 pb-4 md:pt-6'>
+      <div className='flex justify-center gap-6 md:mt-4'>
         {/* <PublishButton
           resourceRef={issue?.ref}
           user={user}
@@ -138,6 +140,12 @@ export default function IssueContent({ issue, articlesInIssue, adminRoles }) {
             alt: 'Publishing issue',
           }}
         /> */}
+        {!issue.published && (
+          <PublishIssue
+            issue={JSON.parse(JSON.stringify(issue))}
+            action={publishIssue}
+          />
+        )}
       </div>
     </DashboardLayout>
   );

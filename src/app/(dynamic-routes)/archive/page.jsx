@@ -14,7 +14,7 @@ export const metadata = {
 };
 
 async function Archive() {
-  /*const issues = await getPublishedIssues();
+  const issues = await getPublishedIssues();
   console.log(issues);
   if (!issues || issues.length === 0) {
     return (
@@ -36,15 +36,18 @@ async function Archive() {
       <Header />
       <Main className='gap-4'>
         <H1 className='mt-5'>Archive</H1>
-        <div className='space-y-5'>
+        <div className='border rounded-lg border-neutral-300'>
           {issues.map((issue) => (
             <div
               key={issue._id}
-              className='flex gap-5 sm:gap-10 border rounded-xl sm:flex-row border-neutral-300  py-2 px-2'
+              className='flex gap-5 sm:gap-10 [&:not(:last-child)]:border-b sm:flex-row border-neutral-300  sm:py-4 sm:px-4 py-2 px-2'
             >
               <div className='flex-1'>
-                <H2 className='text-sm md:text-base text-[#006798] hover:text-[#008acb] uppercase font-semibold'>
-                  <Link href={`/archive/${issue.ref}`}>
+                <H2 className='md:text-base text-[#006798] hover:text-[#008acb] group uppercase font-semibold'>
+                  <Link
+                    href={`/archive/${issue.ref}`}
+                    className='group-hover:underline'
+                  >
                     Nigeria Journal of Business Administration
                   </Link>
                 </H2>
@@ -58,21 +61,21 @@ async function Archive() {
       </Main>
       <Footer />
     </div>
-  );*/
-  return (
-    <div className='flex flex-col min-h-screen'>
-      <Header />
-      <Main className='gap-4 h-full'>
-        {/* <H1 className='mt-5'>Archive</H1> */}
-        <div className='flex items-center justify-center h-full font-medium'>
-          <p className='text-neutral-500 md:text-3xl'>
-            Archive will be uploaded soon
-          </p>
-        </div>
-      </Main>
-      <Footer />
-    </div>
   );
+  // return (
+  //   <div className='flex flex-col min-h-screen'>
+  //     <Header />
+  //     <Main className='gap-4 h-full'>
+  //       {/* <H1 className='mt-5'>Archive</H1> */}
+  //       <div className='flex items-center justify-center h-full font-medium'>
+  //         <p className='text-neutral-500 md:text-3xl'>
+  //           Archive will be uploaded soon
+  //         </p>
+  //       </div>
+  //     </Main>
+  //     <Footer />
+  //   </div>
+  // );
 }
 
 export default Archive;

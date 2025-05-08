@@ -10,7 +10,7 @@ const getArticlesInIssue = async (issueRef) => {
   connectDB();
   const articlesInIssue = await Promise.all([
     Issue.find({
-      ref: 'volume-1-issue-1',
+      ref: `${issueRef}`,
     }),
     Article.find({
       ref: `${issueRef}`,
@@ -25,16 +25,17 @@ async function IssuePage({ params }) {
   const { user } = await auth();
 
   const { issue: issueRef } = await params;
+  console.log('issueRef', issueRef);
 
   const [[issue], articlesInIssue] = await getArticlesInIssue(issueRef);
 
-  const adminPrivilege = issue?.status === 'draft' && user?.role === 'admin';
-  console.log(articlesInIssue.length);
+  const editorPrivilege = issue?.status === 'draft' && user?.role === 'editor';
+  console.log(user, issue);
 
-  const systemAdminPrevilege = user?.role === 'system-admin';
+  const adminPrevilege = user?.role === 'admin';
   const adminRoles = {
-    admin: adminPrivilege,
-    systemAdmin: systemAdminPrevilege,
+    admin: editorPrivilege,
+    systemAdmin: adminPrevilege,
   };
 
   return (
@@ -43,7 +44,7 @@ async function IssuePage({ params }) {
         <IssueEmptyState issue={issue} adminRoles={adminRoles} />
       ) : (
         <IssueContent
-          adminRoles={adminRoles}
+          user={user}
           articlesInIssue={articlesInIssue}
           issue={issue}
         />

@@ -27,7 +27,7 @@ export default function IssueEmptyState({ issue, adminRoles }) {
           <p className='text-2xl text-center text-gray-400'>
             There are currently no articles in this issue
           </p>
-          {(adminRoles.admin || adminRoles.systemAdmin) && (
+          {issue?.status === 'draft' && (
             <AddButton
               label='Add Article'
               href={`/dashboard/issues/${issue.ref}/new-article`}

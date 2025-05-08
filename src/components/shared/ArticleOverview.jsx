@@ -11,6 +11,7 @@ import { TbChartBar } from 'react-icons/tb';
 import { cn } from '@/lib/utils';
 import DownloadPDFButton from './DownloadPDFButton';
 import { incrementDownloadCounts } from '@/lib/routes/pdf';
+import ArticleStats from './ArticleStats';
 
 // Loading component for Authors section
 function AuthorsLoading() {
@@ -73,7 +74,7 @@ function ArticleOverview({ currentArticle, currentIssue = false, issue }) {
               ? `/archive/${currentArticle.ref}/${currentArticle.slug}/view?ref=current`
               : `/archive/${currentArticle.ref}/${currentArticle.slug}/view`
           }
-          className='flex w-full text-light-black justify-center gap-2 px-3 py-1.5 border hover:border-lightPrimary md:w-fit rounded-md  text-center border-light-black items-center hover:text-white hover:border-black hover:bg-black transition-all duration-200 ease-in-out'
+          className='flex w-full text-primary justify-center gap-2 px-3 py-1.5 border md:w-fit rounded-md  text-center border-primary items-center hover:text-white hover:bg-primary transition-all duration-200 ease-in-out'
         >
           <span>Open PDF in Browser</span>
         </Link>
@@ -124,27 +125,9 @@ function ArticleOverview({ currentArticle, currentIssue = false, issue }) {
         </div>
         {renderButtons(currentArticle, currentIssue, 'end')}
       </section>
-      <section className='mt-5 space-y-10'>
-        <div className='space-y-5 p-4 border rounded-lg'>
-          <div className='space-y-1'>
-            <h2 className='font-semibold flex items-center gap-1'>
-              Article Statistics
-            </h2>
-            <div className='flex justify-between sm:justify-start gap-8 text-sm'>
-              <article className='flex flex-col items-center'>
-                <span>Downloads</span>
-                <span>{currentArticle?.downloads || 0}</span>
-              </article>
-              <article className='flex flex-col items-center'>
-                <span>Article Views</span>
-                <span>{currentArticle?.articleViews || 0}</span>
-              </article>
-              <article className='flex flex-col items-center'>
-                <span>Abstract Views</span>
-                <span>{currentArticle?.abstractViews || 0}</span>
-              </article>
-            </div>
-          </div>
+      <section className='mt-10 space-y-10'>
+        <div className='space-y-5 rounded-lg'>
+          {/* <ArticleStats currentArticle={currentArticle} /> */}
           <APAReference article={currentArticle} issue={issue} />
         </div>
 

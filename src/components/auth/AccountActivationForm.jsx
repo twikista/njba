@@ -12,6 +12,8 @@ import FormWrapper from '../forms/FormWrapper';
 import SubmitButton from '../buttons/SubmitButton';
 import { AnimatePresence } from 'framer-motion';
 import { FullfilledStateLoader, PendingStateLoader } from '../shared/Loader';
+import { cn } from '@/lib/utils';
+import { toast } from 'sonner';
 
 function AccountActivationForm({ id }) {
   const router = useRouter();
@@ -42,6 +44,7 @@ function AccountActivationForm({ id }) {
 
     if (response && !response?.ok) {
       if (response?.errorType === 'validationError') {
+        toast.error(response.error);
         const formfields = {
           firstName: 'defaultPassword',
           lastName: 'newPassword',
@@ -53,24 +56,35 @@ function AccountActivationForm({ id }) {
     }
 
     if (response?.errorType === 'other') {
-      setErrorFromServer(response.error);
-      const timeoutId = setTimeout(() => {
-        setErrorFromServer('');
-      }, 4000);
-      return () => clearTimeout(timeoutId);
+      toast.error(response.error);
+      // setErrorFromServer(response.error);
+      // const timeoutId = setTimeout(() => {
+      //   setErrorFromServer('');
+      // }, 4000);
+      // return () => clearTimeout(timeoutId);
     }
     setIsLoading(false);
   };
   return (
-    <div>
+    <div className='w-full max-w-[420px]'>
       <FormWrapper formHeading='Account Activation'>
         {errorFromServer && (
-          <div>
-            <span>{errorFromServer}</span>
+          <div className='text-center'>
+            <span
+              className={cn(
+                'text-sm text-red-400 transition-all duration-200',
+                errorFromServer ? 'inline-block' : 'hidden'
+              )}
+            >
+              {errorFromServer}
+            </span>
           </div>
         )}
         <FormProvider {...methods}>
-          <form onSubmit={methods.handleSubmit(handler)} className='space-y-4'>
+          <form
+            onSubmit={methods.handleSubmit(handler)}
+            className='space-y-4 flex flex-col'
+          >
             <PasswordInput
               name='defaultPassword'
               label='Password'
@@ -90,7 +104,7 @@ function AccountActivationForm({ id }) {
           </form>
         </FormProvider>
       </FormWrapper>
-      {isLoading && (
+      {/* {isLoading && (
         <AnimatePresence>
           <motion.div
             key='modal'
@@ -143,7 +157,7 @@ function AccountActivationForm({ id }) {
             />
           </motion.div>
         </AnimatePresence>
-      )}
+      )} */}
     </div>
   );
 }

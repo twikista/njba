@@ -15,7 +15,7 @@ export default function Issues({ issues, user, status }) {
     <DashboardLayout>
       <div className='flex flex-row-reverse items-center justify-between pb-3 border-200'>
         <CreateButton href='/dashboard/issues/new-issue' label='Add Issue' />
-        <ResourceFilter status={status} />
+        <ResourceFilter />
       </div>
       <div className='p-2 bg-secondary rounded-lg md:pt-0 overflow-x-auto'>
         <table className='min-w-full border-collapse'>
@@ -46,11 +46,11 @@ export default function Issues({ issues, user, status }) {
                 <td className='px-4 py-4 text-center border border-solid'>
                   {issue?.status === 'published' ? (
                     <span className='px-1 py-[5px] space-x-1 text-center w-fit'>
-                      published
+                      Published
                     </span>
                   ) : (
-                    <span className='flex items-center px-1 py-1 space-x-1 w-fit'>
-                      unpublished
+                    <span className='flex items-center px-1 py-1 space-x-1'>
+                      Draft
                     </span>
                   )}
                 </td>
@@ -63,7 +63,7 @@ export default function Issues({ issues, user, status }) {
                       : 'N/A'}
                   </span>
                 </td>
-                {(user.role === 'system-admin' || !issue.published) && (
+                {(!issue.published || user.role === 'admin') && (
                   <>
                     <td className='px-4 py-4 text-center'>
                       <EditButton

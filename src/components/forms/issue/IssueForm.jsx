@@ -78,7 +78,7 @@ export default function IssueForm({ initialFormState }) {
       };
       handleValidationErrorFromServer(response, formfields, setError);
     } else if (response?.errorType === 'other') {
-      setErrorFromServer(response.error);
+      // setErrorFromServer(response.error);
       setErrorFromServer(response.error);
       const timeoutId = setTimeout(() => {
         setErrorFromServer('');

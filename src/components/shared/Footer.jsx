@@ -50,7 +50,7 @@ function Footer() {
                   <span>&nbsp;</span>
                   <span>{currentYear}</span>
                   <span>&nbsp;&#124;&nbsp;</span>
-                  <span className=''>Powered by Inventure</span>
+                  <span className=''>Powered by Inventure Solutions</span>
                   {/* <span className='text-left'>
                     Licensed under a{' '}
                     <a

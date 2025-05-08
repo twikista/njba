@@ -1,15 +1,9 @@
-import { DocumentPlusIcon } from '@heroicons/react/24/outline';
-import { LinkIcon, PasswordIcon, StackIcon, UsersIcon } from '../Icons';
-import QuickLinkItem from './QuickLnkItem';
-import {
-  AddIssuesIcon,
-  AddUserIcon,
-  HomePageIcon,
-  HourGlassIcon,
-} from '@/components/Icons';
+import { RiLinkM } from 'react-icons/ri';
+
+import QuickLinkItem from './QuickLinkItem';
+
 import {
   BellPlusIcon,
-  House,
   HouseIcon,
   LucideFilePlus2,
   SquarePenIcon,
@@ -21,7 +15,7 @@ function QuickLinks({ userRole }) {
   return (
     <div className='flex-1 p-2 bg-gray-200 rounded-lg'>
       <div className='flex items-center gap-1 px-4 py-3'>
-        <LinkIcon className='w-4 h-4 md:w-5 md:h5 fill-gray-500' />
+        <RiLinkM className='w-4 h-4 md:w-5 md:h5 fill-gray-500' />
         <h4 className='text-base font-medium md:text-xl'>Quick Links</h4>
       </div>
       <div className='px-4 py-5 space-y-2 rounded-md bg-gray-50'>
@@ -43,12 +37,12 @@ function QuickLinks({ userRole }) {
           <>
             <QuickLinkItem
               Icon={UserPlusIcon}
-              linkUrl='/dashboard/manage-users/new-user'
+              linkUrl='/dashboard/users/new-user'
               linkText='Add new user'
             />
             <QuickLinkItem
               Icon={UserPenIcon}
-              linkUrl='/dashboard/manage-users'
+              linkUrl='/dashboard/users'
               linkText='Manage Users'
             />
           </>
@@ -69,7 +63,7 @@ function QuickLinks({ userRole }) {
         )} */}
         <QuickLinkItem
           Icon={SquarePenIcon}
-          linkUrl='/dashboard'
+          linkUrl='/dashboard/users/change-password'
           linkText='Change password'
         />
 

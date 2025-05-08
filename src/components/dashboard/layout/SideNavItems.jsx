@@ -54,8 +54,8 @@ function SideNavItems({ session }) {
         <>
           <SideNavItem
             type='link'
-            linkText='Settings'
-            link='/dashboard/settings'
+            linkText='Users'
+            link='/dashboard/users'
             OutlineIcon={HiOutlineCog6Tooth}
             FillIcon={HiCog6Tooth}
           />

@@ -10,6 +10,7 @@ import { signinFormSchema } from '@/lib/schemas/auth';
 import { zodResolver } from '@hookform/resolvers/zod';
 import DisplayServerValidationError from '@/components/shared/ServerValidationError';
 import { login } from '@/lib/actions/auth';
+import { set } from 'mongoose';
 
 export default function SignInForm() {
   const methods = useForm({
@@ -18,28 +19,34 @@ export default function SignInForm() {
   });
 
   const [authError, setAuthError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handler = async (data) => {
-    console.log(data);
-    const response = await login(data);
+    setIsLoading(true);
+    try {
+      const response = await login(data);
 
-    if (response && response?.errorType === 'validationError') {
-      const fieldErrorMapping = {
-        email: 'email',
-        password: 'password',
-      };
-      const fieldWithError = Object.keys(fieldErrorMapping).find(
-        (field) => response?.errors[field]
-      );
-      if (fieldWithError) {
-        // Use the ValidFieldNames type to ensure the correct field names
-        const errors = Object.keys(response.errors);
-        errors.forEach((error) =>
-          setError(error, { type: 'server', message: response.errors[error] })
+      if (response && response?.errorType === 'validationError') {
+        const fieldErrorMapping = {
+          email: 'email',
+          password: 'password',
+        };
+        const fieldWithError = Object.keys(fieldErrorMapping).find(
+          (field) => response?.errors[field]
         );
+        if (fieldWithError) {
+          // Use the ValidFieldNames type to ensure the correct field names
+          const errors = Object.keys(response.errors);
+          errors.forEach((error) =>
+            setError(error, { type: 'server', message: response.errors[error] })
+          );
+        }
+      } else if (response?.errorType === 'authError') {
+        setAuthError(response.error);
       }
-    } else if (response?.errorType === 'authError') {
-      setAuthError(response.error);
+    } catch (error) {
+    } finally {
+      setIsLoading(false);
     }
   };
   return (
@@ -71,7 +78,7 @@ export default function SignInForm() {
         <SubmitButton
           mainText='Sign in'
           altText='Signing in...'
-          isSubmitting={methods.formState.isSubmitting}
+          isSubmitting={isLoading}
           className='md:w-full py-2.5 hover:bg-hover '
         />
       </form>

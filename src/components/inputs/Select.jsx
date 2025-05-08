@@ -9,8 +9,8 @@ const DropdownOption = memo(({ option, isSelected, onSelect }) => {
 
   return (
     <li
-      className={`cursor-default select-none relative py-2 pl-3 pr-9 hover:bg-blue-100 ${
-        isSelected ? 'bg-blue-50 text-blue-900' : 'text-gray-900'
+      className={`cursor-default select-none relative py-2 pl-3 pr-9 hover:bg-slate-100 ${
+        isSelected ? '' : ''
       }`}
       role='option'
       aria-selected={isSelected}
@@ -24,7 +24,7 @@ const DropdownOption = memo(({ option, isSelected, onSelect }) => {
         {option.label}
       </span>
       {isSelected && (
-        <span className='absolute inset-y-0 right-0 flex items-center pr-4 text-blue-600'>
+        <span className='absolute inset-y-0 right-0 flex items-center pr-4 text-primary'>
           <svg
             className='h-5 w-5'
             xmlns='http://www.w3.org/2000/svg'
@@ -96,7 +96,7 @@ const Select = memo(
     );
 
     return (
-      <div className='w-full max-w-md'>
+      <div className='w-full'>
         {label && (
           <label className='block text-sm font-medium text-gray-700 mb-1'>
             {label}
@@ -105,8 +105,8 @@ const Select = memo(
         <div className='relative' ref={selectRef}>
           <button
             type='button'
-            className={`relative w-full bg-white border rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm ${
-              error ? 'border-red-500' : 'border-gray-300'
+            className={`relative inline-block w-full bg-white border outline-0 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-0  focus:border-slate-400 sm:text-sm ${
+              error ? 'border-red-500' : 'border-slate-400'
             }`}
             onClick={toggleDropdown}
             aria-haspopup='listbox'
@@ -138,7 +138,7 @@ const Select = memo(
 
           {isOpen && (
             <ul
-              className='absolute z-10 mt-1 w-full bg-white shadow-lg max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm'
+              className='absolute z-10 mt-1 w-full bg-white shadow-lg max-h-60 rounded-md text-base ring-1 ring-slate-400  overflow-auto focus:outline-0 sm:text-sm'
               tabIndex='-1'
               role='listbox'
             >

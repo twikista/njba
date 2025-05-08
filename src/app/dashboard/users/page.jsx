@@ -1,4 +1,4 @@
-import { getUsers, removeUser } from '@/lib/actions/auth';
+import { getUsers, removeUser, resetUserPassowrd } from '@/lib/actions/auth';
 import DashboardLayout from '@/components/dashboard/layout/DashboardLayout';
 import { default as CreateButton } from '@/components/buttons/AddButton';
 import DeleteButton from '@/components/buttons/DeleteButton';
@@ -38,16 +38,31 @@ async function AdminPage() {
                 <td className='px-4 py-4 text-center capitalize border border-solid'>
                   {user.role}
                 </td>
-                <td className='px-4 py-4 text-center'>
-                  {user.role !== 'admin' && (
-                    <DeleteButton
-                      action={removeUser}
-                      id={user._id}
-                      label='Remove'
-                      variant='primary'
-                      icon={false}
-                    />
-                  )}
+                <td className='px-4 py-4 text-center w-fit'>
+                  <div className='flex gap-4 justify-center w-fit'>
+                    {user.role !== 'admin' && (
+                      <DeleteButton
+                        action={removeUser}
+                        id={user._id}
+                        label='Remove'
+                        variant='primary'
+                        icon={false}
+                        className={user.role === 'admin' ? 'hidden' : ''}
+                      />
+                    )}
+                    {user.role !== 'admin' && (
+                      <DeleteButton
+                        action={resetUserPassowrd}
+                        successMessage='User reset successful!'
+                        id={user?.email}
+                        label='Reset passowrd'
+                        altLabel='Processing...'
+                        variant='primary'
+                        icon={false}
+                        className={user.role === 'admin' ? 'hidden' : ''}
+                      />
+                    )}
+                  </div>
                 </td>
               </tr>
             ))}
