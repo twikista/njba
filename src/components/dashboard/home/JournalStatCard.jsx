@@ -4,7 +4,7 @@ function JournalStatCard({ title, value, Icon, bg }) {
       className={`flex items-center justify-center flex-1 gap-2 px-2 py-3  lg:px-5 sm:py-5 ${bg} rounded-xl shadow-md `}
     >
       <div className='flex flex-col items-center justify-center'>
-        <p className='text-2xl font-semibold sm: 4xl lg:text-4xl'>
+        <p className='text-lg font-semibold sm: 2xl lg:text-2xl'>
           {value === undefined ? '0' : value}
         </p>
         <span className='text-xs text-center sm:text-sm lg:text-base '>

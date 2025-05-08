@@ -15,7 +15,7 @@ const getMaxVolume = async () => {
     ]);
 
     return {
-      pubkishedVolumes: maxVolumeIssue?.volume,
+      publishedVolumes: maxVolumeIssue?.volume,
       publishedIssues: issuesCount,
       publishedArticles: articlesCount,
     };
@@ -26,23 +26,24 @@ const getMaxVolume = async () => {
 };
 async function JournalStats() {
   const data = await getMaxVolume();
+  console.log('data:', data);
   return (
     <section className='flex justify-around gap-5 lg:gap-10'>
       <JournalStatCard
         title='Published volumes'
-        value={data?.numberOfVolume}
+        value={data?.publishedVolumes}
         Icon={VolumeIcon}
         bg='bg-[#e5d4ff]'
       />
       <JournalStatCard
         title='Published issues'
-        value={data?.numberOfIssues}
+        value={data?.publishedIssues}
         Icon={IssuesIcon}
         bg='bg-green-100'
       />
       <JournalStatCard
         title='Published articles'
-        value={data?.numberOfArticles}
+        value={data?.publishedArticles}
         Icon={ArticlesIcon}
         bg='bg-[#ffff33]/30'
       />
