@@ -6,7 +6,7 @@ export const menuItems = [
       { pathName: 'Editorial Team', url: '/editorial-team' },
       { pathName: 'Journal Policies', url: '/journal-policies' },
       { pathName: 'Privacy Statement', url: '/privacy-statement' },
-      { pathName: 'Publication Ethics', url: 'publication-ethics' },
+      { pathName: 'Publication Ethics', url: '/publication-ethics' },
     ],
   },
 
@@ -29,7 +29,7 @@ export const menuItems = [
   },
   { pathName: 'For Reviewers', url: '/reviewers-guide' },
   { pathName: 'contact', url: '/contact' },
-  { pathName: 'login', url: `/auth/login` },
+  // { pathName: 'login', url: `/auth/login` },
 ];
 
 export const footerItems = [
@@ -55,7 +55,7 @@ export const footerItems = [
   {
     pathName: 'For Authors',
     subMenuItems: [
-      { pathName: 'Authors Guide', url: '/authors-guide' },
+      { pathName: 'Authors Guide', url: '/authors-guidelines' },
       { pathName: 'submission Guide', url: '/submission-guide' },
       { pathName: 'For Reviewers', url: '/reviewers-guide' },
     ],
