@@ -11,11 +11,9 @@ function ArticlesInIssue({ articlesInIssue, path = 'archive' }) {
           className=' p-3 [&:not(:last-child)]:border-b border-neutral-300 '
         >
           <H3 className='text-base font-medium text-main-blue hover:text-hover-blue  hover:underline w-fit'>
-            (
             <Link href={`/${path}/${article?.ref}/${article?.slug}`}>
               {article?.title}
             </Link>
-            )
           </H3>
           <div className='flex items-center justify-between'>
             <Authors authors={article?.authors} />

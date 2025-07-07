@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { Document, Page, pdfjs } from 'react-pdf';
@@ -9,40 +9,50 @@ import { LiaArrowLeftSolid } from 'react-icons/lia';
 import { BsDownload } from 'react-icons/bs';
 import { Tooltip } from 'react-tooltip';
 import Spinner from './Spinner';
-import { incrementDownloadCounts } from '@/lib/routes/pdf';
+import PDFDownloadButton from './PDFDownloadButton';
+import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
+import 'react-pdf/dist/esm/Page/TextLayer.css';
 // import 'pdfjs-dist/build/pdf.worker.min.mjs'
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
-function PDFViewer({ filePath, params, onPdfLoaded, articleId }) {
+function PDFViewerV2({ filePath, params }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const [pageNumber, setPageNumber] = useState(1);
   const [numPages, setNumPages] = useState(null);
   const [pageWidth, setPageWidth] = useState(0);
-  const [scale, setScale] = useState(1);
+  const [scale, setScale] = useState(1.0);
   const [pdfloaded, setPdfLoaded] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const onDocumentLoadSuccess = ({ numPages }) => {
+  const pdfUrl = `/api/pdf?file=${encodeURIComponent(filePath)}&action=view`;
+  //   const onDocumentLoadSuccess = ({ numPages }) => {
+  //     console.log('onDocumentLoadSuccess');
+  //     setNumPages(numPages);
+  //     if (onPdfLoaded && typeof onPdfLoaded === 'function') {
+  //       onPdfLoaded();
+  //     }
+  //   };
+
+  const onDocumentLoadSuccess = useCallback(({ numPages }) => {
     setNumPages(numPages);
-    if (onPdfLoaded && typeof onPdfLoaded === 'function') {
-      onPdfLoaded();
-    }
-  };
+    setLoading(false);
+    setError(null);
+  }, []);
+
+  const onDocumentLoadError = useCallback((error) => {
+    console.error('Error loading PDF:', error);
+    setError('Failed to load PDF');
+    setLoading(false);
+  }, []);
 
   function onPageLoadSuccess() {
     setPageWidth(window.innerWidth > 900 ? 900 : pageNumber);
     // setLoading(false)
     setPdfLoaded(true);
   }
-
-  const goToPrevPage = () => {
-    setPageNumber((prevPageNumber) => Math.max(prevPageNumber - 1, 1));
-  };
-
-  const goToNextPage = () => {
-    setPageNumber((prevPageNumber) => Math.min(prevPageNumber + 1, numPages));
-  };
 
   const decreaseScale = () => {
     setScale((prevPageScale) => Math.max(prevPageScale - 0.1, 0.7));
@@ -59,14 +69,12 @@ function PDFViewer({ filePath, params, onPdfLoaded, articleId }) {
     </div>
   );
 
-  const updateDownloadCount = async () => {
-    // Only increment once per component lifecycle
-    const updatedCount = await incrementDownloadCounts(
-      articleId,
-      params.issue,
-      params.article
-    );
-  };
+  const renderError = () => (
+    <div className='flex flex-row-reverse gap-2 mt-52'>
+      <p className='text-red-500'>{error}</p>
+      <Spinner basic={true} />
+    </div>
+  );
 
   return (
     <div className='flex flex-col items-center bg-neutral-600 relative mt-[100px] mb-30'>
@@ -117,29 +125,24 @@ function PDFViewer({ filePath, params, onPdfLoaded, articleId }) {
           </div>
 
           <div>
-            <div>
-              <a
-                href={filePath}
-                onClick={updateDownloadCount}
-                download
-                target='_blank'
-                rel='noreferrer'
-                className='flex w-[60pxpx] items-center justify-center text-gray-200 px-2 py-1 border border-gray-200 sm:w-[140px] hover:bg-gray-200 hover:text-neutral-700 transition-colors  text-center gap-2'
-              >
-                <BsDownload className='w-4' />
-
-                <span className='hidden sm:block'>Download</span>
-              </a>
-            </div>
+            <PDFDownloadButton fileName={filePath} />
           </div>
         </div>
       )}
       <div className='flex min-h-screen w-fit'>
         <Document
-          file={filePath}
+          file={pdfUrl}
           pageMode='useThumbs'
           onLoadSuccess={onDocumentLoadSuccess}
+          onLoadError={onDocumentLoadError}
           renderMode='canvas'
+          // onLoadError={(error) =>
+          //   console.error(
+          //     'Error occurred while loading document:',
+          //     error.message
+          //   )
+          // }
+          //   error={renderError()}
           loading={renderLoadingindicator()}
         >
           {Array.from({ length: numPages }, (_, i) => i + 1).map((i, index) => (
@@ -154,6 +157,9 @@ function PDFViewer({ filePath, params, onPdfLoaded, articleId }) {
                 scale={scale}
                 loading=''
               />
+              <div className='text-center text-sm text-gray-500 py-2'>
+                Page {index + 1} of {numPages}
+              </div>
             </div>
           ))}
         </Document>
@@ -162,4 +168,4 @@ function PDFViewer({ filePath, params, onPdfLoaded, articleId }) {
   );
 }
 
-export default PDFViewer;
+export default PDFViewerV2;

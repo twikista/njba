@@ -26,7 +26,6 @@ const getMaxVolume = async () => {
 };
 async function JournalStats() {
   const data = await getMaxVolume();
-  console.log('data:', data);
   return (
     <section className='flex justify-around gap-5 lg:gap-10'>
       <JournalStatCard

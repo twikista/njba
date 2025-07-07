@@ -4,43 +4,6 @@ import { User } from './mongoose/models/user';
 import { Article } from './mongoose/models/article';
 import { Issue } from './mongoose/models/issue';
 
-// export const fetchAnnouncement = async (fetchBy, item) => {
-//   connectDB();
-//   if (fetchBy === 'slug') {
-//     const announcement = await Announcement.findOne({ slug: item });
-//     return announcement;
-//   }
-//   const announcement = await Announcement.findOne({ ref: item });
-//   return announcement;
-// };
-
-// export const getAnnouncements = async () => {
-//   try {
-//     connectDB();
-//     const announcements = await Announcement.find({})
-//       .sort({ createdAt: 1 })
-//       .limit(2);
-//     return announcements;
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
-
-// export const getIssues = async (mode) => {
-//   const currrentMode = mode === undefined || mode == 'final' ? 'final' : mode
-//   // nostore()
-//   try {
-//     connectDB()
-//     const issues = await Issue.find({ mode: currrentMode }).sort({
-//       volume: -1,
-//       issueNumber: -1,
-//     })
-//     return issues
-//   } catch (error) {
-//     // console.log(error)
-//   }
-// }
-
 export const getIssue = async (issueRef) => {
   try {
     connectDB();
@@ -131,27 +94,6 @@ export const getUsers = async () => {
       return { ok: false, users: null };
     }
   } catch (error) {
-    // console.log(error)
+    console.log(error);
   }
 };
-
-// export const fetchEditorialBoard = async (mode) => {
-//   const currrentMode = mode === undefined || mode == 'final' ? 'final' : mode;
-//   connectDB();
-//   try {
-//     const editorialBoard = await EditorialBoard.find({ mode: currrentMode });
-//     return editorialBoard;
-//   } catch (error) {
-//     // console.log(error)
-//   }
-// };
-
-// export const fetchAllEditorialBoardData = async () => {
-//   connectDB();
-//   try {
-//     const editorialBoard = await EditorialBoard.find();
-//     return editorialBoard;
-//   } catch (error) {
-//     // console.log(error)
-//   }
-// };

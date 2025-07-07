@@ -22,7 +22,6 @@ export default async function NewArticle({ params }) {
   const volume = articleIssue?.volume;
   const issue = articleIssue?.issueNumber;
   const publishDate = articleIssue?.publishDate;
-  console.log(articleIssue);
 
   return (
     <DashboardLayout>

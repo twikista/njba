@@ -43,7 +43,6 @@ export default function NewUserForm() {
   });
 
   const handleSuccess = () => {
-    console.log('i was successful');
     setIsLoading(false);
     setIsSuccessful(true);
     methods.reset();
@@ -79,11 +78,9 @@ export default function NewUserForm() {
     setIsLoading(false);
   };
   const submitHandler = async (data) => {
-    console.log(data);
     setIsLoading(true);
     try {
       const response = await signup(data);
-      console.log(response.ok);
 
       if (response?.ok) {
         handleSuccess();

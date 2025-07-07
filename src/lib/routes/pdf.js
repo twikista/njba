@@ -4,7 +4,6 @@ export const incrementAbstractViews = async (
   issueRef,
   articleSlug
 ) => {
-  console.log(articleId, issueRef, articleSlug);
   try {
     const response = await fetch('/api/pdf/increment-abstract-views', {
       method: 'POST',
@@ -36,7 +35,6 @@ export const incrementArticleViews = async (
   issueRef,
   articleSlug
 ) => {
-  console.log(articleId, issueRef, articleSlug);
   try {
     const response = await fetch('/api/pdf/increment-article-views', {
       method: 'POST',
@@ -81,7 +79,6 @@ export const incrementDownloadCounts = async (
         articleSlug,
       }),
     });
-    console.log(response);
     if (!response.ok) {
       throw new Error('Failed to increment download count');
     }

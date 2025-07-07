@@ -11,17 +11,7 @@ import { redirect } from 'next/navigation';
 import { removePdfFromStorage } from '../firebase/services';
 import { cache } from 'react';
 import { auth } from '../../../auth';
-
-// export const getArticle = async (slug) => {
-//   connectDB();
-//   const article = await Article.findOne({
-//     ref: `${slug.issue}`,
-//     slug: `${slug.article}`,
-//   });
-//   return article;
-// };
-
-// console.log('first user', user);
+import { deleteFile } from '../r2/servicesActions';
 
 export const getArticle = cache(async (slug, options = null) => {
   try {
@@ -83,7 +73,6 @@ export const getArticlesInCurrentIssue = async () => {
     })
       .sort({ volume: -1, issueNumber: -1 })
       .limit(1);
-    console.log('latest:', latestIssue);
 
     if (!latestIssue) {
       return {
@@ -185,33 +174,6 @@ export async function createArticle(formData, url, params) {
   }
 }
 
-// export async function deleteArticle(id) {
-//   connectDB()
-//   let ref = null
-//   try {
-//     const deletedArticle = await Article.findByIdAndDelete(id)
-
-//     if (deletedArticle._id !== undefined) {
-//       await Issue.updateOne(
-//         { ref: deletedArticle.ref },
-//         { $pull: { articles: deletedArticle._id } }
-//       )
-//       await removePdfFromStorage(deletedArticle.pdfUrl)
-
-//       revalidatePath(`/dashboard/issues/${deletedArticle.ref}`)
-//       revalidatePath(`/archive/${deletedArticle.ref}`)
-//       ref = deletedArticle.ref
-
-//       return { ok: true }
-//     }
-//     return { ok: false }
-//   } catch (error) {
-//     return { ok: false, error: 'Something went wrong', errorType: 'other' }
-//   } finally {
-//     redirect(`/dashboard/issues/${ref}`)
-//   }
-// }
-
 export async function deleteArticle(id) {
   let ref = null;
   // Ensure database connection
@@ -241,7 +203,12 @@ export async function deleteArticle(id) {
     }
 
     // Remove the PDF file from storage
-    await removePdfFromStorage(deletedArticle.pdfUrl);
+    // await removePdfFromStorage(deletedArticle.pdfUrl);
+    const key = deletedArticle.pdfUrl.split('/').at(-1);
+    const deleted = await deleteFile(key);
+    if (!deleted.success) {
+      return { ok: false, error: 'Something went wrong', errorType: 'other' };
+    }
 
     // Commit the transaction if all operations succeed
     await session.commitTransaction();
@@ -263,10 +230,6 @@ export async function deleteArticle(id) {
     redirect(`/dashboard/issues/${ref}`);
   }
 }
-
-// export async function updateArticle() {
-//   console.log('update article')
-// }
 
 export async function updateArticle(formData, url, id) {
   //validate form dtata from frontend

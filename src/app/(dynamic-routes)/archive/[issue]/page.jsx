@@ -40,7 +40,6 @@ const getArticlesInIssue = cache(async (issue) => {
 async function IssuePage({ params }) {
   const param = await params;
   const { issue } = param;
-  console.log('param:', param);
 
   // const articlesInIssue = await getArticlesInIssue(issue)
   const [articlesInIssue, currentIssue] = await Promise.all([

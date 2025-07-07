@@ -16,10 +16,9 @@ export const getIssues = async (status = 'published') => {
       volume: -1,
       issueNumber: -1,
     });
-    console.log(issues);
     return issues;
   } catch (error) {
-    // console.log(error)
+    console.log(error);
   }
 };
 
@@ -32,7 +31,7 @@ export const getIssue = async (issueRef, options = null) => {
     // const issueObject = JSON.parse(json)
     return issue;
   } catch (error) {
-    // console.log(error)
+    console.log(error);
   }
 };
 
@@ -44,7 +43,6 @@ export const createIssue = async (formData) => {
   } = user;
 
   const parsedData = IssueFormSchema.safeParse(formData);
-  console.log(formData);
   if (!parsedData.success) {
     const validationError = handleServerSideValidationError(parsedData);
     return { ok: false, error: validationError, errorType: 'validationError' };
@@ -89,20 +87,16 @@ export async function updateIssue(id, formData) {
   try {
     await connectDB();
     const currentIssue = await Issue.findById(JSON.parse(id));
-    console.log('currentIssue to update:', currentIssue);
     if (!currentIssue) {
       return { ok: false, error: 'Issue not found', errorType: 'other' };
     }
 
-    console.log('data:', data);
     const issueData = {
       // ...currentIssue,
       ...data,
       ref: `volume-${data.volume}-issue-${data.issueNumber}`,
       issueTitle: `Vol. ${data.volume} No. ${data.issueNumber} (${data.issueYear})`,
     };
-
-    console.log('issueData:', issueData);
 
     const updatedIssue = await Issue.findByIdAndUpdate(
       { _id: currentIssue._id },
@@ -111,9 +105,9 @@ export async function updateIssue(id, formData) {
         new: true,
       }
     );
-    console.log('updatedIssue:', updatedIssue);
+
     if (updatedIssue._id === undefined) {
-      console.log('updatedIssue:', updatedIssue);
+      console.log(`Issue not found ${currentIssue?.issueNumber}`);
       return { ok: false, error: 'Something went wrong', errorType: 'other' };
     }
     //update all articles associated wtih an issue
@@ -147,7 +141,7 @@ export const submitIssueForPublishing = async (ref) => {
       return { ok: false, error: 'something went wrong', errorType: 'other' };
     }
   } catch (error) {
-    // console.log(error)
+    console.log(error);
   }
 };
 
@@ -260,8 +254,6 @@ export const getPublishedIssues = async () => {
 };
 
 export async function deleteIssueWithArticles(id) {
-  console.log('Attempting to delete issue with ID:', id);
-
   // Ensure the database connection
   await connectDB();
 
@@ -314,7 +306,6 @@ export async function deleteIssueWithArticles(id) {
 }
 
 export async function deleteIssueWithNoArticles(id) {
-  console.log(id);
   try {
     await connectDB();
     const deletedIssue = await Issue.findByIdAndDelete(id);

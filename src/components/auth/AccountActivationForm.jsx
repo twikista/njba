@@ -29,7 +29,6 @@ function AccountActivationForm({ id }) {
   });
   const handler = async (data) => {
     setIsLoading(true);
-    console.log(data);
     const response = await activateUser(id, data);
     if (response && response.ok) {
       setIsLoading(false);

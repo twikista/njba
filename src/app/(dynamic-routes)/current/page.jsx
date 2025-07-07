@@ -10,7 +10,6 @@ import React from 'react';
 export default async function page() {
   const response = await getArticlesInCurrentIssue();
   const { currentIssue, articlesInCurrentIssue } = response;
-  console.log(response);
   if (!articlesInCurrentIssue.length) {
     return (
       <div className='flex flex-col min-h-screen'>

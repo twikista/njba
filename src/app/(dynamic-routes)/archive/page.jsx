@@ -15,7 +15,6 @@ export const metadata = {
 
 async function Archive() {
   const issues = await getPublishedIssues();
-  console.log(issues);
   if (!issues || issues.length === 0) {
     return (
       <div className='flex flex-col min-h-screen'>

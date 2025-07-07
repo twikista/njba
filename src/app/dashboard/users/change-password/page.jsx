@@ -4,7 +4,6 @@ import { auth } from '../../../../../auth';
 
 async function NewUser() {
   const user = await auth();
-  console.log('user:', user);
   return (
     <DashboardLayout>
       <ChangePassordForm

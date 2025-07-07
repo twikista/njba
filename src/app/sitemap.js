@@ -5,7 +5,6 @@ import { getAllPublishedArticles } from '@/lib/actions/articles';
 
 export default async function sitemap() {
   const baseUrl = process.env.BASE_URL;
-  console.log(baseUrl);
   const navbarMenuEntries = menuItems
     .map((item) => (item.subMenuItems ? item.subMenuItems : null))
     .flat()

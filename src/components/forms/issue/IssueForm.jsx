@@ -88,11 +88,9 @@ export default function IssueForm({ initialFormState }) {
 
     setIsLoading(false);
   };
-  console.log('id:', initialFormState.id);
   // No useCallback needed since this is only used in the form submission
   const onSubmit = async (data) => {
     setIsLoading(true);
-    console.log('data:', data);
 
     try {
       const isCreating = initialFormState?.issueNumber === '';

@@ -1,3 +1,5 @@
+import PDFViewer from '@/components/shared/PDFViewer';
+import PDFViewerV2 from '@/components/shared/PDFViewerV2';
 import ViewArticlePdf from '@/components/shared/ViewArticlePdf';
 import { getArticle } from '@/lib/actions/articles';
 
@@ -9,7 +11,6 @@ async function ViewPDF({ params }) {
   try {
     const param = await params;
     const article = await getArticle(param);
-    console.log('article pdf', article.pdfUrl);
 
     if (!article) {
       return (
@@ -20,11 +21,12 @@ async function ViewPDF({ params }) {
     }
 
     return (
-      <ViewArticlePdf
-        filePath={article.pdfUrl}
-        params={param}
-        articleId={article._id.toString()}
-      />
+      // <ViewArticlePdf
+      //   filePath={article.pdfUrl}
+      //   params={param}
+      //   articleId={article._id.toString()}
+      // />
+      <PDFViewerV2 filePath={article.pdfUrl.split('/').at(-1)} params={param} />
     );
   } catch (error) {
     // Error handling for any uncaught exceptions

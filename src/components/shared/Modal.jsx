@@ -12,7 +12,6 @@ export const Modal = ({
 }) => {
   //logic to close modal when clicking outside its content
   const handleBackgroundClick = (event) => {
-    console.log(withBackgroundClick);
     if (!withBackgroundClick) return;
     if (event.target === event.currentTarget) {
       setIsOpen(false);
@@ -48,12 +47,6 @@ export const Modal = ({
         )}
         onClick={handleBackgroundClick}
       >
-        {/* <button
-            className='absolute right-2.5 top-2 z-50 flex size-5 items-center justify-center text-2xl text-textPrimary-light transition-colors hover:text-textSecondary-light dark:text-textPrimary-dark dark:hover:text-textSecondary-dark md:right-4'
-            onClick={() => setIsOpen(false)}
-          >
-            &times;
-          </button> */}
         {children}
       </motion.div>
     </AnimatePresence>

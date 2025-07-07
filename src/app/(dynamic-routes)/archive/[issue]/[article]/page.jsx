@@ -73,7 +73,6 @@ async function ArticleContent({ params }) {
       getArticle(param),
       getIssue(param.issue, { issueTitle: 1, issueYear: 1 }),
     ]);
-    console.log('article:', issue);
 
     if (!article) {
       return (

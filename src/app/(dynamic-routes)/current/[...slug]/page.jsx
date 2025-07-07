@@ -73,13 +73,11 @@ function ArticlePageLoading() {
 async function ArticleContent({ params }) {
   const param = await params;
   const { slug } = param;
-  console.log('param:', slug);
   try {
     const [article, issue] = await Promise.all([
       getArticle({ issue: slug[0], article: slug[1] }),
       getIssue(slug[0], { issueTitle: 1, issueYear: 1 }),
     ]);
-    console.log('article:', issue);
 
     if (!article) {
       return (

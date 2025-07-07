@@ -8,19 +8,16 @@ export default function Page() {
   const formData = {
     firstName: 'Aaron',
     lastName: 'Anama',
-    email: 'aaronanama@gmail.com',
+    email: '',
     isAdmin: true,
-    password: 'Pingpong@2025',
+    password: '',
     role: 'admin',
     isActivated: 'true',
   };
-  const encodedURI = encodeURIComponent('uniben_njba@2025');
-  console.log(encodedURI);
   const onSubmit = async () => {
     setIsSubmitting(true);
     const response = await signup(formData);
     setIsSubmitting(false);
-    console.log(response);
   };
 
   // const onSignIn = async () => {

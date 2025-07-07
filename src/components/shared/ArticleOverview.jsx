@@ -12,6 +12,7 @@ import { cn } from '@/lib/utils';
 import DownloadPDFButton from './DownloadPDFButton';
 import { incrementDownloadCounts } from '@/lib/routes/pdf';
 import ArticleStats from './ArticleStats';
+import PDFDownloadButton from './PDFDownloadButton';
 
 // Loading component for Authors section
 function AuthorsLoading() {
@@ -29,17 +30,13 @@ function ArticleOverview({ currentArticle, currentIssue = false, issue }) {
     return arr?.join(', ') || '';
   };
 
-  console.log(parsedCurrentArticle);
   const updateDownloadCount = async () => {
     'use server';
-    // Only increment once per component lifecycle
-    console.log('i was called');
     const updatedCount = await incrementDownloadCounts(
       parsedCurrentArticle._id,
       parsedCurrentArticle.ref,
       parsedCurrentArticle.slug
     );
-    console.log(updatedCount);
   };
 
   if (!currentArticle) {
@@ -59,8 +56,6 @@ function ArticleOverview({ currentArticle, currentIssue = false, issue }) {
   }
 
   const renderButtons = (currentArticle, currentIssue, variant = 'start') => {
-    console.log(currentArticle?.pdfUrl);
-
     return (
       <div
         className={cn(
@@ -78,9 +73,13 @@ function ArticleOverview({ currentArticle, currentIssue = false, issue }) {
         >
           <span>Open PDF in Browser</span>
         </Link>
-        <DownloadPDFButton
-          updateDownloadCount={updateDownloadCount}
-          filePath={currentArticle?.pdfUrl}
+        {/* <DownloadPDFButton
+          // updateDownloadCount={updateDownloadCount}
+          filePath={currentArticle?.pdfUrl.split('/').at(-1)}
+          variant='enhanced'
+        /> */}
+        <PDFDownloadButton
+          fileName={currentArticle?.pdfUrl.split('/').at(-1)}
           variant='enhanced'
         />
       </div>

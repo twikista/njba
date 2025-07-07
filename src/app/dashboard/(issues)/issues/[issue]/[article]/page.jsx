@@ -15,8 +15,6 @@ export default async function ArticlePage({ params }) {
   const param = await params;
   const { user } = await auth();
   const article = await getArticle(param);
-  console.log(article);
-  console.log(param);
   return (
     <DashboardLayout>
       <div>
@@ -43,13 +41,13 @@ export default async function ArticlePage({ params }) {
           <div>
             <div className='h-[1px] bg-neutral-300 mt-2' />
             <div className='flex flex-col items-center gap-2 mt-3 md:flex-row md:justify-center'>
-              <Link
-                href={`/dashboard/issues/${param.issue}/${param.article}/view`}
+              <a
+                href={article.pdfUrl}
                 className=' btn gap-2 font-medium text-center text-white transition-colors border btn-primary'
               >
                 <span>View PDF</span>
                 <ImFilePdf className='size-5 text-' />
-              </Link>
+              </a>
               {!article.published || user.role === 'admin' ? (
                 <EditButton
                   href={`/dashboard/issues/${param.issue}/${param.article}/edit`}
@@ -62,6 +60,7 @@ export default async function ArticlePage({ params }) {
                   id={String(article._id)}
                   action={deleteArticle}
                   label='Delete Article'
+                  altLabel='Deleting Article...'
                   className=''
                 />
               ) : null}

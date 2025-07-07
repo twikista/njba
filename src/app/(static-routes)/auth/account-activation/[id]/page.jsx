@@ -1,9 +1,14 @@
 import { verifyJWT } from '@/lib/helper';
 import AccountActivationForm from '@/components/auth/AccountActivationForm';
 
+export const metadata = {
+  title: 'Account Activation',
+  description: 'Activate your account',
+  robots: 'noindex, nofollow',
+};
+
 async function AccountActivation({ params }) {
   const param = await params;
-  console.log('prams', param);
   const idToken = param.id;
   const { expired: isTokenExpired } = verifyJWT(idToken);
   if (isTokenExpired) {

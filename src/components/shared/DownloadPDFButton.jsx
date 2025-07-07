@@ -14,7 +14,8 @@ export default function DownloadPDFButton({
       href={filePath}
       // onClick={updateDownloadCount}
       download
-      target='_blank'
+      // target='_blank'
+
       rel='noreferrer'
       className={cn(
         variant === 'basic'

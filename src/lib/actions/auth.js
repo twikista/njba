@@ -17,7 +17,8 @@ import {
   compilePasswordResetEmailTemplate,
   compileResetUserPasswordEmail,
   sendEmail,
-} from '../emailServices';
+} from '../mongoose/emailServices';
+import { revalidatePath } from 'next/cache';
 
 // export async function signup(formData) {
 //   try {
@@ -95,7 +96,6 @@ export async function signup(formData) {
       url: activationUrl,
       link: `${process.env.AUTH}/login`,
     });
-    console.log('emailBody:', emailBody);
 
     const emailResult = await sendEmail({
       to: email,
@@ -162,7 +162,6 @@ export async function getCurrentUser() {
 }
 
 export async function activateUser(id, formData) {
-  console.log('formData:', formData);
   const parsedData = activateAccountSchema.safeParse(formData);
   if (!parsedData.success) {
     const validationError = handleServerSideValidationError(parsedData);
@@ -367,7 +366,7 @@ export const getUsers = async () => {
       return { ok: false, users: null };
     }
   } catch (error) {
-    // console.log(error)
+    console.log(error);
   }
 };
 
@@ -383,7 +382,7 @@ export async function resetUserPassowrd(email) {
 
     // 3. Create temp password & hash it
     const tempPassword = uniqid();
-    console.log('tempPassword:', tempPassword); //uniqid.time') // Consider a stronger random string generator (e.g., crypto.randomBytes)
+    //uniqid.time') // Consider a stronger random string generator (e.g., crypto.randomBytes)
     const hashedPassword = await hashPassword(tempPassword);
     const updatedUser = await User.findByIdAndUpdate(
       user.id,
@@ -398,7 +397,6 @@ export async function resetUserPassowrd(email) {
       name: updatedUser.firstName,
       password: tempPassword,
     });
-    console.log('emailBody:', emailBody);
 
     const emailResult = await sendEmail({
       to: email,

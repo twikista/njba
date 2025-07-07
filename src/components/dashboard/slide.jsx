@@ -18,7 +18,6 @@ export const ChipTabs = ({ status, handler }) => {
 };
 
 const Chip = ({ tab, status, setFilter, className }) => {
-  // console.log(selected);
   return (
     <div>
       <button
@@ -64,13 +63,10 @@ function ResourceFilter() {
   const searchParams = useSearchParams();
   const status = searchParams.get('status');
   // const router = useRouter();
-  const pathName = usePathname();
-  const { replace, push } = useRouter();
-  console.log('searchParams', status);
+  const { replace } = useRouter();
 
   const handler = (filterParam) => {
     const params = new URLSearchParams(searchParams);
-    console.log('params', params);
     filterParam ? params.set('status', filterParam) : params.delete('status');
     replace(`?${params.toString()}`);
   };

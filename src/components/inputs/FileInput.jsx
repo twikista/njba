@@ -41,9 +41,6 @@ export default function FileInput({ hasInitialValue }) {
     if (fileDetails) {
       setFileName(fileDetails[0]?.name);
     }
-
-    // const name = value[0].name
-    // console.log(name)
   }, [fileDetails, fileName]);
   return (
     <>

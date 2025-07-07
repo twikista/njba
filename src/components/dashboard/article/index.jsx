@@ -27,6 +27,7 @@ import {
   FullfilledStateLoader,
   PendingStateLoader,
 } from '@/components/shared/Loader';
+import { deleteFile, uploadFile } from '@/lib/r2/servicesActions';
 
 const stepFields = {
   stepOne: ['volume', 'issue', 'startPage', 'endPage'],
@@ -49,7 +50,6 @@ const formfields = {
 };
 
 export default function ArticleForm({ initialFormState, params }) {
-  console.log('params', params);
   const methods = useForm({
     defaultValues: initialFormState,
     resolver: zodResolver(
@@ -98,9 +98,6 @@ export default function ArticleForm({ initialFormState, params }) {
     const { fields } = steps[currentStep - 1];
     const isStepValidated = await methods.trigger(fields);
     if (isStepValidated)
-      // !isLastStep
-      //   ? setCurrentStep((prev) => prev + 1)
-      //   : setCurrentStep(steps.length)
       setCurrentStep(Math.min(steps.length, currentStep + 1));
   };
   const handleBack = () => setCurrentStep(Math.max(0, currentStep - 1));
@@ -116,11 +113,25 @@ export default function ArticleForm({ initialFormState, params }) {
   const prepareArticleData = async (data) => {
     let url = null;
     //upload article pdf to firebase if pdf is changed by user
+    // if (data.pdfFile !== null) {
+    //   initialFormState.pdfUrl &&
+    //     (await removePdfFromStorage(initialFormState.pdfUrl));
+    //   url = await uploadPdfToStorage(data);
+    // }
     if (data.pdfFile !== null) {
-      initialFormState.pdfUrl &&
-        (await removePdfFromStorage(initialFormState.pdfUrl));
-      url = await uploadPdfToStorage(data);
+      if (initialFormState.pdfUr) {
+        const key = initialFormState.pdfUrl.split('/').at(-1);
+        await deleteFile(key);
+      }
+      const response = await uploadFile(data);
+      if (response.success) {
+        url = response.url;
+      } else {
+        toast.error('Failed to create article. Please try again.');
+        return;
+      }
     }
+
     // Upload PDF to storage
     // const pdfFileUrl = await uploadPdfToStorage(data);
 
@@ -173,12 +184,20 @@ export default function ArticleForm({ initialFormState, params }) {
     setIsLoading(true);
     try {
       // Upload PDF and prepare data
-      const { pdfFileUrl, sanitizedData } = await prepareArticleData(data);
+      const pdfUploadResponse = await prepareArticleData(data);
 
       // Submit to server
       const response = isUpdateMode
-        ? await updateArticle(sanitizedData, pdfFileUrl, initialFormState._id)
-        : await createArticle(sanitizedData, pdfFileUrl.new, params);
+        ? await updateArticle(
+            pdfUploadResponse.sanitizedData,
+            pdfUploadResponse.pdfFileUrl,
+            initialFormState._id
+          )
+        : await createArticle(
+            pdfUploadResponse.sanitizedData,
+            pdfUploadResponse.pdfFileUrl.new,
+            params
+          );
 
       // Handle response
       handleSubmissionResponse(response);

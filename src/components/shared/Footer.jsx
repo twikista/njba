@@ -8,7 +8,6 @@ import uniqid from 'uniqid';
 
 function Footer() {
   const routeSegment = useSelectedLayoutSegment();
-  console.log('segment:', routeSegment);
   const currentYear = new Date().getFullYear();
   return (
     <>
@@ -51,23 +50,7 @@ function Footer() {
                   <span>{currentYear}</span>
                   <span>&nbsp;&#124;&nbsp;</span>
                   <span className=''>Powered by Inventure Solutions</span>
-                  {/* <span className='text-left'>
-                    Licensed under a{' '}
-                    <a
-                      href='https://creativecommons.org/licenses/by/4.0/'
-                      className='inline-block font-semibold underline hover:text-blue-300'
-                    >
-                      CC BY 4.0
-                    </a>
-                  </span>
-                  <span className='flex ml-1 border border-white p-[2px] rounded-[4px]'>
-                    <FaCreativeCommons className='w-5 h-5' />
-                    <FaCreativeCommonsBy className='w-5 h-5' />
-                  </span> */}
                 </div>
-                {/* <div className='mt-2'>
-                  <span className=''>Powered by InnovativeTech</span>
-                </div> */}
               </div>
             </div>
           </div>

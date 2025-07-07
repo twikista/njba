@@ -8,7 +8,7 @@ export default function IssueEmptyState({ issue, adminRoles }) {
       <section className='flex flex-col'>
         <div className='h-14'>
           <h2 className='text-2xl font-bold text-center capitalize md:text-left font-cairo'>
-            {issue.issueTitle}
+            {issue?.issueTitle}
           </h2>
           <p className='text-sm text-center text-gray-400 font-cairo md:text-left'>
             {issue.published
