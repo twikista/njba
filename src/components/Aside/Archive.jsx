@@ -30,14 +30,14 @@ async function ArchiveContent() {
           <article key={issue._id}>
             <Link
               href={`/archive/${issue?.ref}`}
-              className='text-blue-500 underline hover:text-blue-700 transition-all duration-300'
+              className='text-[#006798] hover:text-[#008acb] underline text-sm transition-all duration-300'
             >
               {issue?.issueTitle}
             </Link>
           </article>
         ))
       ) : (
-        <p className='text-gray-400'>No items</p>
+        <span className='text-gray-400'>No items</span>
       )}
     </>
   );
@@ -46,20 +46,19 @@ async function ArchiveContent() {
 // Main Archive component
 function Archive() {
   return (
-    <div className='space-y-2 h-fit'>
+    <div className='h-fit'>
       <H3 className='capitalize text-primary'>Archive</H3>
-      {/* <div className='space-y-[5px] flex flex-col items-center md:items-start'>
+      <div className='space-y-[5px] flex flex-col items-center md:items-start'>
         <Suspense fallback={<ArchiveSkeleton />}>
           <ArchiveContent />
         </Suspense>
         <Link
           href='/archive'
-          className='flex items-center gap-1 mt-4 text-blue-500 hover:text-blue-700 transition-all'
+          className='flex items-center gap-1 mt-4 text-[#006798] hover:text-[#008acb] text-sm transition-all hover:underline'
         >
           See more
         </Link>
-      </div> */}
-      <span className='text-gray-400'>No items</span>
+      </div>
     </div>
   );
 }
