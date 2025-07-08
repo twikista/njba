@@ -136,7 +136,6 @@ const formatAuthorsForAPAReferencing = (authors) => {
       const initials = otherNames
         .map((n) => n.charAt(0).toUpperCase() + '.')
         .join(' '); // Convert first/middle names to initials
-      console.log('initials', initials);
 
       return `${lastName}, ${initials}`;
     })

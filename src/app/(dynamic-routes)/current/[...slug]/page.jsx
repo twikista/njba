@@ -7,12 +7,24 @@ import { getArticle } from '@/lib/actions/articles';
 import Main from '@/components/shared/Main';
 import { connectDB } from '@/lib/mongoose/config';
 import { getIssue } from '@/lib/actions/issues';
+import { Article } from '@/lib/mongoose/models/article';
+import { Issue } from '@/lib/mongoose/models/issue';
 
-export async function generateStaticParams({ params }) {
-  const param = await params;
-  //   await connectDB();
-  const articlesInIssue = await getArticlesInIssue(param.issue);
-  return articlesInIssue.map((article) => article.ref);
+async function getArticlesInCurrentIssue() {
+  await connectDB();
+
+  const currentIssue = await Issue.findOne({ published: true }, { ref: 1 })
+    .sort({ volume: -1, issue: -1 })
+    .lean();
+  const articles = await getArticlesInIssue(currentIssue?.ref);
+  return articles;
+}
+export async function generateStaticParams() {
+  await connectDB();
+  const articlesInCurrentIssue = await getArticlesInCurrentIssue();
+  return articlesInCurrentIssue?.map((article) => ({
+    slug: [article.ref, article.slug],
+  }));
 }
 
 export async function generateMetadata({ params }) {

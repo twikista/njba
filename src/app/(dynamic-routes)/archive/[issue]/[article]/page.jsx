@@ -7,11 +7,21 @@ import { getArticle } from '@/lib/actions/articles';
 import Main from '@/components/shared/Main';
 import { connectDB } from '@/lib/mongoose/config';
 import { getIssue } from '@/lib/actions/issues';
+import { Article } from '@/lib/mongoose/models/article';
 
-export async function generateStaticParams({ params }) {
+async function getAllArticles() {
   await connectDB();
-  const articlesInIssue = await getArticlesInIssue(params.issue);
-  return articlesInIssue.map((article) => article.ref);
+  const articles = await Article.find({ published: true });
+  return articles;
+}
+
+export async function generateStaticParams() {
+  await connectDB();
+  const articles = await getAllArticles();
+  return articles.map((article) => ({
+    issue: article.ref,
+    article: article.slug,
+  }));
 }
 
 export async function generateMetadata({ params }) {
@@ -66,12 +76,12 @@ function ArticlePageLoading() {
   );
 }
 
-async function ArticleContent({ params }) {
-  const param = await params;
+async function ArticleContent({ articleMetaData }) {
+  console.log('articleMetaData:', articleMetaData);
   try {
     const [article, issue] = await Promise.all([
-      getArticle(param),
-      getIssue(param.issue, { issueTitle: 1, issueYear: 1 }),
+      getArticle(articleMetaData),
+      getIssue(articleMetaData.issue, { issueTitle: 1, issueYear: 1 }),
     ]);
 
     if (!article) {
@@ -101,13 +111,14 @@ async function ArticleContent({ params }) {
 
 async function ArticlePage({ params }) {
   const param = await params;
+  console.log('paramparam:', param);
   return (
     <div className='flex flex-col min-h-screen'>
       <Header />
       <div className='flex items-center justify-center flex-grow w-full h-full'>
         <Main>
           <Suspense fallback={<ArticlePageLoading />}>
-            <ArticleContent params={param} />
+            <ArticleContent articleMetaData={param} />
           </Suspense>
         </Main>
       </div>
