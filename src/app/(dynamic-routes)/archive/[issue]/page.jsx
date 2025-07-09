@@ -32,13 +32,13 @@ export async function generateStaticParams() {
   }));
 }
 
-// export async function generateMetadata({ params }) {
-//   const param = await params;
-//   const issue = await getIssue(param.issue);
-//   return {
-//     title: `BIJED ${issue.issueTitle}`,
-//   };
-// }
+export async function generateMetadata({ params }) {
+  const param = await params;
+  const issue = await getIssue(param.issue);
+  return {
+    title: `NJBA ${issue.issueTitle}`,
+  };
+}
 
 // Issue content component
 async function IssueContent({ issue }) {
