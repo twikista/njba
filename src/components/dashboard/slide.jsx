@@ -72,7 +72,7 @@ function ResourceFilter() {
   };
 
   return (
-    <div className='p-1.5 bg-primary flex items-center flex-wrap gap-2 w-fit rounded-lg'>
+    <div className='p-1.5 bg-primary flex items-center gap-2 w-fit rounded-lg'>
       <button
         onClick={() => handler('published')}
         className={cn(
