@@ -9,9 +9,9 @@ function MobileNavItem({ url, linkText, OutlineIcon, FillIcon }) {
   return (
     <li
       className={cn(
-        'flex items-center text-gray-50 hover:text-[#ffebb2]',
+        'flex items-center text-gray-50 hover:text-[#ffebb2] px-2 py-1.5 rounded-md',
         pathname.includes(url.split('/')[2]) || pathname === url
-          ? 'bg-[#ffebb2]/10'
+          ? 'bg-gray-200/20'
           : null
       )}
     >

@@ -52,6 +52,7 @@ export async function generateMetadata({ params }) {
       citation_first_page: article.startPage,
       citation_last_page: article.endPage,
       citation_pdf_url: `https://njba.com/archive/${article.ref}/${article.slug}/view`,
+      citation_abstract: article.abstract,
     },
     openGraph: {
       title: article.title,
