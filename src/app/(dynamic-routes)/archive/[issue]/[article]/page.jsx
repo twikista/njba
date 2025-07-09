@@ -36,8 +36,23 @@ export async function generateMetadata({ params }) {
 
   return {
     title: article.title,
+
     description: article.abstract?.substring(0, 160),
     keywords: article.keywords?.join(', '),
+    other: {
+      citation_title: article.title,
+      citation_author: article.authors?.map((author) => author.name),
+      citation_publication_date: new Date(article.publishDate)
+        .toISOString()
+        .split('T')[0]
+        .replace(/-/g, '/'),
+      citation_journal_title: 'Nigerian Journal of Business Administration',
+      citation_volume: article.volume,
+      citation_issue: article.issue,
+      citation_first_page: article.startPage,
+      citation_last_page: article.endPage,
+      citation_pdf_url: `https://njba.com/archive/${article.ref}/${article.slug}/view`,
+    },
     openGraph: {
       title: article.title,
       description: article.abstract?.substring(0, 160),
@@ -77,7 +92,6 @@ function ArticlePageLoading() {
 }
 
 async function ArticleContent({ articleMetaData }) {
-  console.log('articleMetaData:', articleMetaData);
   try {
     const [article, issue] = await Promise.all([
       getArticle(articleMetaData),
