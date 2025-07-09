@@ -48,7 +48,7 @@ function Archive() {
   return (
     <div className='h-fit'>
       <H3 className='capitalize text-primary'>Archive</H3>
-      <div className='space-y-[5px] flex flex-col items-center md:items-start'>
+      <div className='space-y-[5px] flex flex-col'>
         <Suspense fallback={<ArchiveSkeleton />}>
           <ArchiveContent />
         </Suspense>
