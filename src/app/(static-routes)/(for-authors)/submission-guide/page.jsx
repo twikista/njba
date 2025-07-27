@@ -1,42 +1,53 @@
+import React from 'react';
 import { H1, H3 } from '@/components/shared/headings';
 import Main from '@/components/shared/Main';
 
 export default function SubmissionGuide() {
   return (
     <Main>
-      <H1>Submission Guidelines</H1>
-      <div className='flex flex-col gap-6 text-black max-w-3xl'>
-        <p>
-          The Nigeria Journal of Business Administration (NJBA) shall welcome
-          articles from various authors subject to the following guidelines:
-        </p>
+      <H1>Submission Guide</H1>
+      <p>
+        The Management Sciences Review (MSR) shall welcome articles from various
+        authors subject to the following guidelines:
+      </p>
+      <ul className='flex flex-col gap-1 pl-5 list-disc'>
+        <li>
+          The length of each mauscript should not be more than 6,000 words.
+        </li>
+        <li>
+          The main body of the article shall be typed in double line spacing.
+        </li>
+        <li>
+          The first page of the manuscript should contain Title of the article
+          and Authors&#39; bio-data information including name, institutional
+          affliation, and correspondence e-mail address
+        </li>
+        <li>
+          The second page of the manuscript should contain an abstract of not
+          more than 300 words. please do not put the name(s) of the author(s) on
+          this page.
+        </li>
+        <li>
+          References hould be cited in the text by author&#39;s last name,
+          publication year where necessary e.g. (Akerele, 2006:23). For multiple
+          authors, add &#8223;et al&#750; to the first author&#39;s name for the
+          first time of usage, e.g. (Esosa et al, 2008:5).
+        </li>
+      </ul>
+      <div>
+        <H3 className='mb-1'>References</H3>
         <ul className='flex flex-col gap-1 pl-5 list-disc'>
           <li>
-            The length of each manuscript should be between 12 and 15 pages.
+            All citiations must conform to the American Psychological
+            Association (APA) 7th edition
           </li>
           <li>
-            The main body of the article should be typed doubled-spaced on a A4
-            sized paper. An e-copy can be sent to the editor.
+            Full references at the end of the text should listed alphebetically
+            by author7&#39;s last name
           </li>
           <li>
-            The first page of the manuscript should contain the title of the
-            article, as well as the name, e-mail address, institutional
-            affliation and mailing address (where necessary) of the author(s).
-          </li>
-          <li>
-            The second page should contain an abstract of not more than 250
-            words with the beginning of the article. Please do not put the
-            name(s) of the author(s) on this page
-          </li>
-          <li>
-            All citiations (both in-text citations and the reference list) must
-            conform to the latest edition of the American Psychological
-            Association (APA) referencing style.
-          </li>
-          <li>
-            Manuscripts are evaluated based on significance of contribution,
-            originality of material, clarity of presentation, and relevance to
-            the Nigerian environment.
+            Where there are seceral citiations by the same author(s), they
+            shpild be listed by date of publication, e.g. (Isa, 2006, 2007, etc)
           </li>
         </ul>
       </div>

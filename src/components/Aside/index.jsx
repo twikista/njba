@@ -8,28 +8,16 @@ import Announcement from './Announcements';
 
 function Aside() {
   return (
-    <aside className='h-full w-full lg:max-w-60 p-4 text-neutral-600  border-neutral-300 border lg:border-0 lg:border-y-0 rounded-md lg:rounded-none mt-5 lg:mt-0 pt-8 mb-10 lg:mb-0'>
-      <div className='space-y-16 flex flex-col'>
-        <span className='font-medium text-xl hidden lg:block h-fit'>
-          ISSN:0794-0672
+    <aside className='w-full h-full p-4 pt-8 mt-5 mb-10 text-black border rounded-md lg:max-w-60 border-neutral-300 lg:border-0 lg:border-y-0 lg:rounded-none lg:mt-0 lg:mb-0'>
+      <div className='flex flex-col space-y-16'>
+        <span className='hidden text-base font-medium lg:block h-fit'>
+          ISBN:2672-5991
         </span>
         <Suspense fallback={<p>loading...</p>}>
           <Announcement />
         </Suspense>
         {/* <Information /> */}
-        <Archive />
-        <div className='flex-1'>
-          <p className='font-medium mb-1'>Indexed by:</p>
-          <a href='https://www.ajol.info/index.php/njbm' target='_blank'>
-            <Image
-              src={ajol}
-              alt='logo of african journals online'
-              width={200}
-              height={200}
-              className='w-[140px] h-auto'
-            />
-          </a>
-        </div>
+        {/* <Archive /> */}
       </div>
     </aside>
   );

@@ -8,9 +8,9 @@ export default function Page() {
   const formData = {
     firstName: 'Aaron',
     lastName: 'Anama',
-    email: '',
+    email: 'aaronanama@gmail.com',
     isAdmin: true,
-    password: '',
+    password: '123456',
     role: 'admin',
     isActivated: 'true',
   };

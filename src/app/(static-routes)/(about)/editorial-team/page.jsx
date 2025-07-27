@@ -1,42 +1,117 @@
-import { H1, H2, H3 } from '@/components/shared/headings';
+import { H1, H3 } from '@/components/shared/headings';
 import Main from '@/components/shared/Main';
 import { TextBlockWithHeading } from '@/components/shared/TextBlockWithHeading';
-import { editorialBoard } from '@/static/editorial-board';
+import React from 'react';
 
-const Editor = (editor) => {
-  return (
-    <div>
-      <H3 className='font-semibold'>{editor.name}</H3>
-      <span className='block'>{`Department of ${editor.department}, ${editor.faculty}`}</span>
-      {/* <span className='block'>{editor.faculty}</span> */}
-      <span className='block'>{editor.institution}</span>
-    </div>
-  );
-};
+const editors = [
+  {
+    department: 'Accounting',
+    editors: [
+      'prof. Alade Sule Omoye',
+      'Prof. Eyesan Leslie Dabor',
+      'Prof. Emmanuel Eragbhe',
+      'Prof. Peter Okoeguale Ibadin',
+      'prof. James odia',
+      'Prof. Killian Ogiedu',
+      'Prof. Osasu Obaretin',
+    ],
+  },
+  {
+    department: 'Finance',
+    editors: [
+      'Prof. (Mrs) G.A. Nwokoye',
+      'Prof. (Mrs) E.I. Evbayiro-Osagie',
+      'Prof. M.G. Ajao',
+      'Prof. E.J. Idolor',
+      'Dr. O.G. Omorunkuwa',
+    ],
+  },
+  {
+    department: 'Business Administration',
+    editors: [
+      'Prof. Andrew Tafamel',
+      'Prof. Ibrahim Shaibu',
+      'Prof. J.O. Ejechi',
+      'Dr. Omorodion Omoregbe',
+    ],
+  },
+  {
+    department: 'Entrepreneurship',
+    editors: [
+      'Dr. Mrs. A.O. Oriazowanlan',
+      'Dr. S.O. Obeki',
+      'Dr. mrs. A.C. Orakwe',
+    ],
+  },
+  {
+    department: 'Marketing',
+    editors: [
+      'Prof. Mrs. E.O. Odia',
+      'Prof. Ehiabhi Patrick Oseyomon',
+      'Dr. E.C. Gbandi',
+      'Dr. S.J. Osifo',
+    ],
+  },
+  {
+    department: 'Human Resources Management',
+    editors: [
+      'Dr. Mrs. E.E. Idubor',
+      'Prof. Mrs. E.I. Umemezia',
+      'Dr. Mrs. O.R. Dania',
+    ],
+  },
+];
+
+const editorialAdvisoryBoard = [
+  'Prof. Esosa Boniface Bob-Osaze',
+  'Prof. Famous Izedonmi',
+  'Prof. Sunday Osaretin Igbinosa',
+  'Prof. Chinwuba Ambrose Okafor',
+  'Prof. Adesina Oladipupo',
+  'Prof. ofuan James Ilaboya',
+];
 
 function EditorialTeam() {
   return (
     <Main>
-      <H1>NJBA Editorial Team</H1>
-      <div className='flex flex-col gap-8 text-black max-w-3xl'>
-        {Object.keys(editorialBoard).map((category) => (
-          <div key={category} className='flex flex-col gap-0.5'>
-            <H2 className='font-semibold text-base md:text-lg uppercase'>
-              {category}
-            </H2>
-            {Array.isArray(editorialBoard[category]) ? (
-              <ul className='flex flex-col gap-2'>
-                {editorialBoard[category].map((editor) => (
-                  <li key={editor.name}>
-                    <Editor {...editor} />
-                  </li>
+      <H1>MSR Editorial Team</H1>
+      <TextBlockWithHeading
+        // headingType='small'
+        headingText='Editor-in-Chief'
+        text='Prof. Augustine Osa Enofe'
+        className='gap-0 p-0'
+      />
+      <TextBlockWithHeading
+        // headingType='small'
+        headingText='Business Manager'
+        text='Dr. Osagie Osifo'
+        className='gap-0 p-0'
+      />
+      <>
+        {editors.map(({ department, editors }) => (
+          <React.Fragment key={department}>
+            <div>
+              <H3>{`Editors: Department of ${department}`}</H3>
+              <div>
+                {editors.map((i) => (
+                  <span key={i} className='block'>
+                    {i}
+                  </span>
                 ))}
-              </ul>
-            ) : (
-              <Editor {...editorialBoard[category]} />
-            )}
-          </div>
+              </div>
+            </div>
+          </React.Fragment>
         ))}
+      </>
+      <div>
+        <H3>Editorial Advisory Board</H3>
+        <div>
+          {editorialAdvisoryBoard.map((i) => (
+            <span key={i} className='block'>
+              {i}
+            </span>
+          ))}
+        </div>
       </div>
     </Main>
   );

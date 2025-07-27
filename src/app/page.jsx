@@ -11,69 +11,44 @@ export default function Home() {
       <main className='flex flex-1 w-full h-full mx-auto sm:px-4 max-w-7xl'>
         <Main>
           <p className='mt-4 text-justify'>
-            Welcome to the home page of the Nigeria Journal of Business
-            Administarion (NJBA), a publication of the Department of Business
-            Administration, Faculty of Management Sciences, University of Benin,
-            Benin city, Nigeria.
+            Welcome to the official website of the Management Sciences Review
+            (MSR), a publication of the Faculty of Management Sciences,
+            University of Benin, Benin city, Nigeria. The Journal is dedicated
+            to promoting and advancing research and practice across all
+            disciplines in the management sciences including Accounting,
+            Acturial Science, Audit, Business Administration, Entrepreneurship,
+            Finance, Forensic Accounting, Human Resource Management, Insurance,
+            Magement and Information Systems, Marketing, Taxation, and
+            relatedfields in Humanities and Social Sciences.
           </p>
           <p>
-            The NJBA has as its principal goal the promotion of academic
-            excellence in research in the management sciences and the
-            propagation of management knowledge between the academic,
-            professional and business worlds. Each issue is designed to advance
-            the frontiers of knowledge in management. Articles are carefully
-            selected to provide the reader with an analytical, theoretical or
-            application-oriented approach to managerial problems.
+            The MSR aims to proivde a platform for researchers, academicians,
+            practitioners and policy makers to engage and share knowledge in the
+            form of high quality empirical and theoretical research papers in
+            both print and online versions.
           </p>
           <div>
-            <p>
-              The NJBA is published twice a year and welcome papers from the
-              following areas:
-            </p>
-            <ul className='pl-5 list-disc md:pl-8'>
-              <li>Internarional business and management</li>
-              <li>Business administration</li>
-              <li>Operations Rescarch</li>
-              <li>Marketing</li>
-              <li>Management information systems</li>
-              <li>Human resource management, and</li>
-              <li>Other areas in the management sciences</li>
-            </ul>
-          </div>
-
-          <div>
-            <div className='flex flex-col rounded-xl p-2 md:p-4 gap-2.5 border-2'>
-              <div className=''>
-                <H2 className='md:text-xl underline-offset-8 font-semibold text-primary'>
-                  Why Publish With Us
-                </H2>
+            <div className='flex flex-col rounded-[4px] bg-gray-200 p-2  gap-5'>
+              <div className='py-2 border-b border-gray-400/60'>
+                <H2>Quick facts about the MSR</H2>
               </div>
 
               <div className='grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-3 md:gap-y-5 '>
                 <TextBlockWithHeading
-                  headingText='Backed by Academic Excellence'
-                  className='p-0 md:max-w-96 gap-0'
-                  headingClassName='font-semibold text-primary'
-                  text='NJBA is published by the Department of Business Administration, University of Benin—a leading Nigerian institution known for its research and academic excellence.'
-                />
-
-                <TextBlockWithHeading
-                  className='p-0 md:max-w-96 gap-0'
-                  headingClassName='font-semibold text-primary'
-                  headingText='Rigorous Peer Review'
-                  text='NJBA maintains the highest academic standards through a transparent and constructive peer review process conducted by experienced academics and subject-matter experts.'
+                  headingText='Submission'
+                  text='The MRS accepts submissions from authors on an on-going basis. Only submissions that adhere to the MSR Authors guide will be considered for review.'
                 />
                 <TextBlockWithHeading
-                  className='p-0 md:max-w-96 gap-0'
-                  headingClassName='font-semibold text-primary'
-                  headingText='Wide Visibility'
-                  text='All articles in the NJBA are published online under an open access model, making them instantly available to a global audience.  '
+                  headingText='Publication'
+                  text='The MSR is published bi-anually in June and December respectively. Only accepted articles as determined by the editorial board will be published'
                 />
                 <TextBlockWithHeading
-                  className='p-0 md:max-w-96 gap-0'
-                  headingClassName='font-semibold text-primary'
-                  headingText='Timely and Fair Publication Process'
-                  text='Our streamlined editorial workflow ensures timely decisions without compromising quality—ensuring your research is published without unnecessary delays.'
+                  headingText='Access'
+                  text='The MSR is an open access Journal. Articles are licenced under the Creative Common Attribution 4.0. making them available for free after publication.  '
+                />
+                <TextBlockWithHeading
+                  headingText='Review'
+                  text='The MSR adopts the double-blind peer review system. This eliminates any form of bias and ensures only high qulity submissions are accepted for publishing.'
                 />
               </div>
             </div>

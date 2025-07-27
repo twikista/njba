@@ -5,29 +5,23 @@ export default function JournalPolicies() {
   return (
     <Main>
       <H1>Journal Policies</H1>
-      <p>
-        The following policies have been developed to ensure that the NJBA
-        maintains rigorous standards in scholarly publishing while supporting
-        the dissemination of high-quality research. They are subject to periodic
-        review and updates to reflect evolving best practices in academic
-        publishing.
-      </p>
       <div className='flex flex-col gap-2'>
         <H2>Peer Review Policy</H2>
         <p>
-          To ensure that all published work meets the highest standards of
-          quality, rigor, and academic integrity, each submitted manuscript
-          undergoes a thorough and impartial peer review process..
+          The MSR employs a double-blind peer review process to ensure
+          objectivity and impartiality. This means that both the identities of
+          the authors and reviewers are concealed from each other throughout the
+          review process.
         </p>
         <ul className='flex flex-col gap-1 pl-5 list-disc md:pl-8'>
           <li>
             <span className='inline-block font-medium pr-[2px]'>
               Review Process:
             </span>
-            Manuscripts are evaluated by at least two independent experts in the
-            relevant field. The journal employs a double-blind review process
-            whenever possible, ensuring that the identities of authors and
-            reviewers remain confidential.
+            Each manuscript submitted will be evaluated by at least two
+            independent reviewers who are experts in the field. Reviewers will
+            assess the manuscript based on originality, significance,
+            methodology, clarity, and adherence to ethical standards.
           </li>
           <li>
             <span className='inline-block font-medium pr-[2px]'>
@@ -39,49 +33,45 @@ export default function JournalPolicies() {
           </li>
           <li>
             <span className='inline-block font-medium pr-[2px]'>
-              Editorial Oversight:
+              Decision Making:
             </span>
-            The editorial team makes the final decision on the acceptance,
-            revision, or rejection of manuscripts based on reviewer
-            recommendations and the manuscript’s overall contribution to the
-            field.
+            The editorial team will make final publication decisions based on
+            reviewer feedback. Authors will receive constructive comments and
+            suggestions for improvement when applicable.
           </li>
         </ul>
       </div>
       <div className='flex flex-col gap-2'>
         <H2>Copyright Policy</H2>
         <p>
-          The NJBA is committed to protecting the intellectual property of both
-          the authors and the journal while ensuring broad dissemination of
-          scholarly work.
+          Upon acceptance of a manuscript, authors are required to transfer
+          copyright to the journal. This transfer allows the journal to publish
+          and disseminate the work effectively.
         </p>
         <ul className='flex flex-col gap-1 pl-5 list-disc md:pl-8'>
           <li>
             <span className='inline-block font-medium pr-[2px]'>
-              Copyright Transfer:
+              Author Rights:
             </span>
-            Upon acceptance for publication, all authors are required to
-            transfer the copyright of their manuscript to the journal. This
-            agreement grants the journal exclusive rights to publish, reproduce,
-            and distribute the work.
+            Authors retain the right to use their work in future publications
+            and presentations, provided that proper citation is given to the
+            original publication in this journal.
           </li>
           <li>
             <span className='inline-block font-medium pr-[2px]'>
-              Author Rights:
+              Reproduction:
             </span>
-            While the journal holds the copyright, authors retain limited rights
-            for non-commercial use, such as self-archiving in institutional
-            repositories or personal websites, provided the published version is
-            cited appropriately..
+            Authors may reproduce their work in other publications or share it
+            publicly after a period of six months post-publication, with
+            appropriate acknowledgment of the original source.
           </li>
         </ul>
       </div>
       <div className='flex flex-col gap-2'>
         <H2>Open Access Policy</H2>
         <p>
-          To maximize the visibility and accessibility of research, The NJBA
-          adopts an open access model under the Creative Commons Attribution 4.0
-          International License{' '}
+          The MSR adheres to an open access model under the Creative Commons
+          Attribution 4.0 International License{' '}
           <a
             href='https://creativecommons.org/licenses/by/4.0/'
             className='inline-block underline hover:text-blue-600'
@@ -91,12 +81,9 @@ export default function JournalPolicies() {
         </p>
         <ul className='flex flex-col gap-1 pl-5 list-disc md:pl-8'>
           <li>
-            <span className='inline-block font-medium pr-[2px]'>
-              Accessibility:{' '}
-            </span>
-            All articles published in the journal are freely accessible online,
-            without subscription barriers. This promotes the global
-            dissemination of knowledge and fosters a wider academic impact.
+            <span className='inline-block font-medium pr-[2px]'>Access: </span>
+            All articles published in the MSR are freely accessible to readers
+            without any subscription or payment barriers.
           </li>
           <li>
             <span className='inline-block font-medium pr-[2px]'>
@@ -112,7 +99,7 @@ export default function JournalPolicies() {
       <div className='flex flex-col gap-2'>
         <H2>Plagiarism Policy</H2>
         <p>
-          The NJBA take plagiarism very seriously and employ strict measures to
+          The MSR take plagiarism very seriously and employ strict measures to
           maintain academic integrity.
         </p>
         <ul className='flex flex-col gap-1 pl-5 list-disc md:pl-8'>
@@ -127,10 +114,11 @@ export default function JournalPolicies() {
             <span className='inline-block font-medium pr-[2px]'>
               Consequences:
             </span>
-            If plagiarism is detected, the manuscript will be subject to a
-            formal investigation. Outcomes may include manuscript rejection,
-            publication retraction, or issuance of corrections. In serious
-            cases, the authors’ affiliated institutions may be notified.
+            If plagiarism is detected at any stage of the submission or
+            publication process, appropriate actions will be taken, which may
+            include rejection of the manuscript or retraction of published
+            articles. Authors found guilty of plagiarism may also be banned from
+            submitting future work to the journal.
           </li>
         </ul>
       </div>

@@ -4,12 +4,12 @@
 
 :root {
   /* --primary: #9ac140; */
-  --primary: #5c7f0e;
+  --primary: #bd3ebd;
   --secondary: #6c9422;
   /* --secondary: #5c7f0e; */
   --btn: #273a0b;
   --white: #fafafa;
-  --black: #404040;
+  --black: #525252;
   --hover: #5c7f0e;
   --foreground: #171717;
   --main-blue: #006798;
@@ -37,6 +37,6 @@ body {
   }
 
   .btn-primary {
-    @apply bg-primary transition-all duration-300 hover:bg-secondary;
+    @apply transition-all duration-300 bg-primary hover:bg-secondary;
   }
 }

@@ -13,8 +13,8 @@ export default function PrivacyStatement() {
       </p>
       <div className='flex flex-col gap-1'>
         <span>
-          Personal information collected will be used solely for the purposes
-          of:
+          The personal information collected will be used solely for the
+          purposes of:
         </span>
         <ul className='pl-5 list-disc md:pl-8'>
           <li>Managing the submission and peer review process.</li>
@@ -32,13 +32,10 @@ export default function PrivacyStatement() {
           contact:
         </span>
         <div>
-          <span className='block'>
-            Nigeria Journal of Business Administration,
-          </span>
-          <span className='block'>Department of Business Administration,</span>
+          <span className='block'>Management Sciences Review,</span>
+          <span className='block'>msr@uniben.edu,</span>
           <span className='block'>Faculty of Management Sciences, </span>
-          <span className='block'>Univeristy of Benin, Benin city.</span>
-          <span className='block'>Email:njba@uniben.edu</span>
+          <span className='block'>Univeristy of Benin, Benin city</span>
         </div>
       </div>
     </Main>

@@ -1,3 +1,4 @@
+import React from 'react';
 import Main from '@/components/shared/Main';
 import { H1, H2, H3 } from '@/components/shared/headings';
 import { TextBlockWithHeading } from '@/components/shared/TextBlockWithHeading';
@@ -7,7 +8,7 @@ export default function ForReviewers() {
     <Main>
       <H1>Reviewers Guide</H1>
       <p>
-        This guide outlines the steps, expectations, and best practices for NJBA
+        This guide outlines the steps, expectations, and best practices for MSR
         reviewers. It is designed to ensure a thorough, constructive, and
         effecive review process.
       </p>
@@ -45,12 +46,12 @@ export default function ForReviewers() {
               <ul className='flex flex-col gap-1 pl-5 list-disc'>
                 <li>
                   Read through the contents of previously published articles of
-                  the NJBA to get a sense of it’s published content and house
+                  the MSR to get a sense of it’s published content and house
                   style to decide whether the manuscript being reviewed is
                   suitable for the journal or not.
                 </li>
                 <li>
-                  Refer to the NJBA&#39;s submission guidelines to ensure the
+                  Refer to the MSR&#39;s submission guidelines to ensure the
                   manuscript meets the submission criteria of the journal (e.g.
                   length, scope, and style of presentation).
                 </li>
@@ -63,7 +64,7 @@ export default function ForReviewers() {
                 <li>
                   <TextBlockWithHeading
                     headingText='Scope of the Journal'
-                    text='Determine if the manuscript&#39;s content fit within the scope of the NJBA'
+                    text='Determine if the manuscript&#39;s content fit within the scope of the MSR?'
                     className='p-0'
                   />
                 </li>
@@ -121,7 +122,7 @@ export default function ForReviewers() {
                       <li>
                         <p>
                           <span className=''>Discussion: </span>
-                          Evaluate whether findings are interpreted clearly and
+                          Evaluate wheter findings are interpreted clearly and
                           contextualized within existing literature.
                         </p>
                       </li>
@@ -131,12 +132,14 @@ export default function ForReviewers() {
                           Ensure conclusions are supported by data and indicate
                           advancements in scientific knowledge.
                         </p>
+                        Check for relevance, sufficiency, and adherence to
+                        citation style (e.g., APA).
                       </li>
                       <li>
                         <p>
                           <span className=''>References: </span>
                           Check references for relevance, sufficiency, and
-                          adherence to NJBA&#39;s citation style (APA 7th
+                          adherence to MSR&#39;s citation style (APA 7th
                           edition).
                         </p>
                       </li>

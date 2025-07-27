@@ -14,13 +14,13 @@ const robotoFlex = Roboto_Flex({
 // });
 
 export const metadata = {
-  metadataBase: new URL('https://njba.com.ng'),
+  metadataBase: new URL('https://msreview.com.ng'),
   title: {
-    default: 'NJBA - Nigeria Journal of Business Administration',
-    template: '%s - Nigeria Journal of Business Administration',
+    default: 'MSR - Management Sciences Review',
+    template: '%s - Management Sciences Review',
   },
   description:
-    'The Nigeria Journal of Business Administration (NJBA) is the official journal of the Department of Buness Administration, Faculty of Management Sciences, University of Benin, Benin city, Nigeria.',
+    'The Management Sciences Review (MSR) is the official journal of the Faculty of Management Sciences, University of Benin, Benin city, Nigeria.',
 
   keyword: [
     'Academic',
@@ -29,13 +29,20 @@ export const metadata = {
     'Humanities',
     'university of Benin',
     'UNIBEN',
-    'Nigerian Journal of Business Administration',
-    'NJBA',
+    'Benin International Journal of Entrepreneurship Development',
+    'MSR',
+    'Management Sciences Review',
+    'Accounting',
+    'Taxation',
+    'Finace',
     'Business administration',
-    'Operarions research',
-    'International business',
-    'Business finance',
+    'acturial science',
+    'Insurance',
+    'marketing',
     'management information system',
+    'forensic Accounting',
+    'audit',
+    'human resource management',
     'management sciences',
     'Nigeria',
   ],

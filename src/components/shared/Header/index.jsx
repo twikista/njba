@@ -46,9 +46,9 @@ export default function Header() {
             <h1
               className={`text-sm font-bold text-white text-center uppercase sm:text-2xl md:text-3xl md:text-primary`}
             >
-              Nigeria Journal of Business Administration
+              management sciences review
             </h1>
-            <p className='text-sm block md:hidden font-medium text-white'>
+            <p className='block text-sm font-medium text-white md:hidden'>
               ISSN: 0794-0672
             </p>
             <div

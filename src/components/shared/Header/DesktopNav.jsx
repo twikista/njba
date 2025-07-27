@@ -10,11 +10,11 @@ function SubMenu({ subMenuItems, showSubMenu, setShowSubMenu }) {
     showSubMenu && setShowSubMenu(false);
   };
   return (
-    <ul className='absolute flex flex-col text-[15px] text-white bg-secondary top-[35px] shadow-[0px_10px_15px_-3px_rgba(0,0,0,0.1),0px_4px_6px_-2px_rgba(0,0,0,0.05)] rounded-lg'>
+    <ul className='absolute flex flex-col text-[15px] text-white bg-primary top-[35px] shadow-[0px_10px_15px_-3px_rgba(0,0,0,0.1),0px_4px_6px_-2px_rgba(0,0,0,0.05)] rounded-lg'>
       {subMenuItems.map((menuItem) => (
         <li
           key={menuItem.pathName}
-          className={` py-2 px-3 min-w-[45px] transition-all duration-400 hover:bg-gray-200/30 [&:not(:last-child)]:border-b-[1px] border-secondary group/item cursor-pointer ${
+          className={` py-2 px-3 min-w-[45px] transition-all duration-400 hover:bg-gray-200/30 group/item cursor-pointer ${
             showSubMenu ? 'block' : 'hidden'
           }`}
           onClick={closeSubMenu}
@@ -108,7 +108,7 @@ export function DesktopNav({ menuItems }) {
 
   return (
     <nav
-      className={`bg-secondary justify-center hidden md:flex px-2 ${
+      className={`bg-primary justify-center hidden md:flex px-2 ${
         hang ? 'fixed top-0 right-0 left-0 z-50' : null
       }`}
     >
