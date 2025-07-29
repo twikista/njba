@@ -18,56 +18,56 @@ export const PasswordResetEmailTemplate = ({ name, resetLink, link }) => {
   return (
     <Html>
       <Head />
-      <Preview>Reset your NJBA Account Passord</Preview>
+      <Preview>Reset your MSR Account Passord</Preview>
       <Tailwind>
-        <Body className='bg-gray-100 font-sans'>
+        <Body className='font-sans bg-gray-100'>
           {/* Hero Section */}
-          <Section className='bg-gradient-to-r from-blue-900 to-blue-700 rounded-t-lg'>
-            <Container className='mx-auto px-6 py-10 text-center'>
-              <Heading className='text-3xl font-bold text-white m-0'>
+          <Section className='rounded-t-lg bg-gradient-to-r from-blue-900 to-blue-700'>
+            <Container className='px-6 py-10 mx-auto text-center'>
+              <Heading className='m-0 text-3xl font-bold text-white'>
                 Password Reset Request
               </Heading>
-              {/* <Text className="text-blue-100 text-lg mt-2 mb-0">
+              {/* <Text className="mt-2 mb-0 text-lg text-blue-100">
                   Account Activation
                 </Text> */}
             </Container>
           </Section>
 
           {/* Main Content */}
-          <Container className='mx-auto px-6 max-w-lg'>
-            <Section className='bg-white p-6 rounded-b-lg shadow-sm'>
-              <Text className='text-base text-gray-800 mb-4'>
+          <Container className='max-w-lg px-6 mx-auto'>
+            <Section className='p-6 bg-white rounded-b-lg shadow-sm'>
+              <Text className='mb-4 text-base text-gray-800'>
                 Hi {name}, we received a request to reset your password for your{' '}
-                <strong>NJBA</strong> account.
+                <strong>MSR</strong> account.
               </Text>
 
-              <Text className='text-base text-gray-800 mb-4'>
+              <Text className='mb-4 text-base text-gray-800'>
                 Click the button below to reset your password. This link is
                 valid for a limited time only:
               </Text>
 
-              <Section className='text-center my-6'>
+              <Section className='my-6 text-center'>
                 <Button
                   href={resetLink}
-                  className='bg-primary text-white text-sm font-medium '
+                  className='text-sm font-medium text-white bg-primary '
                 >
                   Reset Password
                 </Button>
               </Section>
 
-              <Text className='text-sm text-gray-600 mb-6'>
+              <Text className='mb-6 text-sm text-gray-600'>
                 If you didn’t request a password reset, you can safely ignore
                 this email—no changes will be made to your account.
               </Text>
             </Section>
 
             {/* Footer */}
-            <Section className='text-center py-6'>
-              <Text className='text-gray-500 text-sm'>
+            <Section className='py-6 text-center'>
+              <Text className='text-sm text-gray-500'>
                 &copy; {new Date().getFullYear()} {journalName}. All rights
                 reserved.
               </Text>
-              <Text className='text-gray-500 text-sm'>
+              <Text className='text-sm text-gray-500'>
                 <Link href='/' className='text-blue-800 underline'>
                   Visit Our Website
                 </Link>{' '}

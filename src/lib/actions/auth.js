@@ -20,104 +20,104 @@ import {
 } from '../mongoose/emailServices';
 import { revalidatePath } from 'next/cache';
 
-// export async function signup(formData) {
-//   try {
-//     await connectDB();
-//     console.log('i got here');
-//     const user = await User.findOne({ email: formData.email });
-//     if (user) {
-//       return { ok: false, error: 'User already exist', errorType: 'other' };
-//     }
-//     console.log('i was successful');
-//     const hashedPassword = await hashPassword(formData.password);
-//     console.log('i was successful');
-//     const userObjectWithHashedPassword = {
-//       ...formData,
-//       password: hashedPassword,
-//     };
-
-//     const newUser = new User(userObjectWithHashedPassword);
-//     const savedUser = await newUser.save();
-//     const parsedSavedUser = JSON.parse(JSON.stringify(savedUser));
-//     const response = { ok: true, data: parsedSavedUser };
-//     return response;
-//   } catch (error) {
-//     return { ok: false, error: 'Something went wrong' };
-//   }
-// }
-
 export async function signup(formData) {
-  // 1. Validate input
-  const parsedData = newUserSchema.safeParse(formData);
-  if (!parsedData.success) {
-    const validationError = Object.fromEntries(
-      parsedData.error?.issues?.map((issue) => [
-        issue.path[0],
-        issue.message,
-      ]) || []
-    );
-    return { error: validationError, errorType: 'validationError' };
-  }
-
   try {
     await connectDB();
-
-    const { email, firstName, role } = parsedData.data;
-
-    // 2. Check if user already exists
-    const existingUser = await User.findOne({ email });
-    if (existingUser) {
-      return { ok: false, error: 'User already exists', errorType: 'other' };
+    console.log('i got here');
+    const user = await User.findOne({ email: formData.email });
+    if (user) {
+      return { ok: false, error: 'User already exist', errorType: 'other' };
     }
-
-    // 3. Create temp password & hash it
-    const tempPassword = uniqid.time(); // Consider a stronger random string generator (e.g., crypto.randomBytes)
-    const hashedPassword = await hashPassword(tempPassword);
-
-    const userData = {
-      ...parsedData.data,
-      isAdmin: false,
+    console.log('i was successful');
+    const hashedPassword = await hashPassword(formData.password);
+    console.log('i was successful');
+    const userObjectWithHashedPassword = {
+      ...formData,
       password: hashedPassword,
     };
 
-    // 4. Save user
-    const savedUser = await new User(userData).save();
-
-    // 5. Create activation token
-    const token = signJWT({ id: savedUser._id });
-    const activationUrl = `${process.env.AUTH}/account-activation/${token}`;
-
-    // 6. Prepare and send email
-    const emailBody = await compileActivationEmailTemplate({
-      name: firstName,
-      role,
-      email,
-      password: tempPassword,
-      url: activationUrl,
-      link: `${process.env.AUTH}/login`,
-    });
-
-    const emailResult = await sendEmail({
-      to: email,
-      subject: 'NJBA - Activate Your Account',
-      body: emailBody,
-    });
-
-    if (!emailResult.successful) {
-      return {
-        ok: false,
-        error:
-          'Email delivery failed. Please ensure the email address is valid.',
-        errorType: 'other',
-      };
-    }
-
-    return { ok: true };
+    const newUser = new User(userObjectWithHashedPassword);
+    const savedUser = await newUser.save();
+    const parsedSavedUser = JSON.parse(JSON.stringify(savedUser));
+    const response = { ok: true, data: parsedSavedUser };
+    return response;
   } catch (error) {
-    console.error('Signup Error:', error);
-    return { ok: false, error: 'Something went wrong', errorType: 'other' };
+    return { ok: false, error: 'Something went wrong' };
   }
 }
+
+// export async function signup(formData) {
+//   // 1. Validate input
+//   const parsedData = newUserSchema.safeParse(formData);
+//   if (!parsedData.success) {
+//     const validationError = Object.fromEntries(
+//       parsedData.error?.issues?.map((issue) => [
+//         issue.path[0],
+//         issue.message,
+//       ]) || []
+//     );
+//     return { error: validationError, errorType: 'validationError' };
+//   }
+
+//   try {
+//     await connectDB();
+
+//     const { email, firstName, role } = parsedData.data;
+
+//     // 2. Check if user already exists
+//     const existingUser = await User.findOne({ email });
+//     if (existingUser) {
+//       return { ok: false, error: 'User already exists', errorType: 'other' };
+//     }
+
+//     // 3. Create temp password & hash it
+//     const tempPassword = uniqid.time(); // Consider a stronger random string generator (e.g., crypto.randomBytes)
+//     const hashedPassword = await hashPassword(tempPassword);
+
+//     const userData = {
+//       ...parsedData.data,
+//       isAdmin: false,
+//       password: hashedPassword,
+//     };
+
+//     // 4. Save user
+//     const savedUser = await new User(userData).save();
+
+//     // 5. Create activation token
+//     const token = signJWT({ id: savedUser._id });
+//     const activationUrl = `${process.env.AUTH}/account-activation/${token}`;
+
+//     // 6. Prepare and send email
+//     const emailBody = await compileActivationEmailTemplate({
+//       name: firstName,
+//       role,
+//       email,
+//       password: tempPassword,
+//       url: activationUrl,
+//       link: `${process.env.AUTH}/login`,
+//     });
+
+//     const emailResult = await sendEmail({
+//       to: email,
+//       subject: 'MSR - Activate Your Account',
+//       body: emailBody,
+//     });
+
+//     if (!emailResult.successful) {
+//       return {
+//         ok: false,
+//         error:
+//           'Email delivery failed. Please ensure the email address is valid.',
+//         errorType: 'other',
+//       };
+//     }
+
+//     return { ok: true };
+//   } catch (error) {
+//     console.error('Signup Error:', error);
+//     return { ok: false, error: 'Something went wrong', errorType: 'other' };
+//   }
+// }
 
 export async function login(formData) {
   const parsedData = signinFormSchema.safeParse(formData);
@@ -235,7 +235,7 @@ export async function forgetPassword(formData) {
 
     const sendEmailResult = await sendEmail({
       to: user.email,
-      subject: 'NJBA - Reset your Password',
+      subject: 'MSR - Reset your Password',
       body,
     });
     if (sendEmailResult.successful) {
@@ -400,7 +400,7 @@ export async function resetUserPassowrd(email) {
 
     const emailResult = await sendEmail({
       to: email,
-      subject: 'New NJBA Account Password',
+      subject: 'New MSR Account Password',
       body: emailBody,
     });
 

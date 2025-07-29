@@ -46,12 +46,12 @@ export async function generateMetadata({ params }) {
         .toISOString()
         .split('T')[0]
         .replace(/-/g, '/'),
-      citation_journal_title: 'Nigerian Journal of Business Administration',
+      citation_journal_title: 'Mangement Sciences Review',
       citation_volume: article.volume,
       citation_issue: article.issue,
       citation_first_page: article.startPage,
       citation_last_page: article.endPage,
-      citation_pdf_url: `https://njba.com/archive/${article.ref}/${article.slug}/view`,
+      citation_pdf_url: `https://msreview.com/archive/${article.ref}/${article.slug}/view`,
       citation_abstract: article.abstract,
     },
     openGraph: {
@@ -71,18 +71,18 @@ function ArticlePageLoading() {
       <div className='flex items-center justify-center flex-grow w-full h-full'>
         <Main>
           <div className='animate-pulse'>
-            <div className='h-8 bg-gray-200 rounded w-3/4 mb-4'></div>
-            <div className='h-4 bg-gray-200 rounded w-1/2 mb-4'></div>
-            <div className='h-12 bg-gray-200 rounded w-full mb-4'></div>
-            <div className='h-4 bg-gray-200 rounded w-1/3 mb-8'></div>
-            <div className='space-y-2 mb-8'>
-              <div className='h-4 bg-gray-200 rounded w-full'></div>
-              <div className='h-4 bg-gray-200 rounded w-full'></div>
-              <div className='h-4 bg-gray-200 rounded w-5/6'></div>
-              <div className='h-4 bg-gray-200 rounded w-3/4'></div>
+            <div className='w-3/4 h-8 mb-4 bg-gray-200 rounded'></div>
+            <div className='w-1/2 h-4 mb-4 bg-gray-200 rounded'></div>
+            <div className='w-full h-12 mb-4 bg-gray-200 rounded'></div>
+            <div className='w-1/3 h-4 mb-8 bg-gray-200 rounded'></div>
+            <div className='mb-8 space-y-2'>
+              <div className='w-full h-4 bg-gray-200 rounded'></div>
+              <div className='w-full h-4 bg-gray-200 rounded'></div>
+              <div className='w-5/6 h-4 bg-gray-200 rounded'></div>
+              <div className='w-3/4 h-4 bg-gray-200 rounded'></div>
             </div>
             <div className='flex justify-center'>
-              <div className='h-10 bg-gray-200 rounded w-40'></div>
+              <div className='w-40 h-10 bg-gray-200 rounded'></div>
             </div>
           </div>
         </Main>
@@ -102,7 +102,7 @@ async function ArticleContent({ articleMetaData }) {
     if (!article) {
       return (
         <div className='p-6 text-center'>
-          <h2 className='text-xl font-semibold mb-2'>Article Not Found</h2>
+          <h2 className='mb-2 text-xl font-semibold'>Article Not Found</h2>
           <p className='text-gray-600'>
             The article you're looking for could not be found.
           </p>
@@ -115,7 +115,7 @@ async function ArticleContent({ articleMetaData }) {
     console.error('Error fetching article:', error);
     return (
       <div className='p-6 text-center'>
-        <h2 className='text-xl font-semibold mb-2'>Error Loading Article</h2>
+        <h2 className='mb-2 text-xl font-semibold'>Error Loading Article</h2>
         <p className='text-gray-600'>
           There was a problem loading this article. Please try again later.
         </p>

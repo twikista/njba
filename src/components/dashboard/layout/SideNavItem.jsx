@@ -11,9 +11,9 @@ function SideNavItem({ link, linkText, OutlineIcon, FillIcon }) {
   return (
     <li
       className={cn(
-        'flex items-center text-gray-50 rounded-2xl hover:bg-black/30 hover:text-[#ffebb2] group/item transition-all duration-300',
+        'flex items-center text-gray-50 rounded-2xl hover:border hover:border-[#ffebb2] hover:text-[#ffebb2] group/item transition-all',
         // (pathname.includes(link.split('/')[2]) || pathname === link) &&
-        active(link) && 'bg-black text-[#ffebb2]'
+        active(link) && 'border-[#ffebb2] border text-[#ffebb2]'
       )}
     >
       <Link

@@ -14,7 +14,7 @@ export default async function page() {
     return (
       <div className='flex flex-col min-h-screen'>
         <Header />
-        <Main className='gap-4 h-full'>
+        <Main className='h-full gap-4'>
           {/* <H1 className='mt-5'>Current</H1> */}
           <div className='flex items-center justify-center h-full font-medium'>
             <p className='text-neutral-500 md:text-3xl'>
@@ -32,7 +32,7 @@ export default async function page() {
       <Header />
       <Main>
         <div className=''>
-          <H1 className='mt-5 '>{`NJBA - ${currentIssue?.issueTitle}`}</H1>
+          <H1 className='mt-5 '>{`MSR - ${currentIssue?.issueTitle}`}</H1>
           <span className='text-[#808080] text-sm'>{`Published: ${formatDate(
             currentIssue.publishDate
           )}`}</span>

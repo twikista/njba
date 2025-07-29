@@ -17,8 +17,8 @@ import PDFDownloadButton from './PDFDownloadButton';
 // Loading component for Authors section
 function AuthorsLoading() {
   return (
-    <div className='animate-pulse w-full'>
-      <div className='h-4 bg-gray-200 rounded w-2/3'></div>
+    <div className='w-full animate-pulse'>
+      <div className='w-2/3 h-4 bg-gray-200 rounded'></div>
     </div>
   );
 }
@@ -42,14 +42,14 @@ function ArticleOverview({ currentArticle, currentIssue = false, issue }) {
   if (!currentArticle) {
     return (
       <div className='animate-pulse'>
-        <div className='h-8 bg-gray-200 rounded w-3/4 mb-4'></div>
-        <div className='h-4 bg-gray-200 rounded w-1/2 mb-4'></div>
-        <div className='h-12 bg-gray-200 rounded w-full mb-4'></div>
-        <div className='h-4 bg-gray-200 rounded w-1/3 mb-8'></div>
-        <div className='space-y-2 mb-8'>
-          <div className='h-4 bg-gray-200 rounded w-full'></div>
-          <div className='h-4 bg-gray-200 rounded w-full'></div>
-          <div className='h-4 bg-gray-200 rounded w-5/6'></div>
+        <div className='w-3/4 h-8 mb-4 bg-gray-200 rounded'></div>
+        <div className='w-1/2 h-4 mb-4 bg-gray-200 rounded'></div>
+        <div className='w-full h-12 mb-4 bg-gray-200 rounded'></div>
+        <div className='w-1/3 h-4 mb-8 bg-gray-200 rounded'></div>
+        <div className='mb-8 space-y-2'>
+          <div className='w-full h-4 bg-gray-200 rounded'></div>
+          <div className='w-full h-4 bg-gray-200 rounded'></div>
+          <div className='w-5/6 h-4 bg-gray-200 rounded'></div>
         </div>
       </div>
     );
@@ -117,10 +117,10 @@ function ArticleOverview({ currentArticle, currentIssue = false, issue }) {
         ) : null}
       </section>
 
-      <section className='mt-5 space-y-10 pb-5'>
+      <section className='pb-5 mt-5 space-y-10'>
         <div className='space-y-3'>
           <h4 className='font-bold'>Abstract</h4>
-          <p className=' text-black'>{currentArticle?.abstract}</p>
+          <p className='text-black '>{currentArticle?.abstract}</p>
         </div>
         {renderButtons(currentArticle, currentIssue, 'end')}
       </section>
@@ -132,10 +132,9 @@ function ArticleOverview({ currentArticle, currentIssue = false, issue }) {
 
         <div className='space-y-3'>
           <span>
-            Copyright &copy; {issue.issueYear} Nigeria Journal of Business
-            Administration
+            Copyright &copy; {issue.issueYear} Management Sciences Review
           </span>
-          <div className='flex flex-col items-start sm:flex-row sm:items-end gap-1'>
+          <div className='flex flex-col items-start gap-1 sm:flex-row sm:items-end'>
             <a
               href='https://creativecommons.org/licenses/by/4.0/'
               target='_blank'
@@ -153,7 +152,7 @@ function ArticleOverview({ currentArticle, currentIssue = false, issue }) {
               <a
                 href='https://creativecommons.org/licenses/by/4.0/'
                 target='_blank'
-                className='text-main-blue underline hover:text-hover-blue'
+                className='underline text-main-blue hover:text-hover-blue'
               >
                 Creative Commons Attribution 4.0 International License.
               </a>

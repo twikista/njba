@@ -21,6 +21,7 @@ export default function SignInForm() {
   const [isLoading, setIsLoading] = useState(false);
 
   const handler = async (data) => {
+    console.log(data);
     setIsLoading(true);
     try {
       const response = await login(data);

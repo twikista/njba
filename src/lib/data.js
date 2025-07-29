@@ -76,7 +76,7 @@ export const fetchUnpublishedIssue = async ({ issueRef }) => {
 };
 
 export const getUser = async (email) => {
-  connectDB();
+  await connectDB();
 
   const user = await User.findOne({ email });
   return user;

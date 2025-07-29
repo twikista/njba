@@ -37,7 +37,7 @@ function Footer() {
                 </h3>
                 <div>
                   <p>Tel:+234 803 954 5191</p>
-                  <p>Email:njba@uniben.edu</p>
+                  <p>Email:msr@uniben.edu</p>
                 </div>
               </div>
             </div>
@@ -45,7 +45,7 @@ function Footer() {
             <div className='flex flex-col items-center'>
               <div className='text-xs text-center ms:text-sm sm:text-base'>
                 <div className='flex items-center text-'>
-                  <span className='uppercase'>&copy;NJBA</span>
+                  <span className='uppercase'>&copy;MSR</span>
                   <span>&nbsp;</span>
                   <span>{currentYear}</span>
                   <span>&nbsp;&#124;&nbsp;</span>

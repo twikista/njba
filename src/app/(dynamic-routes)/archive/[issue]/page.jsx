@@ -36,7 +36,7 @@ export async function generateMetadata({ params }) {
   const param = await params;
   const issue = await getIssue(param.issue);
   return {
-    title: `NJBA ${issue.issueTitle}`,
+    title: `MSR ${issue.issueTitle}`,
   };
 }
 
@@ -50,7 +50,7 @@ async function IssueContent({ issue }) {
   return (
     <>
       <div className=''>
-        <H1 className='mt-5 '>{`NJBA - ${currentIssue?.issueTitle}`}</H1>
+        <H1 className='mt-5 '>{`MSR - ${currentIssue?.issueTitle}`}</H1>
         <span className='text-[#808080] text-sm'>{`Published: ${formatDate(
           currentIssue.publishDate
         )}`}</span>
@@ -84,17 +84,17 @@ function IssuePageLoader() {
   return (
     <>
       <div className='animate-pulse'>
-        <div className='mt-5 h-8 bg-gray-200 rounded-md w-3/4 mb-2'></div>
-        <div className='h-4 bg-gray-200 rounded-md w-1/3 mb-8'></div>
+        <div className='w-3/4 h-8 mt-5 mb-2 bg-gray-200 rounded-md'></div>
+        <div className='w-1/3 h-4 mb-8 bg-gray-200 rounded-md'></div>
       </div>
       <section className='space-y-5'>
         <div className='animate-pulse'>
           {/* Simulate article loading */}
           {[1, 2, 3].map((i) => (
-            <div key={i} className='border rounded-lg p-4 mb-4'>
-              <div className='h-6 bg-gray-200 rounded-md w-3/4 mb-2'></div>
-              <div className='h-4 bg-gray-200 rounded-md w-1/2 mb-2'></div>
-              <div className='h-4 bg-gray-200 rounded-md w-2/3'></div>
+            <div key={i} className='p-4 mb-4 border rounded-lg'>
+              <div className='w-3/4 h-6 mb-2 bg-gray-200 rounded-md'></div>
+              <div className='w-1/2 h-4 mb-2 bg-gray-200 rounded-md'></div>
+              <div className='w-2/3 h-4 bg-gray-200 rounded-md'></div>
             </div>
           ))}
         </div>

@@ -33,7 +33,7 @@ export default function PublishIssue({ issue, action }) {
   return (
     <div>
       <button
-        className='btn btn-primary flex gap-1 items-center'
+        className='flex items-center gap-1 btn btn-primary'
         onClick={() => setIsOpen(true)}
       >
         <TbCloudUpload className='size-5' />
@@ -42,9 +42,9 @@ export default function PublishIssue({ issue, action }) {
       {isOpen ? (
         <Modal isOpen={isOpen} setIsOpen={setIsOpen} withBackgroundClick={true}>
           <div className='bg-white p-4 sm:w-[540px] rounded-lg'>
-            <div className='border-b py-2'>
-              <h3 className='justify-center text-lg font-bold flex items-center gap-1'>
-                <PiWarningCircleBold className='size-5 text-red-400' />
+            <div className='py-2 border-b'>
+              <h3 className='flex items-center justify-center gap-1 text-lg font-bold'>
+                <PiWarningCircleBold className='text-red-400 size-5' />
                 Confirm Issue Publication
               </h3>
             </div>
@@ -58,9 +58,9 @@ export default function PublishIssue({ issue, action }) {
                   onChange={(e) => setPublishDate(e.target.value)}
                   className='w-full py-1.5 px-2 border rounded-lg'
                 />
-                <div className='justify-end gap-2 pt-4 flex'>
+                <div className='flex justify-end gap-2 pt-4'>
                   <button
-                    className='btn btn-danger bg-btn duration-150'
+                    className='duration-150 btn btn-danger bg-btn'
                     onClick={() => setIsOpen(false)}
                   >
                     Cancel
@@ -83,7 +83,10 @@ export default function PublishIssue({ issue, action }) {
               <div className='pt-4 space-y-4'>
                 <p className='font-semibold'>
                   You are about to publish{' '}
-                  <span className='font-medium'> NJBA {issue.issueTitle}</span>{' '}
+                  <span className='font-medium'>
+                    {' '}
+                    MSR {issue.issueTitle}
+                  </span>{' '}
                 </p>
                 <p>
                   Once published, this issue will be immediately available
@@ -95,7 +98,7 @@ export default function PublishIssue({ issue, action }) {
                 </p>
                 <div className='flex justify-end gap-2 pt-4'>
                   <button
-                    className='btn btn-danger bg-btn duration-150'
+                    className='duration-150 btn btn-danger bg-btn'
                     onClick={() => setIsOpen(false)}
                   >
                     Cancel

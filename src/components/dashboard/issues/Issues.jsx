@@ -17,7 +17,7 @@ export default function Issues({ issues, user, status }) {
         <CreateButton href='/dashboard/issues/new-issue' label='Add Issue' />
         <ResourceFilter />
       </div>
-      <div className='p-2 bg-secondary rounded-lg md:pt-0 overflow-x-auto'>
+      <div className='p-2 overflow-x-auto rounded-lg bg-secondary md:pt-0'>
         <table className='min-w-full border-collapse'>
           <thead className='rounded-lg'>
             <tr className='text-white'>
@@ -39,9 +39,9 @@ export default function Issues({ issues, user, status }) {
               <tr className='py-5 text-sm md:text-base' key={issue?._id}>
                 <td className='px-4 py-4 text-center border border-solid'>
                   <Link
-                    className='text-center hover:text-blue-500 hover:underline font-medium'
+                    className='font-medium text-center hover:text-blue-500 hover:underline'
                     href={`/dashboard/issues/${issue?.ref}`}
-                  >{`NJBA ${issue.issueTitle}`}</Link>
+                  >{`MSR ${issue.issueTitle}`}</Link>
                 </td>
                 <td className='px-4 py-4 text-center border border-solid'>
                   {issue?.status === 'published' ? (

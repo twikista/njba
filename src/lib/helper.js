@@ -30,7 +30,7 @@ export const joinKeywords = (arr) => {
 };
 
 export const articleFileName = (articleObject) =>
-  `njba-vol-${articleObject.volume}(${articleObject.issue})-pg${articleObject.startPage}-${articleObject.endPage}.pdf`;
+  `msr-vol-${articleObject.volume}(${articleObject.issue})-pg${articleObject.startPage}-${articleObject.endPage}.pdf`;
 
 export const hashPassword = async (password) => {
   const saltRounds = 10;
@@ -165,7 +165,7 @@ export const generateAPAReference = (article, issue) => {
 
   return {
     markup:
-      `${formattedAuthors} (${year}). ${title}. <i>Nigeria Journal of Business Administration</i>, <i>${volume}</i>(${articleIssue}), ${pages}.`.trim(),
-    text: `${formattedAuthors} (${year}). ${title}. Nigeria Journal of Business Administration, ${volume}(${articleIssue}), ${pages}.`.trim(),
+      `${formattedAuthors} (${year}). ${title}. <i>Management Sciences Review</i>, <i>${volume}</i>(${articleIssue}), ${pages}.`.trim(),
+    text: `${formattedAuthors} (${year}). ${title}. Management Sciences Review, ${volume}(${articleIssue}), ${pages}.`.trim(),
   };
 };

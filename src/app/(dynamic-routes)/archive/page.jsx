@@ -10,7 +10,7 @@ import { H1, H2, H3 } from '@/components/shared/headings';
 export const metadata = {
   title: 'Archive',
   description:
-    'Access all issues and articles published by Nigeria Journal of Business Administration (NJBA). The NJBA is the official journal of the Department of Business Administration, Faculty of Management Sciences, University of Benin, Benin city, Nigeria.',
+    'Access all issues and articles published by Management Sciences Review (MSR). The MSR is the official journal of the Faculty of Management Sciences, University of Benin, Benin city, Nigeria.',
 };
 
 async function Archive() {
@@ -20,7 +20,7 @@ async function Archive() {
       <div className='flex flex-col min-h-screen'>
         <Header />
         <Main className=''>
-          <div className='flex items-center justify-center h-full mt-14 font-medium'>
+          <div className='flex items-center justify-center h-full font-medium mt-14'>
             <H3 className='text-neutral-500 md:text-3xl'>
               Issues will be uploaded soon
             </H3>
@@ -47,10 +47,10 @@ async function Archive() {
                     href={`/archive/${issue.ref}`}
                     className='group-hover:underline'
                   >
-                    Nigeria Journal of Business Administration
+                    Mangement Sciences Review
                   </Link>
                 </H2>
-                <p className='font-medium text-sm text-neutral-500'>
+                <p className='text-sm font-medium text-neutral-500'>
                   {issue.issueTitle}
                 </p>
               </div>
@@ -64,7 +64,7 @@ async function Archive() {
   // return (
   //   <div className='flex flex-col min-h-screen'>
   //     <Header />
-  //     <Main className='gap-4 h-full'>
+  //     <Main className='h-full gap-4'>
   //       {/* <H1 className='mt-5'>Archive</H1> */}
   //       <div className='flex items-center justify-center h-full font-medium'>
   //         <p className='text-neutral-500 md:text-3xl'>

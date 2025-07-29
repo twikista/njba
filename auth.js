@@ -9,9 +9,10 @@ export const { auth, signIn, signOut } = NextAuth({
   providers: [
     CredentialsProvider({
       async authorize(credentials) {
+        console.log('credentials', credentials);
         try {
           const user = await getUser(credentials.email);
-
+          console.log('user', user);
           const parsedUser = JSON.parse(JSON.stringify(user));
           if (!user) {
             throw new Error('invalid credentials');
