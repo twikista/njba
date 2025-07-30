@@ -17,7 +17,7 @@ function Aside() {
           <Announcement />
         </Suspense>
         {/* <Information /> */}
-        {/* <Archive /> */}
+        <Archive />
       </div>
     </aside>
   );
