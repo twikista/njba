@@ -177,7 +177,7 @@ export const publishIssue = async (issueRef, publishDate) => {
 
   try {
     await connectDB();
-
+    console.log('db connected');
     // Start transaction
     session.startTransaction();
 

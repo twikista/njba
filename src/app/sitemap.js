@@ -11,13 +11,17 @@ export default async function sitemap() {
     .flat()
     .filter((i) => i !== null)
     .map((item) => {
-      return { url: `${siteMapBaseUrl}${item.url}` };
+      return {
+        url: `${siteMapBaseUrl}${item.url}`,
+        lastModified: new Date().toISOString(),
+      };
     });
 
   const publishedIssues = await getIssues('published');
   const archiveMenu = publishedIssues.map((issue) => {
     return {
       url: `${siteMapBaseUrl}/archive/${issue?.ref}`,
+      lastModified: new Date().toISOString(),
     };
   });
 
@@ -25,6 +29,7 @@ export default async function sitemap() {
   const publishedArticleEntries = publishedArticles.map((article) => {
     return {
       url: `${siteMapBaseUrl}/archive/${article?.ref}/${article?.slug}`,
+      lastModified: new Date().toISOString(),
     };
   });
 
@@ -37,12 +42,15 @@ export default async function sitemap() {
   return [
     {
       url: `${baseUrl}`,
+      lastModified: new Date().toISOString(),
     },
     {
       url: `${baseUrl}/contact`,
+      lastModified: new Date().toISOString(),
     },
     {
       url: `${baseUrl}/reviewers-guide`,
+      lastModified: new Date().toISOString(),
     },
     ...navbarMenuEntries,
     ...archiveMenu,
