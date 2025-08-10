@@ -3,6 +3,12 @@ import Main from '@/components/shared/Main';
 import { H1, H3 } from '@/components/shared/headings';
 import { TextBlockWithHeading } from '@/components/shared/TextBlockWithHeading';
 
+export const metadata = {
+  title: 'Editorial Process',
+  description:
+    'The MSR aims to maintain high standards of academic integrity and quality in research publication while providing a seamless experience for authors throughout their submission journey, by adhering to the structured editorial process',
+};
+
 export default function EditorialProcess() {
   return (
     <Main>

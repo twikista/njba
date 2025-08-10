@@ -2,6 +2,11 @@ import React from 'react';
 import { H1, H3 } from '@/components/shared/headings';
 import Main from '@/components/shared/Main';
 
+export const metadata = {
+  title: 'Submission Guide',
+  description:
+    'The Management Sciences Review (MSR) shall welcome articles from various authors subject to the following guidelines:',
+};
 export default function SubmissionGuide() {
   return (
     <Main>

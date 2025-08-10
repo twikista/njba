@@ -3,6 +3,12 @@ import Main from '@/components/shared/Main';
 import { TextBlockWithHeading } from '@/components/shared/TextBlockWithHeading';
 import React from 'react';
 
+export const metadata = {
+  title: 'Editorial Team',
+  description:
+    'The MSR Editorial Team is composed of dedicated professionals who ensure the journal maintains high standards of academic integrity and quality in research publication.',
+};
+
 const editors = [
   {
     department: 'Accounting',

@@ -4,6 +4,11 @@ import { H1, H2, H3 } from '@/components/shared/headings';
 import { TextBlockWithHeading } from '@/components/shared/TextBlockWithHeading';
 import { cn } from '@/lib/utils';
 
+export const metadata = {
+  title: 'Authors Guide',
+  description:
+    'This guide provides essential information regarding manuscript submission, authorship, the editorial process, and ethical considerations',
+};
 export default function AuthorsGude() {
   return (
     <Main>

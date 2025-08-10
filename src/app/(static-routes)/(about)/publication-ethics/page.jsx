@@ -3,7 +3,12 @@ import Main from '@/components/shared/Main';
 import { TextBlockWithHeading } from '@/components/shared/TextBlockWithHeading';
 
 import React from 'react';
-import { RxOpenInNewWindow } from 'react-icons/rx';
+
+export const metadata = {
+  title: 'Publication Ethics',
+  description:
+    'The Management Sciences Review (MSR) is dedicated to maintaining and promoting the highest standards of ethical conduct in scholarly publishing. This page outlines the ethical responsibilities of all parties involved in the publication process.',
+};
 
 export default function PublicationEthics() {
   return (

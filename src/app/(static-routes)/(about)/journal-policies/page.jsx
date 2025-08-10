@@ -1,6 +1,12 @@
 import { H1, H2 } from '@/components/shared/headings';
 import Main from '@/components/shared/Main';
 
+export const metadata = {
+  title: 'Journal Policies',
+  description:
+    'The MSR is committed to maintaining high standards of academic integrity and quality in research publication. This page outlines the journal policies that govern the submission, review, and publication processes.',
+};
+
 export default function JournalPolicies() {
   return (
     <Main>

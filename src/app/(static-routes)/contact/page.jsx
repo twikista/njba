@@ -5,7 +5,7 @@ import { H1, H3 } from '@/components/shared/headings';
 export const metadata = {
   title: 'Contact',
   description:
-    'React out to us through the address on this page. Faculty of Management of Sciences, University of Benin, Benin City',
+    'For inquiries, please contact the Management Sciences Review (MSR) team using the details on this page.',
 };
 
 export default function Contact() {

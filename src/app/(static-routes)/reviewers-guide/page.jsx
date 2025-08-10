@@ -3,6 +3,11 @@ import Main from '@/components/shared/Main';
 import { H1, H2, H3 } from '@/components/shared/headings';
 import { TextBlockWithHeading } from '@/components/shared/TextBlockWithHeading';
 
+export const metadata = {
+  title: 'Reviewers Guide',
+  description:
+    'This guide outlines the steps, expectations, and best practices for MSR reviewers. It is designed to ensure a thorough, constructive, and effective review process.',
+};
 export default function ForReviewers() {
   return (
     <Main>

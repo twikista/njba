@@ -1,6 +1,11 @@
 import { H1 } from '@/components/shared/headings';
 import Main from '@/components/shared/Main';
 
+export const metadata = {
+  title: 'Privacy Statement',
+  description:
+    'This privacy statement outlines how the Management Sciences Review (MSR) collects, uses, and protects personal information during the manuscript submission and review process.',
+};
 export default function PrivacyStatement() {
   return (
     <Main>

@@ -36,7 +36,7 @@ function Footer() {
                   Contact
                 </h3>
                 <div>
-                  <p>Tel:+234 803 954 5191</p>
+                  <p>Tel:+234 703 882 3825</p>
                   <p>Email:msr@uniben.edu</p>
                 </div>
               </div>

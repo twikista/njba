@@ -3,6 +3,11 @@ import Main from '@/components/shared/Main';
 import { H1, H2, H3 } from '@/components/shared/headings';
 import { TextBlockWithHeading } from '@/components/shared/TextBlockWithHeading';
 
+export const metadata = {
+  title: 'Processing Charges',
+  description:
+    'This page outlines the processing charges for article submissions to the Management Sciences Review (MSR).',
+};
 export default function PublicationFee() {
   return (
     <Main>

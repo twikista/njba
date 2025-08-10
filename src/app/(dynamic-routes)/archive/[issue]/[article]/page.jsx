@@ -51,7 +51,7 @@ export async function generateMetadata({ params }) {
       citation_issue: article.issue,
       citation_first_page: article.startPage,
       citation_last_page: article.endPage,
-      citation_pdf_url: `https://msreview.com/archive/${article.ref}/${article.slug}/view`,
+      citation_pdf_url: `https://www.msreview.com.ng/archive/${article.ref}/${article.slug}/view`,
       citation_abstract: article.abstract,
     },
     openGraph: {

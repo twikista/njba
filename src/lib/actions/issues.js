@@ -227,6 +227,7 @@ export const publishIssue = async (issueRef, publishDate) => {
     revalidatePath(`/dashboard/issues/${publishedIssue.ref}`);
     revalidatePath(`/dashboard/issues`);
     revalidatePath(`/archive`);
+    revalidatePath('/sitemap.xml');
 
     return { ok: true };
   } catch (error) {
