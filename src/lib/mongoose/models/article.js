@@ -10,8 +10,8 @@ const articleSchema = new mongoose.Schema(
     authors: [
       {
         name: { type: String, required: true, trim: true },
-        department: { type: String, required: true, trim: true },
-        institution: { type: String, required: true, trim: true },
+        department: { type: String, required: false, trim: true },
+        institution: { type: String, required: false, trim: true },
       },
     ],
     volume: { type: String, required: true, trim: true },

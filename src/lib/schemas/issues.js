@@ -2,10 +2,8 @@ import { z } from 'zod';
 
 const articleAuthorSchema = z.object({
   name: z.string().min(1, { message: 'name is required' }),
-  department: z.string().min(1, { message: "author's department is required" }),
-  institution: z
-    .string()
-    .min(1, { message: "author's intitution is required" }),
+  department: z.string().optional(),
+  institution: z.string().optional(),
 });
 
 const fileSizeInMb = (sizeInBytes) => sizeInBytes / 1024 ** 2;
