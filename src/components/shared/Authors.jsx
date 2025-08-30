@@ -12,7 +12,7 @@ export default function Authors({ authors, withAffliation, className }) {
               {name}
             </span>
             {/* </div> */}
-            <span className='flex flex-wrap text-[#808080] text-sm'>{`${department}, ${institution}`}</span>
+            <span className='flex flex-wrap text-[#808080] text-sm'>{`${department}${department && institution ? ',' : ''} ${institution}`}</span>
             {/* <p className='text-neutral-500'>{institution}</p> */}
           </div>
         ))}
