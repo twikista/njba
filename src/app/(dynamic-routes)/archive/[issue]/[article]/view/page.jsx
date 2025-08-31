@@ -20,11 +20,6 @@ async function ViewPDF({ params }) {
     }
 
     return (
-      // <ViewArticlePdf
-      //   filePath={article.pdfUrl}
-      //   params={param}
-      //   articleId={article._id.toString()}
-      // />
       <div className='flex flex-col min-h-screen bg-neutral-600'>
         <PDFViewerV2
           filePath={article.pdfUrl.split('/').at(-1)}
