@@ -7,7 +7,7 @@ import { Article } from '@/lib/mongoose/models/article';
 // import { getArticlesInIssue } from '../../../../../../lib/data'
 
 const getArticlesInIssue = async (issueRef) => {
-  connectDB();
+  await connectDB();
   const articlesInIssue = await Promise.all([
     Issue.find({
       ref: `${issueRef}`,

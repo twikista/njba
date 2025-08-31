@@ -105,7 +105,7 @@ function ArticleOverview({ currentArticle, currentIssue = false, issue }) {
             )}`}</span>
           </p>
         </div>
-        {currentArticle?.jelClassification ? (
+        {currentArticle?.jelClassification.length ? (
           <div className='py-2 text-sm'>
             <p>
               <span className='font-semibold'>JEL Classification:</span>

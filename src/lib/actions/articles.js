@@ -81,7 +81,11 @@ export const getArticlesInCurrentIssue = async () => {
       };
     }
 
-    const articlesInCurrentIssue = await Article.find({ ref: latestIssue.ref });
+    const articlesInCurrentIssue = await Article.find({
+      ref: latestIssue.ref,
+    }).sort({
+      startPage: 1,
+    });
 
     return {
       currentIssue: latestIssue,
@@ -281,6 +285,7 @@ export async function updateArticle(formData, url, id) {
     revalidatePath(`/dashboard/issues/${updatedArticle.ref}`);
     return { ok: true };
   } catch (error) {
+    console.log('error', error);
     await session.abortTransaction();
     return { ok: false, error: 'Something went wrong', errorType: 'other' };
   } finally {

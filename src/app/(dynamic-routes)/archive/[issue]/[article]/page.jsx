@@ -27,6 +27,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }) {
   const param = await params;
   const article = await getArticle(param);
+  const siteMapBaseUrl = process.env.SITEMAP_BASE_URL;
 
   if (!article) {
     return {
@@ -36,23 +37,35 @@ export async function generateMetadata({ params }) {
 
   return {
     title: article.title,
-
     description: article.abstract?.substring(0, 160),
-    keywords: article.keywords?.join(', '),
+    keywords: article.keywords?.map((keyword) => keyword.trim()),
+    alternates: {
+      canonical: `${siteMapBaseUrl}/archive/${article?.ref}/${article?.slug}`,
+    },
     other: {
       citation_title: article.title,
+      citation_keywords: article.keywords?.map((keyword) => keyword.trim()),
       citation_author: article.authors?.map((author) => author.name),
       citation_publication_date: new Date(article.publishDate)
         .toISOString()
         .split('T')[0]
         .replace(/-/g, '/'),
       citation_journal_title: 'Mangement Sciences Review',
+      citation_journal_abbrev: 'MSR',
       citation_volume: article.volume,
       citation_issue: article.issue,
       citation_first_page: article.startPage,
       citation_last_page: article.endPage,
       citation_pdf_url: `https://www.msreview.com.ng/archive/${article.ref}/${article.slug}/view`,
       citation_abstract: article.abstract,
+      citation_author_institution: article.authors?.map(
+        (author) => ` ${author.department}, ${author.institution}`
+      ),
+      citation_issn: '2672-5991',
+      citation_publisher:
+        'Faculty of Management Sciences, University of Benin, Benin city, Nigeria',
+      citation_publisher_address:
+        'Faculty of Management Sciences, University of Benin, Benin city, Nigeria',
     },
     openGraph: {
       title: article.title,
