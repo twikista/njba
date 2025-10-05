@@ -24,6 +24,7 @@ function AuthorsLoading() {
 }
 
 function ArticleOverview({ currentArticle, currentIssue = false, issue }) {
+  console.log('issue in overview', issue);
   const seralizedCurrentArticle = JSON.stringify(currentArticle);
   const parsedCurrentArticle = JSON.parse(seralizedCurrentArticle);
   const joinKeywords = (arr) => {
@@ -89,7 +90,9 @@ function ArticleOverview({ currentArticle, currentIssue = false, issue }) {
   return (
     <div className='mt-5'>
       {renderButtons(currentArticle, currentIssue)}
-      <H1 className='text-wrap md:text-2xl'>{currentArticle?.title}</H1>
+      <H1 className='text-wrap md:text-2xl citation_title'>
+        {currentArticle?.title}
+      </H1>
       <ArticleInfo article={currentArticle} issue={issue} />
       <section className='flex flex-col py-2 space-y-3 sm:space-y-0 sm:flex-row'>
         <Suspense fallback={<AuthorsLoading />}>

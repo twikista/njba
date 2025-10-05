@@ -19,6 +19,9 @@ export const metadata = {
     default: 'NJBA - Nigeria Journal of Business Administration',
     template: '%s - Nigeria Journal of Business Administration',
   },
+  alternates: {
+    canonical: `${process.env.SITEMAP_BASE_URL}`,
+  },
   description:
     'The Nigeria Journal of Business Administration (NJBA) is the official journal of the Department of Buness Administration, Faculty of Management Sciences, University of Benin, Benin city, Nigeria.',
 
@@ -31,6 +34,8 @@ export const metadata = {
     'UNIBEN',
     'Nigerian Journal of Business Administration',
     'NJBA',
+    'njba.com.ng',
+    'www.njba.com.ng',
     'Business administration',
     'Operarions research',
     'International business',

@@ -30,7 +30,7 @@ export default function AuthorsGude() {
               <TextBlockWithHeading
                 headingText='Assessment Fee'
                 headingType='h3'
-                text='A non-refundable assessment fee of ₦8,000 should accompany each manuscript submission.'
+                text='A non-refundable assessment fee of ₦10,000 should accompany each manuscript submission.'
                 className='px-0'
               />
             </li>

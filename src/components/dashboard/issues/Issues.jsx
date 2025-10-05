@@ -37,9 +37,9 @@ export default function Issues({ issues, user, status }) {
           <tbody className='text-center bg-white divide-y-2 rounded-sm'>
             {issues.map((issue, index) => (
               <tr className='py-5 text-sm md:text-base' key={issue?._id}>
-                <td className='px-4 py-4 text-center border border-solid'>
+                <td className='text-left px-4 py-4 border border-solid'>
                   <Link
-                    className='text-center hover:text-blue-500 hover:underline font-medium'
+                    className='text-left w-full hover:text-blue-500 hover:underline font-medium'
                     href={`/dashboard/issues/${issue?.ref}`}
                   >{`NJBA ${issue.issueTitle}`}</Link>
                 </td>

@@ -56,7 +56,7 @@ function MobileNavItems({ session }) {
       {session?.user?.role === 'admin' && (
         <>
           <MobileNavItem
-            url='/dashboard/manage-users'
+            url='/dashboard/users'
             linkText='users'
             OutlineIcon={HiOutlineCog6Tooth}
             FillIcon={HiCog6Tooth}

@@ -153,6 +153,7 @@ const formatAuthorsForAPAReferencing = (authors) => {
 
 // Function to generate APA 7 reference with italic journal name
 export const generateAPAReference = (article, issue) => {
+  console.log('issue from', article.issue);
   if (!article || !issue) return 'Incomplete reference data.';
 
   const { volume, issue: articleIssue, slug: pages, authors, title } = article;
@@ -162,10 +163,12 @@ export const generateAPAReference = (article, issue) => {
   if (!authors || !year || !title) return 'Incomplete reference data.';
 
   const formattedAuthors = formatAuthorsForAPAReferencing(authors);
+  const issueNumber =
+    articleIssue === 'special-issue' ? '' : `(${articleIssue})`;
 
   return {
     markup:
-      `${formattedAuthors} (${year}). ${title}. <i>Nigeria Journal of Business Administration</i>, <i>${volume}</i>(${articleIssue}), ${pages}.`.trim(),
-    text: `${formattedAuthors} (${year}). ${title}. Nigeria Journal of Business Administration, ${volume}(${articleIssue}), ${pages}.`.trim(),
+      `${formattedAuthors} (${year}). ${title}. <i>Nigeria Journal of Business Administration</i>, <i>${volume}</i>${issueNumber}, ${pages}.`.trim(),
+    text: `${formattedAuthors} (${year}). ${title}. Nigeria Journal of Business Administration, ${volume}${issueNumber}, ${pages}.`.trim(),
   };
 };

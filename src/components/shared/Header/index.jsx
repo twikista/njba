@@ -43,11 +43,11 @@ export default function Header() {
               </div>
             </div>
 
-            <h1
+            <h2
               className={`text-sm font-bold text-white text-center uppercase sm:text-2xl md:text-3xl md:text-primary`}
             >
               Nigeria Journal of Business Administration
-            </h1>
+            </h2>
             <p className='text-sm block md:hidden font-medium text-white'>
               ISSN: 0794-0672
             </p>

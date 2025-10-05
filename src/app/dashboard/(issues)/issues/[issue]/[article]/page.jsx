@@ -10,18 +10,26 @@ import Image from 'next/image';
 import ArticleInfo from '@/components/dashboard/article/ArticleInfo';
 import { joinKeywords } from '@/lib/helper';
 import ccLogo from '@/../public/by.png';
+import { getIssue } from '@/lib/actions/issues';
+import APAReference from '@/components/shared/ArticleCitation';
 
 export default async function ArticlePage({ params }) {
   const param = await params;
+  // console.log('param', param);
   const { user } = await auth();
-  const article = await getArticle(param);
+  // const article = await getArticle(param);
+  const [article, issue] = await Promise.all([
+    getArticle(param),
+    getIssue(param.issue, { issueTitle: 1, issueYear: 1 }),
+  ]);
+  // console.log('issue', issue);
   return (
     <DashboardLayout>
       <div>
         <h2 className='mb-2 text-base font-bold sm:text-2xl'>
           {article.title}
         </h2>
-        <ArticleInfo article={article} />
+        <ArticleInfo article={article} issue={issue} />
         <section className='flex flex-col py-2 space-y-2 border-t border-b sm:space-y-0 border-neutral-300'>
           <Authors authors={article.authors} withAffliation={true} />
         </section>
@@ -37,6 +45,7 @@ export default async function ArticlePage({ params }) {
           <div className='space-y-3'>
             <h4 className='font-bold'>Abstract</h4>
             <p className='text-justify'>{article.abstract}</p>
+            <APAReference article={article} issue={issue} />
           </div>
           <div>
             <div className='h-[1px] bg-neutral-300 mt-2' />

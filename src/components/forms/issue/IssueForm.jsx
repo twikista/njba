@@ -24,6 +24,21 @@ const ISSUE_TYPES = [
   { value: 'special-issue', label: 'Special Issue' },
 ];
 
+const IssueMonths = [
+  { value: 'January', label: 'January' },
+  { value: 'February', label: 'February' },
+  { value: 'March', label: 'March' },
+  { value: 'April', label: 'April' },
+  { value: 'May', label: 'May' },
+  { value: 'June', label: 'June' },
+  { value: 'July', label: 'July' },
+  { value: 'August', label: 'August' },
+  { value: 'September', label: 'September' },
+  { value: 'October', label: 'October' },
+  { value: 'November', label: 'November' },
+  { value: 'December', label: 'December' },
+];
+
 export default function IssueForm({ initialFormState }) {
   const [errorFromServer, setErrorFromServer] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -36,7 +51,7 @@ export default function IssueForm({ initialFormState }) {
     mode: 'onBlur', // Validate on blur for better UX
   });
 
-  const { handleSubmit, reset, setError, control } = methods;
+  const { handleSubmit, reset, setError, control, setValue } = methods;
 
   // Watch the issueType field to conditionally render the theme input
   const issueType = useWatch({
@@ -46,6 +61,16 @@ export default function IssueForm({ initialFormState }) {
   });
 
   const isSpecialIssue = issueType === 'special-issue';
+
+  // Update issueNumber when issueType changes
+  useEffect(() => {
+    if (isSpecialIssue) {
+      setValue('issueNumber', 'special-issue');
+    } else {
+      // Clear the field when switching to regular
+      setValue('issueNumber', '');
+    }
+  }, [issueType, setValue]);
 
   // No useCallback needed since this is only used in onSubmit
   const handleSuccess = () => {
@@ -75,6 +100,7 @@ export default function IssueForm({ initialFormState }) {
         issueYear: 'issueYear',
         issueTheme: 'issueTheme',
         issueType: 'issueType',
+        issueMonth: 'issueMonth',
       };
       handleValidationErrorFromServer(response, formfields, setError);
     } else if (response?.errorType === 'other') {
@@ -147,6 +173,15 @@ export default function IssueForm({ initialFormState }) {
                 name='issueTheme'
                 placeholder='Enter the special issue theme'
                 // required={isSpecialIssue}
+              />
+            )}
+
+            {isSpecialIssue && (
+              <Select
+                name='issueMonth'
+                label='Issue Month'
+                placeholder='select issue month'
+                options={IssueMonths}
               />
             )}
 

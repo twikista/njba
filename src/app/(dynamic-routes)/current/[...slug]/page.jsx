@@ -29,7 +29,8 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }) {
   const param = await params;
-  const article = await getArticle(param);
+  const slug = { issue: param.slug[0], article: param.slug[1] };
+  const article = await getArticle(slug);
 
   if (!article) {
     return {
@@ -41,14 +42,70 @@ export async function generateMetadata({ params }) {
 
   return {
     title: article.title,
-    description,
+
+    description: article.abstract?.substring(0, 160),
     keywords: article.keywords?.join(', '),
-    publishedTime: article.publishedDate,
+    other: {
+      'DC.Creator.PersonalName': article.authors.map((author) => author.name),
+      'DC.Date.created': new Date(article.publishDate)
+        .toISOString()
+        .split('T')[0]
+        .replace(/-/g, '/'),
+      'DC.Date.dateSubmitted': new Date(article.publishDate)
+        .toISOString()
+        .split('T')[0]
+        .replace(/-/g, '/'),
+      'DC.Date.issued': new Date(article.publishDate)
+        .toISOString()
+        .split('T')[0]
+        .replace(/-/g, '/'),
+      'DC.Date.modified': new Date(article.publishDate)
+        .toISOString()
+        .split('T')[0]
+        .replace(/-/g, '/'),
+      'DC.Format': 'application/pdf',
+      'DC.Description': article.abstract,
+      'DC.Identifier.URI': `https://www.njba.com.ng/archive/${article.ref}/${article.slug}`,
+      'DC.Language': 'en',
+      'DC.Rights': `Copyright (c) ${new Date().getFullYear()} Nigerian Journal of Business Administration`,
+      'DC.Rights': 'http://creativecommons.org/licenses/by-nc/4.0/deed.en',
+      'DC.Source':
+        'Nigeria Journal of Business Administration (ISSAN: 0794-0672)',
+      'DC.Source.ISSN': '0794-0672',
+      'DC.Source.Issue': article.issue,
+      'DC.Source.Volume': article.volume,
+      'DC.Source.URI': `https://www.njba.com.ng/`,
+      'DC.Subject': article.keywords?.map((keyword) => keyword.trim()),
+      'DC.Title': article.title,
+      'DC.Type': 'Text.Serial.Journal',
+      'DC.Type.articleType': 'Articles',
+      citation_journal_title: 'Nigerian Journal of Business Administration',
+      citation_journal_abbrev: 'NJBA',
+      citation_issn: '0794-0672',
+      citation_author: article.authors?.map((author) => author.name),
+      citation_title: article.title,
+      citation_language: 'en',
+      citation_publication_date: new Date(article.publishDate)
+        .toISOString()
+        .split('T')[0]
+        .replace(/-/g, '/'),
+      citation_volume: article.volume,
+      citation_issue: article.issue,
+      citation_first_page: article.startPage,
+      citation_last_page: article.endPage,
+      citation_abstract_html_url: `https://njba.com.ng/archive/${article.ref}/${article.slug}`,
+      citation_abstract: article.abstract,
+      citation_keywords: article.keywords?.map((keyword) => keyword.trim()),
+      citation_pdf_url: `https://njba.com.ng/archive/${article.ref}/${article.slug}/view`,
+      citation_author_institution: article.authors?.map(
+        (author) => ` ${author.department}, ${author.institution}`
+      ),
+    },
     openGraph: {
       title: article.title,
-      description,
+      description: article.abstract?.substring(0, 160),
       type: 'article',
-      authors: article.authors?.map((author) => author.name) | [],
+      authors: article.authors?.map((author) => author.name),
     },
   };
 }

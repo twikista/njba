@@ -16,7 +16,7 @@ export default function AuthorsGude() {
             <TextBlockWithHeading
               className='px-0'
               headingText='Local Authors'
-              text='Manuscripts must be accompanied with a non-refundable review fee of ₦8,000. Upon acceptance, a publication fee of ₦25,000 is expected.'
+              text='Manuscripts must be accompanied with a non-refundable review fee of ₦10,000. Upon acceptance, a publication fee of ₦25,000 is expected.'
             />
           </li>
           <li>

@@ -5,6 +5,7 @@ import { getAllPublishedArticles } from '@/lib/actions/articles';
 
 export default async function sitemap() {
   const baseUrl = process.env.BASE_URL;
+  const siteMapBaseUrl = process.env.SITEMAP_BASE_URL;
   const navbarMenuEntries = menuItems
     .map((item) => (item.subMenuItems ? item.subMenuItems : null))
     .flat()
@@ -16,14 +17,14 @@ export default async function sitemap() {
   const publishedIssues = await getIssues('published');
   const archiveMenu = publishedIssues.map((issue) => {
     return {
-      url: `${baseUrl}/archive/${issue?.ref}`,
+      url: `${siteMapBaseUrl}/archive/${issue?.ref}`,
     };
   });
 
   const publishedArticles = await getAllPublishedArticles();
   const publishedArticleEntries = publishedArticles.map((article) => {
     return {
-      url: `${baseUrl}/archive/${article?.ref}/${article?.slug}`,
+      url: `${siteMapBaseUrl}/archive/${article?.ref}/${article?.slug}`,
     };
   });
 

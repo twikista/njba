@@ -9,6 +9,7 @@ export default function NewIssue() {
     issueYear: new Date().getFullYear(),
     issueType: 'regular-issue',
     issueTheme: '',
+    issueMonth: '',
   };
   return (
     <DashboardLayout>

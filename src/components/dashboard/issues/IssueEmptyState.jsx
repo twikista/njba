@@ -11,7 +11,7 @@ export default function IssueEmptyState({ issue, adminRoles }) {
             {issue?.issueTitle}
           </h2>
           <p className='text-sm text-center text-gray-400 font-cairo md:text-left'>
-            {issue.published
+            {issue?.published
               ? `Publish Date: ${new Date(issue.publishDate).toLocaleDateString(
                   'en-US',
                   {

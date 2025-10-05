@@ -181,6 +181,7 @@ export default function ArticleForm({ initialFormState, params }) {
    * @returns {Promise<void>}
    */
   const handleFormSubmission = async (data) => {
+    console.log('data', data);
     setIsLoading(true);
     try {
       // Upload PDF and prepare data

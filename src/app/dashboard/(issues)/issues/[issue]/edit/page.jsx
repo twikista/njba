@@ -12,6 +12,7 @@ export default async function UpdateIssue({ params }) {
     volume: issue?.volume,
     issueType: issue?.issueType,
     issueTheme: issue?.issueTheme,
+    issueMonth: issue?.issueMonth,
     id: JSON.stringify(issue?._id),
   };
   return (
