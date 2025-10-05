@@ -110,7 +110,10 @@ export async function createArticle(formData, url, params) {
   // Add computed fields to article object
   articleData.pdfUrl = url;
   articleData.slug = `${articleData.startPage}-${articleData.endPage}`;
-  articleData.ref = `volume-${articleData.volume}-issue-${articleData.issue}`;
+  articleData.ref =
+    articleData.issue === 'special-issue'
+      ? `volume-${articleData.volume}-${articleData.issue}`
+      : `volume-${articleData.volume}-issue-${articleData.issue}`;
   articleData.published = params.published ? true : false;
   articleData.publishDate = new Date(params.publishDate);
   articleData.addedBy = user.user?.firstName + ' ' + user.user?.lastName;
@@ -243,7 +246,10 @@ export async function updateArticle(formData, url, id) {
   const articleData = {
     ...data,
     slug: `${data.startPage}-${data.endPage}`,
-    ref: `volume-${data.volume}-issue-${data.issue}`,
+    ref:
+      data.issue === 'special-issue'
+        ? `volume-${data.volume}-${data.issue}`
+        : `volume-${data.volume}-issue-${data.issue}`,
     pdfUrl: url.new !== null ? url.new : url.existing,
   };
 

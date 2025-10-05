@@ -47,16 +47,26 @@ export const createIssue = async (formData) => {
     const validationError = handleServerSideValidationError(parsedData);
     return { ok: false, error: validationError, errorType: 'validationError' };
   }
-  const { issueNumber, issueYear, volume, issueType, issueTheme } =
+
+  console.log('parsedData', parsedData);
+  const { issueNumber, issueYear, issueMonth, volume, issueType, issueTheme } =
     parsedData.data;
+
   const issueData = {
     issueType,
     issueTheme,
     issueNumber,
     volume,
     issueYear,
-    ref: `volume-${volume}-issue-${issueNumber}`,
-    issueTitle: `Vol. ${volume} No. ${issueNumber} (${issueYear})`,
+    issueMonth,
+    ref:
+      issueType === 'regular-issue'
+        ? `volume-${volume}-issue-${issueNumber}`
+        : `volume-${volume}-${issueNumber}`,
+    issueTitle:
+      issueType === 'regular-issue'
+        ? `Vol. ${volume} No. ${issueNumber} (${issueYear})`
+        : `Vol. ${volume}, Special Issue (${issueYear})`,
     published: false,
     publishDate: new Date(String(issueYear)),
     addedBy: `${firstName} ${lastName}`,
@@ -91,11 +101,18 @@ export async function updateIssue(id, formData) {
       return { ok: false, error: 'Issue not found', errorType: 'other' };
     }
 
+    const { issueType, issueNumber, issueYear, volume, issueMonth } = data;
     const issueData = {
       // ...currentIssue,
       ...data,
-      ref: `volume-${data.volume}-issue-${data.issueNumber}`,
-      issueTitle: `Vol. ${data.volume} No. ${data.issueNumber} (${data.issueYear})`,
+      ref:
+        issueType === 'regular-issue'
+          ? `volume-${volume}-issue-${issueNumber}`
+          : `volume-${volume}-${issueNumber}`,
+      issueTitle:
+        issueType === 'regular-issue'
+          ? `Vol. ${volume} No. ${issueNumber} (${issueYear})`
+          : `Vol. ${volume} Special Issue (${issueYear})`,
     };
 
     const updatedIssue = await Issue.findByIdAndUpdate(
