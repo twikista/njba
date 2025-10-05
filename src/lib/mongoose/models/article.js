@@ -10,12 +10,17 @@ const articleSchema = new mongoose.Schema(
     authors: [
       {
         name: { type: String, required: true, trim: true },
-        department: { type: String, required: true, trim: true },
-        institution: { type: String, required: true, trim: true },
+        department: { type: String, required: false, trim: true },
+        institution: { type: String, required: false, trim: true },
       },
     ],
     volume: { type: String, required: true, trim: true },
-    issue: { type: String, required: true, trim: true, enum: [1, 2] },
+    issue: {
+      type: String,
+      required: true,
+      trim: true,
+      enum: [1, 2, 'special-issue'],
+    },
     publishDate: { type: Date },
     startPage: { type: Number, required: true },
     endPage: { type: Number, required: true },

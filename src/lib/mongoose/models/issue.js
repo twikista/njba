@@ -28,14 +28,25 @@ const issueSchema = new mongoose.Schema(
     },
     issueTheme: {
       type: String,
-      required: function () {
-        return this.issueType === 'special-issue';
-      },
+      required: false,
+      // required: function () {
+      //   return this.issueType === 'special-issue';
+      // },
     },
-    issueNumber: { type: String, required: true, enum: [1, 2] },
+    issueNumber: {
+      type: String,
+      required: true,
+      enum: [1, 2, 'special-issue'],
+    },
     issueYear: {
       type: Number,
       required: true,
+    },
+    issueMonth: {
+      type: String,
+      required: function () {
+        return this.issueType === 'special-issue';
+      },
     },
     volume: { type: String, required: true },
     articles: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Article' }], //likely remove

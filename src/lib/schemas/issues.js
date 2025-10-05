@@ -2,10 +2,8 @@ import { z } from 'zod';
 
 const articleAuthorSchema = z.object({
   name: z.string().min(1, { message: 'name is required' }),
-  department: z.string().min(1, { message: "author's department is required" }),
-  institution: z
-    .string()
-    .min(1, { message: "author's intitution is required" }),
+  department: z.string().optional(),
+  institution: z.string().optional(),
 });
 
 const fileSizeInMb = (sizeInBytes) => sizeInBytes / 1024 ** 2;
@@ -43,17 +41,9 @@ export const articleFormSchema = z.object({
   issue: z
     .string()
     .min(1, 'issue field is required')
-    .max(1, 'volume must be a single digit number')
     .refine(
-      (value) => (
-        (typeof Number(value) === 'number' && Number(value) === 1) ||
-          Number(value) === 2,
-        'issue must be a number'
-      )
-    )
-    .refine(
-      (value) => Number(value) === 1 || Number(value) === 2,
-      'issue number must be 1 or 2 '
+      (value) => value === '1' || value === '2' || value === 'special-issue',
+      'issue number must be 1, 2 or special-issue'
     ),
   startPage: z.number({
     required_error: 'start page number is required',
@@ -95,26 +85,12 @@ export const editArticleFormSchema = articleFormSchema.extend({
 
 export const IssueFormSchema = z
   .object({
-    issueNumber: z
-      .string()
-      .min(1, 'issue number is required')
-      .max(1, 'issue number must be a single digit number')
-      .refine(
-        (value) => (
-          (typeof Number(value) === 'number' && Number(value) === 1) ||
-            Number(value) === 2,
-          'issue must be a number'
-        )
-      )
-      .refine(
-        (value) => Number(value) === 1 || Number(value) === 2,
-        'issue number must be 1 or 2 '
-      ),
+    issueNumber: z.string().min(1, 'issue number is required'),
     issueYear: z
       .number('issue year must be a number')
       .min(
-        new Date().getFullYear() - 5,
-        'issue year must be within the last 5 years'
+        new Date().getFullYear() - 20,
+        'issue year must be within the last 20 years'
       )
       .max(new Date().getFullYear(), 'issue year cannot be in the future'),
     volume: z
@@ -129,14 +105,30 @@ export const IssueFormSchema = z
       required_error: 'issue type is required',
     }),
     issueTheme: z.string().optional(),
+    issueMonth: z.string().optional(),
   })
   .refine(
     (data) => {
-      return data.issueType === 'special-issue' ? !!data.issueTheme : true;
+      if (data.issueType === 'regular-issue') {
+        return data.issueNumber === '1' || data.issueNumber === '2';
+      }
+      if (data.issueType === 'special-issue') {
+        return data.issueNumber === 'special-issue';
+      }
+      return true;
     },
     {
-      message: 'issue theme is required for special issues',
-      path: ['issueTheme'],
+      message: 'Invalid issue number for the selected issue type',
+      path: ['issueNumber'], // This shows the error on the issueNumber field
+    }
+  )
+  .refine(
+    (data) => {
+      return data.issueType === 'special-issue' ? !!data.issueMonth : true;
+    },
+    {
+      message: 'issue month is required for special issues',
+      path: ['issueMonth'],
     }
   );
 
