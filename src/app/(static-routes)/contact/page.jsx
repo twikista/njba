@@ -1,6 +1,5 @@
 import Main from '@/components/shared/Main';
 import { H1, H2, H3 } from '@/components/shared/headings';
-import { c } from 'framer-motion/dist/types.d-6pKw1mTI';
 
 export const metadata = {
   title: 'Contact',

@@ -4,7 +4,6 @@ import IssueContent from '@/components/dashboard/issues/issue';
 import { connectDB } from '@/lib/mongoose/config';
 import { Issue } from '@/lib/mongoose/models/issue';
 import { Article } from '@/lib/mongoose/models/article';
-// import { getArticlesInIssue } from '../../../../../../lib/data'
 
 const getArticlesInIssue = async (issueRef) => {
   connectDB();

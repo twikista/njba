@@ -2,7 +2,6 @@ import DashboardLayout from '@/components/dashboard/layout/DashboardLayout';
 import React, { Suspense } from 'react';
 
 import { getArticle } from '@/lib/actions/articles';
-import EditArticleForm from '@/components/dashboard/article/edit-article';
 import ArticleForm from '@/components/dashboard/article';
 
 export default async function EditArticlePage({ params }) {
