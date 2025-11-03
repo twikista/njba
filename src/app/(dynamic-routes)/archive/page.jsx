@@ -11,6 +11,9 @@ export const metadata = {
   title: 'Archive',
   description:
     'Access all issues and articles published by Nigeria Journal of Business Administration (NJBA). The NJBA is the official journal of the Department of Business Administration, Faculty of Management Sciences, University of Benin, Benin city, Nigeria.',
+  alternates: {
+    canonical: `${process.env.SITEMAP_BASE_URL}/archive`,
+  },
 };
 
 async function Archive() {

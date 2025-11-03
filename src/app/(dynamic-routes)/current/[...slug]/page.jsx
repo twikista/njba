@@ -7,7 +7,6 @@ import { getArticle } from '@/lib/actions/articles';
 import Main from '@/components/shared/Main';
 import { connectDB } from '@/lib/mongoose/config';
 import { getIssue } from '@/lib/actions/issues';
-import { Article } from '@/lib/mongoose/models/article';
 import { Issue } from '@/lib/mongoose/models/issue';
 
 async function getArticlesInCurrentIssue() {
@@ -46,6 +45,27 @@ export async function generateMetadata({ params }) {
     description: article.abstract?.substring(0, 160),
     keywords: article.keywords?.join(', '),
     other: {
+      citation_journal_title: 'Nigerian Journal of Business Administration',
+      citation_journal_abbrev: 'NJBA',
+      citation_issn: '0794-0672',
+      citation_author: article.authors?.map((author) => author.name),
+      citation_title: article.title,
+      citation_language: 'en',
+      citation_publication_date: new Date(article.publishDate)
+        .toISOString()
+        .split('T')[0]
+        .replace(/-/g, '/'),
+      citation_volume: article.volume,
+      citation_issue: article.issue,
+      citation_first_page: article.startPage,
+      citation_last_page: article.endPage,
+      citation_abstract_html_url: `https://njba.com.ng/archive/${article.ref}/${article.slug}`,
+      citation_abstract: article.abstract,
+      citation_keywords: article.keywords?.map((keyword) => keyword.trim()),
+      citation_pdf_url: `https://njba.com.ng/archive/${article.ref}/${article.slug}/view`,
+      citation_author_institution: article.authors?.map(
+        (author) => ` ${author.department}, ${author.institution}`
+      ),
       'DC.Creator.PersonalName': article.authors.map((author) => author.name),
       'DC.Date.created': new Date(article.publishDate)
         .toISOString()
@@ -79,27 +99,6 @@ export async function generateMetadata({ params }) {
       'DC.Title': article.title,
       'DC.Type': 'Text.Serial.Journal',
       'DC.Type.articleType': 'Articles',
-      citation_journal_title: 'Nigerian Journal of Business Administration',
-      citation_journal_abbrev: 'NJBA',
-      citation_issn: '0794-0672',
-      citation_author: article.authors?.map((author) => author.name),
-      citation_title: article.title,
-      citation_language: 'en',
-      citation_publication_date: new Date(article.publishDate)
-        .toISOString()
-        .split('T')[0]
-        .replace(/-/g, '/'),
-      citation_volume: article.volume,
-      citation_issue: article.issue,
-      citation_first_page: article.startPage,
-      citation_last_page: article.endPage,
-      citation_abstract_html_url: `https://njba.com.ng/archive/${article.ref}/${article.slug}`,
-      citation_abstract: article.abstract,
-      citation_keywords: article.keywords?.map((keyword) => keyword.trim()),
-      citation_pdf_url: `https://njba.com.ng/archive/${article.ref}/${article.slug}/view`,
-      citation_author_institution: article.authors?.map(
-        (author) => ` ${author.department}, ${author.institution}`
-      ),
     },
     openGraph: {
       title: article.title,

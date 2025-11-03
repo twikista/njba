@@ -1,6 +1,15 @@
 import { H1, H3 } from '@/components/shared/headings';
 import Main from '@/components/shared/Main';
 
+export const metadata = {
+  title: 'Submission Guidelines',
+  description:
+    'Find detailed submission guidelines for authors looking to publish in the Nigeria Journal of Business Administration (NJBA). Learn about manuscript preparation, formatting, and submission procedures to ensure your work meets our standards.',
+  alternates: {
+    canonical: `${process.env.SITEMAP_BASE_URL}/submission-guide`,
+  },
+};
+
 export default function SubmissionGuide() {
   return (
     <Main>

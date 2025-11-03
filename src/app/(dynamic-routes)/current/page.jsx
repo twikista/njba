@@ -7,6 +7,18 @@ import { getArticlesInCurrentIssue } from '@/lib/actions/articles';
 import { formatDate } from '@/lib/helper';
 import React from 'react';
 
+export async function generateMetadata() {
+  const response = await getArticlesInCurrentIssue();
+  const { currentIssue } = response;
+  const siteMapBaseUrl = process.env.SITEMAP_BASE_URL;
+
+  return {
+    title: `NJBA - ${currentIssue?.issueTitle}`,
+    alternates: {
+      canonical: `${siteMapBaseUrl}/current`,
+    },
+  };
+}
 export default async function page() {
   const response = await getArticlesInCurrentIssue();
   const { currentIssue, articlesInCurrentIssue } = response;

@@ -2,6 +2,14 @@ import { H1, H2 } from '@/components/shared/headings';
 import Main from '@/components/shared/Main';
 import { TextBlockWithHeading } from '@/components/shared/TextBlockWithHeading';
 
+export const metadata = {
+  title: 'Publication Ethics',
+  description:
+    'The Nigeria Journal of Business Administration (NJBA) is committed to maintaining the highest ethical standards in scholarly publishing. This page outlines the responsibilities of authors, reviewers, and editors to ensure integrity in the publication process.',
+  alternates: {
+    canonical: `${process.env.SITEMAP_BASE_URL}/publication-ethics`,
+  },
+};
 export default function PublicationEthics() {
   return (
     <Main>

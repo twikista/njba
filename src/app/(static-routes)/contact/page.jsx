@@ -1,10 +1,14 @@
 import Main from '@/components/shared/Main';
 import { H1, H2, H3 } from '@/components/shared/headings';
+import { c } from 'framer-motion/dist/types.d-6pKw1mTI';
 
 export const metadata = {
   title: 'Contact',
   description:
-    'React out to us on through the address on this page. Department of Business Administration, Faculty of Management of Sciences, University of Benin, Benin City',
+    'Reach out to us on through the address on this page. Department of Business Administration, Faculty of Management of Sciences, University of Benin, Benin City',
+  alternates: {
+    canonical: `${process.env.SITEMAP_BASE_URL}/contact`,
+  },
 };
 
 export default function Contact() {

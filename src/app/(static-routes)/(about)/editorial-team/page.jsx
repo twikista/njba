@@ -3,6 +3,15 @@ import Main from '@/components/shared/Main';
 import { TextBlockWithHeading } from '@/components/shared/TextBlockWithHeading';
 import { editorialBoard } from '@/static/editorial-board';
 
+export const metadata = {
+  title: 'NJBA Editorial Team',
+  description:
+    'This page provide details about editorial team of the Nigeria Journal of Business Administration (NJBA), including the Editor-in-Chief, and Editorial Board members.',
+  alternates: {
+    canonical: `${process.env.SITEMAP_BASE_URL}/editorial-team`,
+  },
+};
+
 const Editor = (editor) => {
   return (
     <div>

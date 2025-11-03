@@ -3,6 +3,15 @@ import Main from '@/components/shared/Main';
 import { H1, H3 } from '@/components/shared/headings';
 import { TextBlockWithHeading } from '@/components/shared/TextBlockWithHeading';
 
+export const metadata = {
+  title: 'Editorial Process',
+  description:
+    'Understand the editorial process of the Nigeria Journal of Business Administration (NJBA), including article submission, peer review, and publication procedures to ensure high-quality research dissemination.',
+  alternates: {
+    canonical: `${process.env.SITEMAP_BASE_URL}/editorial-process`,
+  },
+};
+
 export default function EditorialProcess() {
   return (
     <Main>

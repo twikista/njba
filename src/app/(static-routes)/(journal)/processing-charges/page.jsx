@@ -3,6 +3,15 @@ import Main from '@/components/shared/Main';
 import { H1, H2, H3 } from '@/components/shared/headings';
 import { TextBlockWithHeading } from '@/components/shared/TextBlockWithHeading';
 
+export const metadata = {
+  title: 'Article Processing Charge',
+  description:
+    'Learn about the article processing charges for submitting and publishing articles in the Nigeria Journal of Business Administration (NJBA). Find details on fees for local and international authors, as well as payment instructions.',
+  alternates: {
+    canonical: `${process.env.SITEMAP_BASE_URL}/processing-charges`,
+  },
+};
+
 export default function AuthorsGude() {
   return (
     <Main className='text-black'>

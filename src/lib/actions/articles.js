@@ -8,7 +8,6 @@ import { articleSchemaForServer } from '../schemas/issues';
 import { connectDB } from '../mongoose/config';
 import mongoose from 'mongoose';
 import { redirect } from 'next/navigation';
-import { removePdfFromStorage } from '../firebase/services';
 import { cache } from 'react';
 import { auth } from '../../../auth';
 import { deleteFile } from '../r2/servicesActions';

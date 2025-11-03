@@ -11,7 +11,7 @@ export default async function sitemap() {
     .flat()
     .filter((i) => i !== null)
     .map((item) => {
-      return { url: `${baseUrl}${item.url}` };
+      return { url: `${siteMapBaseUrl}${item.url}` };
     });
 
   const publishedIssues = await getIssues('published');
@@ -30,13 +30,13 @@ export default async function sitemap() {
 
   return [
     {
-      url: `${baseUrl}`,
+      url: `${siteMapBaseUrl}`,
     },
     {
-      url: `${baseUrl}/contact`,
+      url: `${siteMapBaseUrl}/contact`,
     },
     {
-      url: `${baseUrl}/reviewers-guide`,
+      url: `${siteMapBaseUrl}/reviewers-guide`,
     },
     ...navbarMenuEntries,
     ...archiveMenu,

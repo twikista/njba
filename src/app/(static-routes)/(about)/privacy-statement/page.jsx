@@ -1,6 +1,15 @@
 import { H1 } from '@/components/shared/headings';
 import Main from '@/components/shared/Main';
 
+export const metadata = {
+  title: 'Privacy Statement',
+  description:
+    'This page outlines howNigeria Journal of Business Administration (NJBA) handles personal information collected from authors and reviewers during the submission and review process. ',
+  alternates: {
+    canonical: `${process.env.SITEMAP_BASE_URL}/privacy-statement`,
+  },
+};
+
 export default function PrivacyStatement() {
   return (
     <Main>

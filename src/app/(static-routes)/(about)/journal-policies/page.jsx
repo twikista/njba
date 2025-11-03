@@ -1,6 +1,15 @@
 import { H1, H2 } from '@/components/shared/headings';
 import Main from '@/components/shared/Main';
 
+export const metadata = {
+  title: 'Journal Policies',
+  description:
+    'Explore the journal policies of the Nigeria Journal of Business Administration (NJBA), including peer review, copyright, open access, and plagiarism policies to ensure transparency and integrity in scholarly publishing.',
+  alternates: {
+    canonical: `${process.env.SITEMAP_BASE_URL}/journal-policies`,
+  },
+};
+
 export default function JournalPolicies() {
   return (
     <Main>

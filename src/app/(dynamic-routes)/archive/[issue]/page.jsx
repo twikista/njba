@@ -37,6 +37,9 @@ export async function generateMetadata({ params }) {
   const issue = await getIssue(param.issue);
   return {
     title: `NJBA ${issue.issueTitle}`,
+    alternates: {
+      canonical: `${process.env.SITEMAP_BASE_URL}/archive/${param.issue}`,
+    },
   };
 }
 
@@ -65,7 +68,6 @@ async function IssueContent({ issue }) {
 async function IssuePage({ params }) {
   const param = await params;
   const { issue } = param;
-
   return (
     <div className='flex flex-col min-h-screen'>
       <Header />
