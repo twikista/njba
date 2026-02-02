@@ -36,7 +36,7 @@ function ArticleOverview({ currentArticle, currentIssue = false, issue }) {
     const updatedCount = await incrementDownloadCounts(
       parsedCurrentArticle._id,
       parsedCurrentArticle.ref,
-      parsedCurrentArticle.slug
+      parsedCurrentArticle.slug,
     );
   };
 
@@ -61,7 +61,7 @@ function ArticleOverview({ currentArticle, currentIssue = false, issue }) {
       <div
         className={cn(
           'flex flex-col gap-2 sm:flex-row sm:gap-4 mb-5 text-sm font-medium',
-          variant === 'start' ? 'sm:justify-start' : 'sm:justify-end'
+          variant === 'start' ? 'sm:justify-start' : 'sm:justify-end',
         )}
       >
         <Link
@@ -100,20 +100,20 @@ function ArticleOverview({ currentArticle, currentIssue = false, issue }) {
         </Suspense>
       </section>
       <section className='space-y-3'>
-        <div className='py-2 text-sm'>
+        <div className='py-2 text-sm max-w-2xl'>
           <p>
             <span className='font-semibold'>Keywords:</span>
             <span className='capitalize'>{` ${joinKeywords(
-              currentArticle?.keywords
+              currentArticle?.keywords,
             )}`}</span>
           </p>
         </div>
-        {currentArticle?.jelClassification ? (
+        {currentArticle?.jelClassification.length ? (
           <div className='py-2 text-sm'>
             <p>
               <span className='font-semibold'>JEL Classification:</span>
               <span className='capitalize'>{` ${joinKeywords(
-                currentArticle?.jelClassification
+                currentArticle?.jelClassification,
               )}`}</span>
             </p>
           </div>

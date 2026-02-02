@@ -61,9 +61,9 @@ export async function generateMetadata({ params }) {
       citation_abstract_html_url: `https://njba.com.ng/archive/${article.ref}/${article.slug}`,
       citation_abstract: article.abstract,
       citation_keywords: article.keywords?.map((keyword) => keyword.trim()),
-      citation_pdf_url: `https://njba.com.ng/archive/${article.ref}/${article.slug}/view`,
+      citation_pdf_url: article.pdfUrl,
       citation_author_institution: article.authors?.map(
-        (author) => ` ${author.department}, ${author.institution}`
+        (author) => ` ${author.department}, ${author.institution}`,
       ),
       'DC.Creator.PersonalName': article.authors.map((author) => author.name),
       'DC.Date.created': new Date(article.publishDate)
