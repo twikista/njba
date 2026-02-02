@@ -19,16 +19,27 @@ function Aside() {
         {/* <Information /> */}
         <Archive />
         <div className='flex-1'>
-          <p className='font-medium mb-1'>Indexed by:</p>
-          <a href='https://www.ajol.info/index.php/njbm' target='_blank'>
-            <Image
-              src={ajol}
-              alt='logo of african journals online'
-              width={200}
-              height={200}
-              className='w-[140px] h-auto'
-            />
-          </a>
+          <p className='font-medium mb-2'>Indexed in:</p>
+          <div className='space-y-4 flex flex-col'>
+            <a href='https://www.ajol.info/index.php/njbm' target='_blank'>
+              <Image
+                src={ajol}
+                alt='logo of african journals online'
+                width={200}
+                height={200}
+                className='w-[140px] h-auto'
+              />
+            </a>
+            <a href='https://scholar.google.com/' target='_blank'>
+              <Image
+                src='/scholar.png'
+                alt='logo of google scholar'
+                width={200}
+                height={200}
+                className='w-[140px] h-auto'
+              />
+            </a>
+          </div>
         </div>
       </div>
     </aside>
