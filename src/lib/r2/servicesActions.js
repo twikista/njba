@@ -44,7 +44,7 @@ export async function uploadFile(formData) {
 
     await r2Client.send(command);
 
-    const fileUrl = `${process.env.R2_PUBLIC_URL}/${filename}`;
+    const fileUrl = `${process.env.R2_CUSTOM_DOMAIN}/${filename}`;
 
     // revalidatePath('/');
 

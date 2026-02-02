@@ -120,7 +120,7 @@ export async function updateIssue(id, formData) {
       issueData,
       {
         new: true,
-      }
+      },
     );
 
     if (updatedIssue._id === undefined) {
@@ -148,7 +148,7 @@ export const submitIssueForPublishing = async (ref) => {
           status: 'review',
         },
       },
-      { new: true }
+      { new: true },
     );
 
     if (issueSubmittedForPublishing?._id) {
@@ -173,7 +173,7 @@ export const rejectRequestToPublishIssue = async (ref) => {
           status: 'draft',
         },
       },
-      { new: true }
+      { new: true },
     );
 
     if (publishedIssue._id) {
@@ -208,7 +208,7 @@ export const publishIssue = async (issueRef, publishDate) => {
           publishedBy: `${user.user?.firstName} ${user.user?.lastName}`,
         },
       },
-      { new: true, session }
+      { new: true, session },
     );
 
     if (!publishedIssue?._id) {
@@ -224,7 +224,7 @@ export const publishIssue = async (issueRef, publishDate) => {
     const publishedArticles = await Article.updateMany(
       { ref: issueRef },
       { $set: { published: true, publishDate: publishedIssue.publishDate } },
-      { session }
+      { session },
     );
 
     if (!publishedArticles.acknowledged) {
@@ -261,6 +261,7 @@ export const getPublishedIssues = async () => {
   try {
     await connectDB();
     const publishedIssues = await Issue.find({ published: true }).sort({
+      publishDate: -1,
       volume: -1,
       issueNumber: -1,
     });
@@ -291,7 +292,7 @@ export async function deleteIssueWithArticles(id) {
     // Delete all associated articles
     const deleteOutcome = await Article.deleteMany(
       { ref: deletedIssue.ref },
-      { session }
+      { session },
     );
 
     if (
@@ -343,7 +344,7 @@ export const getArchive = cache(async () => {
   try {
     await connectDB();
     const archive = await Issue.find({ published: true })
-      .sort({ volume: -1, issueNumber: -1 })
+      .sort({ publishDate: -1, volume: -1, issueNumber: -1 })
       .limit(4);
     return archive;
   } catch (error) {
