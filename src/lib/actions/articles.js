@@ -21,7 +21,7 @@ export const getArticle = cache(async (slug, options = null) => {
         ref: `${slug.issue}`,
         slug: `${slug.article}`,
       },
-      options
+      options,
     );
 
     if (!article) {
@@ -147,7 +147,7 @@ export async function createArticle(formData, url, params) {
         issueNumber: `${savedArticle.issue}`,
       },
       { $push: { articles: savedArticle._id } },
-      { session }
+      { session },
     );
 
     if (
@@ -197,7 +197,7 @@ export async function deleteArticle(id) {
     const issueUpdateResult = await Issue.updateOne(
       { ref: deletedArticle.ref },
       { $pull: { articles: deletedArticle._id } },
-      { session }
+      { session },
     );
 
     if (issueUpdateResult.matchedCount === 0) {
@@ -270,7 +270,7 @@ export async function updateArticle(formData, url, id) {
       {
         new: true,
       },
-      { session }
+      { session },
     );
 
     if (updatedArticle._id === undefined) {
@@ -283,6 +283,7 @@ export async function updateArticle(formData, url, id) {
 
     //revalidate all routes to reflect updated data
     revalidatePath(`/archive/${updatedArticle.ref}`);
+    revalidatePath(`/archive/${updatedArticle.ref}/${updatedArticle.slug}`);
     revalidatePath(`/dashboard/issues/${updatedArticle.ref}`);
     return { ok: true };
   } catch (error) {

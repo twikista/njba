@@ -190,70 +190,96 @@ export const rejectRequestToPublishIssue = async (ref) => {
 //publish issue
 export const publishIssue = async (issueRef, publishDate) => {
   const user = await auth();
-  const session = await mongoose.startSession();
+
+  if (!user?.user) {
+    return {
+      ok: false,
+      error: 'You must be logged in to publish an issue.',
+    };
+  }
+
+  const date = new Date(publishDate);
+
+  if (!publishDate || Number.isNaN(date.getTime())) {
+    return {
+      ok: false,
+      error: 'Please provide a valid publication date.',
+    };
+  }
+
+  let session;
 
   try {
     await connectDB();
 
     // Start transaction
-    session.startTransaction();
+    session = await mongoose.startSession();
 
-    const publishedIssue = await Issue.findOneAndUpdate(
-      { ref: issueRef, status: 'draft' },
-      {
-        $set: {
-          published: true,
-          publishDate: new Date(publishDate),
-          status: 'published',
-          publishedBy: `${user.user?.firstName} ${user.user?.lastName}`,
+    await session.withTransaction(async () => {
+      const issue = await Issue.findOneAndUpdate(
+        { ref: issueRef, status: 'draft' },
+        {
+          $set: {
+            published: true,
+            publishDate: date,
+            status: 'published',
+            publishedBy:
+              `${user.user.firstName ?? ''} ${user.user.lastName ?? ''}`.trim(),
+          },
         },
-      },
-      { new: true, session },
-    );
+        {
+          new: true,
+          session,
+        },
+      );
 
-    if (!publishedIssue?._id) {
-      // Issue not found or not updated, abort transaction
-      await session.abortTransaction();
-      return {
-        ok: false,
-        error: 'Issue not found or already published',
-        errorType: 'not_found',
-      };
-    }
+      if (!issue?._id) {
+        throw new Error('ISSUE_NOT_FOUND');
+      }
 
-    const publishedArticles = await Article.updateMany(
-      { ref: issueRef },
-      { $set: { published: true, publishDate: publishedIssue.publishDate } },
-      { session },
-    );
-
-    if (!publishedArticles.acknowledged) {
-      // Problem updating articles, abort transaction
-      await session.abortTransaction();
-      return {
-        ok: false,
-        error: 'Failed to update articles',
-        errorType: 'other',
-      };
-    }
-
-    // If we reach here, both operations were successful, commit the transaction
-    await session.commitTransaction();
+      await Article.updateMany(
+        { ref: issueRef },
+        {
+          $set: {
+            published: true,
+            publishDate: issue.publishDate,
+          },
+        },
+        { session },
+      );
+    });
 
     // Revalidate paths after successful transaction
-    revalidatePath(`/dashboard/issues/${publishedIssue.ref}`);
+    revalidatePath(`/dashboard/issues/${issueRef}`);
     revalidatePath(`/dashboard/issues`);
+    revalidatePath('/');
     revalidatePath(`/archive`);
+    revalidatePath('/sitemap.xml');
+    revalidatePath('/current');
 
     return { ok: true };
   } catch (error) {
     // Any error occurred, abort transaction
-    await session.abortTransaction();
-    console.error('Transaction failed:', error);
-    return { ok: false, error: error.message, errorType: 'transaction_failed' };
+    console.error('Publish issue failed:', error);
+
+    if (error.message === 'ISSUE_NOT_FOUND') {
+      return {
+        ok: false,
+        error: 'Issue not found or already published.',
+        errorType: 'not_found',
+      };
+    }
+
+    return {
+      ok: false,
+      error: 'Unable to publish the issue. Please try again.',
+      errorType: 'transaction_failed',
+    };
   } finally {
     // End session in all cases
-    await session.endSession();
+    if (session) {
+      await session.endSession();
+    }
   }
 };
 
